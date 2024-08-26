@@ -1,0 +1,148 @@
+
+<radio-header></radio-header>
+
+<main class="w-full">
+  <!-- Carusel de imagenes -->
+  <radio-carousel [mediaElement]="mediaElementCarousel" [intervalTime]="3000"></radio-carousel>
+
+  <!-- Informacion sobre Radio UTPL -->
+  <section class="flex flex-col items-center md:h-[320px] w-full p-3 sm:px-20 md:px-40 text-center text-wrap bg-slate-50">
+
+      <h2 class="my-4 text-3xl font-bold text-blue-900">
+        Sobre Radio UTPL
+        <span class="block w-20 h-1 mt-2 mx-auto bg-yellow-500"></span>
+      </h2>
+
+      <p class="my-4 text-blue-800 font-serif italic ">“La verdadera comunicación es la que se vive y se hace a diario”</p>
+
+      <p class="my-4 text-wrap"><strong>RADIO UTPL</strong> fue creada para que los estudiantes de la Modalidad a Distancia y Modalidad Presencial tengan un acercamiento con sus mentores y catedráticos.</p>
+
+      <a href="" class="p-2 rounded bg-yellow-500 text-xs font-sans font-bold text-blue-900 hover:bg-blue-900 hover:text-white shadow-md transition duration-300 ease-in-out">
+        {{'Más información' | uppercase}}
+      </a>
+
+  </section>
+
+  <!-- Calendario de eventoss -->
+  <section class="w-full grid grid-cols-1 sm:grid-cols-6 py-5 px-5">
+
+    <div class="text-center mb-5 col-span-6 sm:col-span-2 sm:px-2 md:px-10">
+      <h2 class="mb-3 text-xl font-bold text-blue-800">
+        Cronograma de eventos
+        <!-- <span class="block w-20 h-1 mt-2 mx-auto bg-yellow-500"></span> -->
+      </h2>
+      <p class="text-sm">Consulta nuestro calendario para estar al tanto de los próximos eventos y actividades. Aquí encontrarás fechas importantes para no perderte ninguna oportunidad de participar en nuestras iniciativas.</p>
+    </div>
+
+    <div class="w-full col-span-6 sm:col-span-4 mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+      <div class="p-4 bg-blue-600 text-white text-center">
+        <h2 class="text-lg font-semibold">Agosto 2024</h2>
+      </div>
+      <div class="p-4">
+        <div class="grid grid-cols-7 gap-2 text-center text-sm">
+         <!-- Encabezados de los días -->
+          <div class="font-semibold text-gray-600">Dom</div>
+          <div class="font-semibold text-gray-600">Lun</div>
+          <div class="font-semibold text-gray-600">Mar</div>
+          <div class="font-semibold text-gray-600">Mié</div>
+          <div class="font-semibold text-gray-600">Jue</div>
+          <div class="font-semibold text-gray-600">Vie</div>
+          <div class="font-semibold text-gray-600">Sáb</div>
+
+          <!-- Días del calendario -->
+          <!-- Ejemplo: -->
+
+
+          <div class="text-gray-400">1</div>
+          <div class="text-gray-400">2</div>
+          <div class="text-gray-400">3</div>
+          <div class="text-gray-400">4</div>
+          <div class="text-gray-400">5</div>
+          <div class="text-gray-400">6</div>
+          <div class="text-gray-400">7</div>
+
+          <!-- Continuar con los días del mes -->
+          <div class="text-gray-400">1</div>
+          <div class="text-gray-400">2</div>
+          <div class="text-gray-400">3</div>
+          <div class="text-gray-400">4</div>
+          <div class="text-gray-400">5</div>
+          <div class="text-gray-400">6</div>
+          <div class="text-gray-400">7</div>
+          <div class="text-gray-400">1</div>
+          <div class="text-gray-400">2</div>
+          <div class="text-gray-400">3</div>
+          <div class="text-gray-400">4</div>
+          <div class="text-gray-400">5</div>
+          <div class="text-gray-400">6</div>
+          <div class="text-gray-400">7</div>
+          <div class="text-gray-400">1</div>
+          <div class="text-gray-400">2</div>
+          <div class="text-gray-400">3</div>
+          <div class="text-gray-400">4</div>
+          <div class="text-gray-400">5</div>
+          <div class="text-gray-400">6</div>
+          <div class="text-gray-400">7</div>
+          <div class="text-gray-400">1</div>
+          <div class="text-gray-400">2</div>
+          <div class="text-gray-400">3</div>
+          <div class="text-gray-400">4</div>
+          <div class="text-gray-400">5</div>
+          <div class="text-gray-400">6</div>
+          <div class="text-gray-400">7</div>
+          <div class="text-gray-400">1</div>
+          <div class="text-gray-400">2</div>
+          <div class="text-gray-400">3</div>
+          <div class="text-gray-400">4</div>
+          <div class="text-gray-400">5</div>
+          <div class="text-gray-400">6</div>
+          <div class="text-gray-400">7</div>
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Seccion de informacion sobre proyectos y podcast -->
+  <section class="w-full h-[400px] p-3 grid grid-cols-2 justify-center text-wrap text-center bg-slate-50">
+    <article class="flex-col p-5 xl:p-20">
+      <h2 class="mb-3 text-xl font-bold text-blue-800">
+        Proyectos
+        <span class="block w-20 h-1 mt-2 mx-auto bg-yellow-500"></span>
+      </h2>
+
+      <p class="mb-5 text-sm text-gray-700 leading-relaxed">
+        Nuestro laboratorio se dedica a desarrollar proyectos innovadores en el campo de la tecnología y la comunicación.
+        Con un enfoque en la investigación aplicada, colaboramos con profesionales y académicos para crear soluciones
+        que impulsen el avance científico y tecnológico.
+      </p>
+
+      <a href="" class=" p-2 rounded bg-yellow-500 text-xs font-sans font-bold text-blue-900 hover:bg-blue-900 hover:text-white shadow-md transition duration-300 ease-in-out">
+        {{'Más información' | uppercase}}
+      </a>
+    </article>
+
+    <article class="flex-col p-5 xl:p-20">
+      <h2 class="mb-3 text-xl font-bold text-blue-800">
+        Podcast
+        <span class="block w-20 h-1 mt-2 mx-auto bg-yellow-500"></span>
+      </h2>
+      <p class="mb-5 text-sm text-gray-700 leading-relaxed">
+        Descubre nuestro podcast, donde exploramos temas relevantes en el ámbito de la tecnología y la comunicación.
+        Cada episodio presenta entrevistas con expertos, discusiones sobre las últimas tendencias y análisis profundos
+        sobre temas de interés.
+      </p>
+      <a href="" class="p-2 rounded bg-yellow-500 text-xs font-sans font-bold text-blue-900 hover:bg-blue-900 hover:text-white shadow-md transition duration-300 ease-in-out">
+        {{'Más información' | uppercase}}
+      </a>
+    </article>
+  </section>
+
+</main>
+
+
+<radio-footer></radio-footer>
+
+
+
