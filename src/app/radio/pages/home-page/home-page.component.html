@@ -133,6 +133,14 @@
         Cada episodio presenta entrevistas con expertos, discusiones sobre las últimas tendencias y análisis profundos
         sobre temas de interés.
       </p>
+
+      <p *ngFor="let podcast of podcasts">
+        titulo: {{podcast.title}}
+        categoria: {{podcast.category}}
+      </p>
+
+      <p>categoria lenguas: {{lenguas.title}}</p>
+
       <a href="" class="p-2 rounded bg-yellow-500 text-xs font-sans font-bold text-blue-900 hover:bg-blue-900 hover:text-white shadow-md transition duration-300 ease-in-out">
         {{'Más información' | uppercase}}
       </a>
