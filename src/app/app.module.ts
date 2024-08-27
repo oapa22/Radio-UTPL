@@ -6,6 +6,11 @@ import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { SharedModule } from './shared/shared.module';
 
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+
+import { environments } from './environments/environments';
 
 @NgModule({
   declarations: [
@@ -16,7 +21,11 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     AppRoutingModule,
 
-    SharedModule
+    SharedModule,
+
+    AngularFireModule.initializeApp(environments.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
   providers: [
     provideAnimationsAsync()
