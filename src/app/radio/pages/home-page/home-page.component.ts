@@ -35,16 +35,6 @@ export class HomePageComponent implements OnInit{
 
   ngOnInit(): void {
     this.getPodcasts()
-
-    this.lenguas = this.podcasts.find(podcast => podcast.category === 'lenguas') || {
-      id: '',
-      title: '',
-      date: '',
-      category: '',
-      image: '',
-      content: '',
-    };
-    
   }
 
   getPodcasts(){
