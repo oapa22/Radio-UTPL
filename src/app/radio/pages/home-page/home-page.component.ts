@@ -22,14 +22,12 @@ export class HomePageComponent implements OnInit{
   };
 
   public mediaElementCarousel:MediaElement[] = [
-    {id: '01', title: 'First Image', imgSrc: 'https://i.iplsc.com/-/000E5FZ3NYWLDYS1-C461-F4.jpg'},
-    {id: '02', title: 'Second Image', imgSrc: 'https://cdn.mos.cms.futurecdn.net/jZbskesRhzALfcqHx9eiDb.jpg'},
-    {id: '03', title: 'Tree Image', imgSrc: 'https://static.bandainamcoent.eu/high/elden-ring/elden-ring/03-news/Starter_Guide/Elden_Ring_game_screen.jpg'}
+    {id: '01', title: 'First Image', imgSrc: 'https://wallpapers.com/images/featured/minimalist-7xpryajznty61ra3.jpg'},
+    {id: '02', title: 'Second Image', imgSrc: 'https://images.alphacoders.com/133/1330482.png'},
+    {id: '03', title: 'Tree Image', imgSrc: 'https://wallpaperbat.com/img/192020-minimal-forest-wallpaper-top-free-minimal-forest-background.jpg'}
   ]
 
-  constructor(
-    private firestore: FirestoreService,
-  ){
+  constructor(private firestore: FirestoreService,){
 
   }
 

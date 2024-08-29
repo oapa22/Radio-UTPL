@@ -11,6 +11,7 @@ import { ContactPageComponent } from './pages/contact-page/contact-page.componen
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { CardPodcastComponent } from './components/card-podcast/card-podcast.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     ContactPageComponent,
     HeaderComponent,
     FooterComponent,
-    CarouselComponent
+    CarouselComponent,
+    CardPodcastComponent
 
   ],
   imports: [
