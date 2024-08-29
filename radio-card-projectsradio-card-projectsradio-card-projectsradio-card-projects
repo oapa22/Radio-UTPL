@@ -1,0 +1,44 @@
+[33mcommit 5838ed3bbe30137c2d80fa16e9569f67b64e1be8[m[33m ([m[1;36mHEAD -> [m[1;32manthony[m[33m, [m[1;31morigin/anthony[m[33m)[m
+Author: AnthonyO <anthony.orj@gmail.com>
+Date:   Thu Aug 29 15:19:00 2024 -0500
+
+    Actualizacion del codigo src/app/radio/pages/schedule-page y creacion del componenete src/app/radio/components/card-podcast
+
+[33mcommit b8f370a1c0067f370abc2d4e51207501a41eabd2[m
+Author: AnthonyO <anthony.orj@gmail.com>
+Date:   Thu Aug 29 10:21:36 2024 -0500
+
+    Cambios en el codigo src/app/radio/pages/home-page/home-page.component.html; src/app/radio/pages/layout-page/layout-page.component.html; src/app/radio/components/header/header.component.html
+
+[33mcommit 0f7ba452f9706b7f696f68b368f7373daffb9395[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Merge: 6783f69 99e9d7f
+Author: oapa22 <92597843+oapa22@users.noreply.github.com>
+Date:   Tue Aug 27 16:15:55 2024 -0500
+
+    Merge pull request #1 from AnthonyOrtiz/oliver
+    
+    Oliver
+
+[33mcommit 99e9d7f80b2593d53be50bf6a8b132b7a379f974[m[33m ([m[1;31morigin/oliver[m[33m)[m
+Author: Oliver Pinos <anthonypinos18@gmail.com>
+Date:   Tue Aug 27 16:14:47 2024 -0500
+
+    Firebase
+
+[33mcommit f9b0f7ad62a749dc51688b0dcd0ce9f29e2008f7[m
+Author: Oliver Pinos <anthonypinos18@gmail.com>
+Date:   Tue Aug 27 16:00:33 2024 -0500
+
+    Firebase
+
+[33mcommit 6783f695f19301800a8b5e57c7ab5d9ee1794c49[m
+Author: AnthonyO <anthony.orj@gmail.com>
+Date:   Mon Aug 26 17:57:38 2024 -0500
+
+    Subia de la estructura y pagina principal del sitio web Radio UTPL
+
+[33mcommit 0547d01597817b1f37e5527d102a20241684b5e0[m
+Author: AnthonyO <anthony.orj@gmail.com>
+Date:   Wed Aug 21 11:17:01 2024 -0500
+
+    initial commit

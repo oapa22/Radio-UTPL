@@ -12,6 +12,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { CardPodcastComponent } from './components/card-podcast/card-podcast.component';
+import { CardProjectsComponent } from './components/card-projects/card-projects.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CardPodcastComponent } from './components/card-podcast/card-podcast.com
     HeaderComponent,
     FooterComponent,
     CarouselComponent,
-    CardPodcastComponent
+    CardPodcastComponent,
+    CardProjectsComponent
 
   ],
   imports: [
