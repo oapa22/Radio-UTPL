@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../services/firebase.service';
-import { Podcast } from '../../interfaces/podcast.interface';
+import { Podcasts } from '../../../shared/interfaces/podcasts.interfaces';
+
 
 @Component({
   selector: 'radio-schedule-page',
@@ -8,7 +9,7 @@ import { Podcast } from '../../interfaces/podcast.interface';
   styleUrl: './schedule-page.component.css'
 })
 export class SchedulePageComponent implements OnInit{
-  podcasts: Podcast[] = [];
+  podcasts: Podcasts[] = [];
 
   constructor(private firestore:FirestoreService){
 
@@ -18,7 +19,7 @@ export class SchedulePageComponent implements OnInit{
   }
 
   public getPodcasts(){
-    this.firestore.getCollection<Podcast>('podcast').subscribe( res => {
+    this.firestore.getCollection<Podcasts>('podcast').subscribe( res => {
       this.podcasts = res;
     });
   }

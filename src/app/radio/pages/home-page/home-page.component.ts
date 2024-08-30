@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../services/firebase.service';
 import { MediaElement } from '../../interfaces/media-element.interface';
-import { Podcast } from '../../interfaces/podcast.interface';
+import { Podcasts } from '../../../shared/interfaces/podcasts.interfaces';
+
 
 
 @Component({
@@ -11,8 +12,8 @@ import { Podcast } from '../../interfaces/podcast.interface';
 })
 export class HomePageComponent implements OnInit{
 
-  podcasts: Podcast[] = [];
-  lenguas: Podcast = {
+  podcasts: Podcasts[] = [];
+  lenguas: Podcasts = {
     id: '',
     title: '',
     date: '',
@@ -36,7 +37,7 @@ export class HomePageComponent implements OnInit{
   }
 
   getPodcasts(){
-    this.firestore.getCollection<Podcast>('podcast').subscribe( res => {
+    this.firestore.getCollection<Podcasts>('podcast').subscribe( res => {
       this.podcasts = res;
       console.log('hola',this.podcasts)
     });

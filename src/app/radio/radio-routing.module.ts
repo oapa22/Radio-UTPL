@@ -19,6 +19,10 @@ const routes: Routes = [
       {path: 'projects/edit/:id', component: ProjectsPageComponent},
       {path: 'schedule', component: SchedulePageComponent},
       {path: 'schedule/edit/:id', component: SchedulePageComponent},
+      {
+        path: 'admin',
+        loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule)
+      },
       {path: '**', redirectTo: 'home'}
     ]
   }

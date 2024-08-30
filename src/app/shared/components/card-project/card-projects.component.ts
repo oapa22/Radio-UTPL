@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'radio-card-project',
+  selector: 'shared-card-project',
   templateUrl: './card-projects.component.html',
   styleUrl: './card-projects.component.css'
 })

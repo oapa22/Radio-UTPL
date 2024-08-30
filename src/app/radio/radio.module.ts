@@ -11,8 +11,7 @@ import { ContactPageComponent } from './pages/contact-page/contact-page.componen
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
-import { CardPodcastComponent } from './components/card-podcast/card-podcast.component';
-import { CardProjectsComponent } from './components/card-projects/card-projects.component';
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -25,13 +24,11 @@ import { CardProjectsComponent } from './components/card-projects/card-projects.
     HeaderComponent,
     FooterComponent,
     CarouselComponent,
-    CardPodcastComponent,
-    CardProjectsComponent
-
   ],
   imports: [
     CommonModule,
-    RadioRoutingModule
-  ]
+    RadioRoutingModule,
+    SharedModule
+]
 })
 export class RadioModule { }
