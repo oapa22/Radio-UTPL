@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Podcasts } from '../../interfaces/podcasts.interfaces';
+import { Podcasts } from '../../interfaces/podcasts.interface';
 
 @Component({
   selector: 'shared-card-podcast',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../services/firebase.service';
 import { MediaElement } from '../../interfaces/media-element.interface';
-import { Podcasts } from '../../../shared/interfaces/podcasts.interfaces';
+import { Podcasts } from '../../../shared/interfaces/podcasts.interface';
 
 
 
