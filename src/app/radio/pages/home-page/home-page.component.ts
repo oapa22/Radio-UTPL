@@ -12,8 +12,9 @@ import { Podcasts } from '../../../shared/interfaces/podcasts.interface';
 })
 export class HomePageComponent implements OnInit{
 
-  podcasts: Podcasts[] = [];
-  lenguas: Podcasts = {
+  public podcasts: Podcasts[] = [];
+
+  public lenguas: Podcasts = {
     id: '',
     title: '',
     date: '',
