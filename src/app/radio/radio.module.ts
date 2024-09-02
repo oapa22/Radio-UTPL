@@ -11,6 +11,7 @@ import { ContactPageComponent } from './pages/contact-page/contact-page.componen
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -22,12 +23,12 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     ContactPageComponent,
     HeaderComponent,
     FooterComponent,
-    CarouselComponent
-
+    CarouselComponent,
   ],
   imports: [
     CommonModule,
-    RadioRoutingModule
-  ]
+    RadioRoutingModule,
+    SharedModule
+]
 })
 export class RadioModule { }

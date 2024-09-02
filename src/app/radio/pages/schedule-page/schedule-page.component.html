@@ -1,1 +1,16 @@
-<p>schedule-page works!</p>
+
+<div class="w-full h-[500px] grid justify-center items-center bg-slate-300">
+  <p>Calendario de eventos</p>
+</div>
+
+<div class="w-full p-4">
+  <h2>Card Podcast Componente</h2>
+
+</div>
+
+<section class="grid grid-cols-6 p-1">
+
+  <div *ngFor="let podcast of podcasts" class="col-span-3">
+    <shared-card-podcast [podcast]="podcast"></shared-card-podcast>
+  </div>
+</section>

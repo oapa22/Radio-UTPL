@@ -16,9 +16,11 @@ const routes: Routes = [
       {path: 'about-us', component: AboutUsPageComponent},
       {path: 'contact', component: ContactPageComponent},
       {path: 'projects', component: ProjectsPageComponent},
-      {path: 'projects/edit/:id', component: ProjectsPageComponent},
       {path: 'schedule', component: SchedulePageComponent},
-      {path: 'schedule/edit/:id', component: SchedulePageComponent},
+      {
+        path: 'admin',
+        loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule)
+      },
       {path: '**', redirectTo: 'home'}
     ]
   }

@@ -1,0 +1,29 @@
+
+<div class="w-full grid justify-center items-center m-2">
+  <ul class="rounded bg-yellow-500 space-x-3 w-96 text-center">
+    <a href="" routerLink="./list-podcast"
+      (click)="updateButtonLabel('podcast')"
+      class="hover:bg-blue-800 hover:text-white hover:rounded"
+    >Podcast</a>
+
+    <a href="" routerLink="./list-project"
+      (click)="updateButtonLabel('project')"
+      class="hover:bg-blue-800 hover:text-white hover:rounded"
+    >Proyectos</a>
+
+    <a href="" routerLink="./list-message"
+      (click)="updateButtonLabel('message')"
+      class="hover:bg-blue-800 hover:text-white hover:rounded"
+    >Mensajes</a>
+
+  </ul>
+</div>
+
+<div>
+  <button *ngIf="valueLabel" class="rounded bg-slate-400"
+    (click)="navigateToSection()"
+  >Crear {{this.valueLabel}}</button>
+</div>
+
+<router-outlet></router-outlet>
+
