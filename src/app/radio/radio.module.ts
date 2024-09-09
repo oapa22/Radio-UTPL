@@ -12,6 +12,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { SharedModule } from "../shared/shared.module";
+import { SectionAboutUsComponent } from './components/section-about-us/section-about-us.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SharedModule } from "../shared/shared.module";
     HeaderComponent,
     FooterComponent,
     CarouselComponent,
+    SectionAboutUsComponent,
   ],
   imports: [
     CommonModule,

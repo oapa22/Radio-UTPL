@@ -1,1 +1,73 @@
-<p>about-us-page works!</p>
+<div class="w-full">
+  <!-- Informacion sobre Radio UTPL -->
+  <radio-section-about-us></radio-section-about-us>
+
+  <!-- Seccion nuestra historia -->
+  <article class="bg-blue-utpl grid grid-cols-2 py-16 px-40 text-white items-center">
+    <div class="col-span-1  flex-col text-center p-8">
+      <h2 class="text-2xl">
+        <p><strong>NUESTRA</strong></p>
+        <P>HISTORIA</P>
+      </h2>
+
+      <p class="my-6">"LA VERDADERA COMUNICACION, ES LA QUE SE VIVE Y SE HACE A DIARIO"</p>
+
+      <p class="text-sm">Radio UTPL fue creada para que los estudiantes de la Modalidad a Distancia y Modalidad Presencial tengan un acercamiento con sus mentorres y catedraticos.</p>
+    </div>
+
+    <div class="col-span-1 flex justify-center select-none">
+      <img
+        class="rounded-lg w-[30%] shadow-md"
+        src="https://wallpapers.com/images/hd/retro-music-radio-receiver-collection-8gvddenzr6iqdt80.jpg" alt="Image Radio"
+      >
+    </div>
+
+  </article>
+
+  <!-- Seccion Equipo -->
+  <div class="bg-white flex-col py-16 px-32">
+    <div class="relative h-16 rounded-full overflow-hidden mb-10">
+      <img
+        class="w-full bg-blue-utpl"
+        src="https://tiendada.com/blog/wp-content/uploads/2022/10/ejemplo-liderazgo-trabajo-equipo.jpg" alt=""
+      >
+      <!-- Div para dar una capa de opacidad a todo el div -->
+      <div class="absolute inset-0 bg-blue-utpl bg-opacity-50"></div>
+
+      <h2 class="absolute inset-0 flex justify-center items-center text-2xl text-white">
+        <strong>EQUIPO</strong>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-4">
+      <div *ngFor="let member of mediaTeamMediaLab; let i = index"
+        class="col-span-1 flex justify-center">
+
+        <!-- Div padre para dar ancho y altura " -->
+        <div
+          [ngClass]="{'mt-10': (i % 2) != 0}"
+          class="relative flex justify-center w-full h-[450px]"
+          >
+
+          <div class="relative w-[70%] h-full text-sm text-center py-2 px-4 borderGradient">
+            <p><strong>{{member.title}}</strong></p>
+            <p>{{member.description}}</p>
+          </div>
+
+          <div class="absolute w-full h-full flex items-end justify-center pb-[10px] select-none">
+            <img
+              class="w-[75%]"
+              src="https://www.careerguide.com/career/wp-content/uploads/2023/01/professional-girl-png-6-e1673264164542.png" alt=""
+            >
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+

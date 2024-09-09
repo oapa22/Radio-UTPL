@@ -39,6 +39,7 @@ export class CarouselComponent implements OnInit{
     this.startAutoSlide();
   }
 
+  // Inicializar intervalo
   public startAutoSlide():void{
     if (this.mediaElement.length > 0){
 
@@ -78,6 +79,7 @@ export class CarouselComponent implements OnInit{
     }
   }
 
+  // Empleada para realizar animacion de transicion
   get currentTransform():string {
     return `translateX(-${this.currentPosition * 100}%)`;
   }
