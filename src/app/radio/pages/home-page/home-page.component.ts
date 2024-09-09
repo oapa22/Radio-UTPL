@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../services/firebase.service';
 import { MediaElement } from '../../interfaces/media-element.interface';
-import { Podcasts } from '../../../shared/interfaces/podcasts.interface';
+import { Podcast } from '../../../shared/interfaces/podcast.interface';
 
 
 
@@ -12,16 +12,7 @@ import { Podcasts } from '../../../shared/interfaces/podcasts.interface';
 })
 export class HomePageComponent implements OnInit{
 
-  public podcasts: Podcasts[] = [];
-
-  public lenguas: Podcasts = {
-    id: '',
-    title: '',
-    date: '',
-    category: '',
-    image: '',
-    content: '',
-  };
+  public podcasts: Podcast[] = [];
 
   public mediaElementCarousel:MediaElement[] = [
     {id: '01', title: 'First Image', imgSrc: 'https://wallpapers.com/images/featured/minimalist-7xpryajznty61ra3.jpg'},
@@ -38,7 +29,7 @@ export class HomePageComponent implements OnInit{
   }
 
   getPodcasts(){
-    this.firestore.getCollection<Podcasts>('podcast').subscribe( res => {
+    this.firestore.getCollection<Podcast>('podcast').subscribe( res => {
       this.podcasts = res;
       console.log('hola',this.podcasts)
     });

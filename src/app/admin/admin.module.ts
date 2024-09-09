@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
@@ -23,6 +24,7 @@ import { ListPodcastComponent } from './pages/list-podcast/list-podcast.componen
   ],
   imports: [
     CommonModule,
+    FormsModule,
     AdminRoutingModule
   ]
 })

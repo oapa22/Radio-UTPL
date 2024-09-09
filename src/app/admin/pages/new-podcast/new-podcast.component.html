@@ -1,4 +1,17 @@
 <div class="bg-slate-200">
-  <p>new-podcast works!</p>
+  <h2><b>Fecha de publicación:</b> {{podcast.date}}</h2>
+  <h3><b>Título de referencia</b></h3><p>Este título no se visualiza en el podcas, solo es para mantener una organización en el administrador.</p>
+    <div>
+      <div class="boxInfo">
+        <input class="box" [(ngModel)]="podcast.title" type="text" placeholder="Ingrese el Título de referencia">
+      </div>
+    </div>
+  <h3><b>Insertar iFrame de Spotify</b></h3><p>Tomar en consideración que la dimensión del width="300" height="200"</p>
+    <div>
+      <div class="boxInfo">
+        <input class="box" [(ngModel)]="podcast.frame" type="text" placeholder="Ingrese el iFrame">
+      </div>
+    </div>
+  <button (click)="createPodcast()">Crear Podcast</button>
 </div>
 
