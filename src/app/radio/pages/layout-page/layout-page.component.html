@@ -1,7 +1,13 @@
 <radio-header></radio-header>
 
-<!-- Carusel de imagenes -->
-<radio-carousel [mediaElement]="mediaElementCarousel" [intervalTime]="5000"></radio-carousel>
+<div class="w-full h-[250px] overflow-hidden" *ngIf="!this.router.url.includes('inicio')">
+  <img
+    class="w-full h-full object-cover"
+    src="https://wallpapers.com/images/featured/minimalist-7xpryajznty61ra3.jpg"
+    alt=""
+  >
+</div>
+
 <router-outlet></router-outlet>
 
 <radio-footer></radio-footer>

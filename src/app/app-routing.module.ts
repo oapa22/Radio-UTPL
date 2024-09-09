@@ -8,7 +8,7 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'radio',
+    path: 'radio-utpl',
     loadChildren: () => import('./radio/radio.module').then(m => m.RadioModule)
   },
   {
@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'radio',
+    redirectTo: 'radio-utpl',
     pathMatch: 'full'
   },
   {

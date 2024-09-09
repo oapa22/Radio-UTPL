@@ -25,6 +25,7 @@ export class CarouselComponent implements OnInit{
   @Input() fullScreen:boolean = false;
   @Input() mediaElement:MediaElement[] = [];
   @Input() intervalTime:number = 0;
+  @Input() currentRoute:string = '';
 
   // Final Properties
   public currentPosition:number = 0;
