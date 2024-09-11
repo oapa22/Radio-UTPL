@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MediaElement } from '../../interfaces/media-element.interface';
 import { Router } from '@angular/router';
+import { BrowserRoute } from '../../interfaces/browser-route';
 
 @Component({
   selector: 'radio-layout-page',
@@ -10,7 +10,19 @@ import { Router } from '@angular/router';
 export class LayoutPageComponent implements OnInit {
 
 
-  constructor(public router:Router){}
+  public browserRoutes:BrowserRoute[] = [
+    {titleRoute: 'Inicio', route: './inicio'},
+    {titleRoute: '¿Quines Somos?', route: './quienes-somos'},
+    {titleRoute: 'Programación', route: './programacion'},
+    {titleRoute: 'Proyectos', route: './proyectos'},
+    {titleRoute: 'Contacto', route: './contacto'},
+    {titleRoute: 'Administrador', route: './admin'},
+  ];
+
+  public routeData:BrowserRoute = {titleRoute:'', route: ''};
+
+  constructor(public router:Router){
+  }
 
   ngOnInit(): void {
     this.getCurrentRoute();
@@ -19,6 +31,17 @@ export class LayoutPageComponent implements OnInit {
   public getCurrentRoute():string{
     const stringRoute:string = this.router.url;
     return stringRoute;
+  }
+
+  public getCurrentTitleRoute():string{
+    const currentRoute:string = this.getCurrentRoute();
+
+    for(let data of this.browserRoutes){
+      if ( currentRoute.includes(data.route.replace('.','')) ){
+        return data.titleRoute;
+      }
+    }
+    return 'Indefindo';
   }
 
 }

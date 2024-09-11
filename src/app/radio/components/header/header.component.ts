@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { BrowserRoute } from '../../interfaces/browser-route';
 
 @Component({
   selector: 'radio-header',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  @Input()
+  public currentRoute:string = '';
+
+  @Input() public browserRoutes:BrowserRoute[] = [];
 
 }

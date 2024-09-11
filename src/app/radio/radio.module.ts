@@ -13,6 +13,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { SharedModule } from "../shared/shared.module";
 import { SectionAboutUsComponent } from './components/section-about-us/section-about-us.component';
+import { SectionScheduleComponent } from './components/section-schedule/section-schedule.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { SectionAboutUsComponent } from './components/section-about-us/section-a
     FooterComponent,
     CarouselComponent,
     SectionAboutUsComponent,
+    SectionScheduleComponent,
   ],
   imports: [
     CommonModule,

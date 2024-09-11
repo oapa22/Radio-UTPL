@@ -22,37 +22,15 @@
     </div>
     <!--  class="  sm:space-x-7 text-xs lg:text-sm  text-white" -->
     <nav class="col-span-3  sm:space-x-10 text-xs lg:text-sm  text-white">
-      <a href="" class="rounded hover:shadow-lg hover:bg-yellow-500 hover:text-white p-1 transition duration-300 ease-in-out"
-        routerLink="./inicio"
+      <a
+        *ngFor="let item of browserRoutes"
+        [ngClass]="{'text-yellow-utpl': currentRoute.includes(item.route.replace('.', ''))}"
+        href=""
+        class="p-1 hover:text-yellow-utpl  transition duration-300 ease-in-out"
+        [routerLink]=item.route
       >
-        {{'Inicio' | uppercase}}
+        {{item.titleRoute | uppercase}}
       </a>
-
-      <a class="rounded hover:shadow-lg hover:bg-yellow-500 hover:text-white p-1 transition duration-300 ease-in-out"
-        routerLink="./quienes-somos"
-      >
-        {{'¿Quines Somos?' | uppercase}}
-      </a>
-
-      <a href="" class="rounded hover:shadow-lg hover:bg-yellow-500 hover:text-white p-1 transition duration-300 ease-in-out"
-        routerLink="./programacion"
-      >
-        {{'Programación' | uppercase}}
-      </a>
-      <a href="" class="rounded hover:shadow-lg hover:bg-yellow-500 hover:text-white p-1 transition duration-300 ease-in-out"
-        routerLink="./proyectos"
-      >
-        {{'Proyectos' | uppercase}}
-      </a>
-      <a href="" class="rounded hover:shadow-lg hover:bg-yellow-500 hover:text-white p-1 transition duration-300 ease-in-out"
-      routerLink="./contacto"
-      >
-        {{'Contacto' | uppercase}}
-      </a>
-
-      <a href="" class="rounded hover:shadow-lg hover:bg-yellow-500 hover:text-white p-1 transition duration-300 ease-in-out"
-        routerLink="./admin"
-      >{{'Administrador' | uppercase}}</a>
     </nav>
 
     <div class="col-span-1 grid justify-center">
