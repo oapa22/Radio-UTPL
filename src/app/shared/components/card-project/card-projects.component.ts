@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Projects } from '../../interfaces/projects.interface';
+import { Project } from '../../interfaces/project.interface';
 
 @Component({
   selector: 'shared-card-project',
@@ -8,6 +8,6 @@ import { Projects } from '../../interfaces/projects.interface';
 })
 export class CardProjectsComponent {
   @Input()
-  public project!:Projects;
+  public project!:Project;
 
 }
