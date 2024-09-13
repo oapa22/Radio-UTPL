@@ -3,8 +3,6 @@ import { FirestoreService } from '../../services/firebase.service';
 import { Podcasts } from '../../../shared/interfaces/podcasts.interface';
 import { MediaElement } from '../../interfaces/media-element.interface';
 
-
-
 @Component({
   selector: 'radio-home-page',
   templateUrl: './home-page.component.html',

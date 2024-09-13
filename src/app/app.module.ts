@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 import { environments } from './environments/environments';
 
@@ -19,6 +21,7 @@ import { environments } from './environments/environments';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
 
     SharedModule,
@@ -26,6 +29,7 @@ import { environments } from './environments/environments';
     AngularFireModule.initializeApp(environments.firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireStorageModule,
   ],
   providers: [
     provideAnimationsAsync()

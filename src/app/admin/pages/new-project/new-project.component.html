@@ -1,3 +1,37 @@
 <div class="bg-slate-200">
-  <p>new-project works!</p>
+  <h2><b>Fecha de publicación:</b> {{project.date}}</h2>
+  <h3><b>Título</b></h3>
+    <div>
+      <div class="boxInfo">
+        <input class="box" [(ngModel)]="project.title" type="text" placeholder="Ingrese el título">
+      </div>
+    </div>
+  <h3><b>Palabras clave</b></h3>
+    <div>
+      <div class="boxInfo">
+        <input class="box" [(ngModel)]="project.keywords" type="text" placeholder="Ingrese las palabras clave">
+      </div>
+    </div>
+  <h3><b>Imagen de portada</b></h3><p>La dimensión de la imagen debe ser de width="300px" height="200px"</p>
+    <div>
+      <div class="boxInfo">
+        <input type="file" class="imagenSelec" (change)="selectImage($event)">
+        <div class="image-preview">
+          <img *ngIf="imageSrc; else noImage" [src]="imageSrc">
+          <ng-template #noImage>
+              <div class="placeholder">Sin imagen seleccionada</div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  <h3><b>Resumen</b></h3><p>Debe contener entre 15 y 20 palabras</p>
+    <div>
+      <div class="boxInfo">
+        <input class="box" [(ngModel)]="project.summary" type="text" placeholder="Ingrese el resumen">
+        <p *ngIf="summaryError" style="color: red;">El resumen debe tener entre 15 y 20 palabras.</p>
+      </div>
+    </div>
+  <h3><b>Contenido</b></h3>
+  <button (click)="createMessage()">Crear Proyecto</button>
 </div>
+

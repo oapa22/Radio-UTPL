@@ -1,4 +1,27 @@
 <div class="bg-slate-200">
-  <p>message-page works!</p>
+  <h2><b>Fecha de publicación:</b> {{message.date}}</h2>
+  <h3><b>Nombre de referencia</b></h3>
+    <div>
+      <div class="boxInfo">
+        <input class="box" [(ngModel)]="message.name" type="text" placeholder="Ingrese el nombre de referencia">
+      </div>
+    </div>
+  <h3><b>Imagen de portada</b></h3><p>La dimensión de la imagen debe ser de width="300px" height="200px"</p>
+    <div>
+      <div class="boxInfo">
+        <input type="file" class="imagenSelec" (change)="selectImage($event)">
+        <div class="image-preview">
+          <img *ngIf="imageSrc; else noImage" [src]="imageSrc">
+          <ng-template #noImage>
+              <div class="placeholder">Sin imagen seleccionada</div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  <h3><b>Audio</b></h3><p>Debe estar en formato MP3.</p>
+    <div class="boxInfo">
+      <input type="file" class="audioSelec" (change)="selectAudio($event)">
+    </div>
+  <button (click)="createMessage()">Crear Mensaje</button>
 </div>
 
