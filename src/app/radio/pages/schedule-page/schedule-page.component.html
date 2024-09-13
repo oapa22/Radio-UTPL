@@ -20,9 +20,9 @@
     <h2><strong>PODCASTS</strong></h2>
   </div>
 
-  <section class="grid grid-cols-6 p-1">
+  <section class="grid grid-cols-3 p-1">
 
-    <div *ngFor="let podcast of podcasts" class="col-span-3">
+    <div *ngFor="let podcast of podcasts" class="col-span-1 w-[90%] mx-auto">
       <shared-card-podcast [podcast]="podcast"></shared-card-podcast>
     </div>
   </section>

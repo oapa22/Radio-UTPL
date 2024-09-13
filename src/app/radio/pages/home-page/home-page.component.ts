@@ -37,10 +37,11 @@ export class HomePageComponent implements OnInit{
     this.getPodcasts()
   }
 
-  getPodcasts(){
+  public getPodcasts(){
     this.firestore.getCollection<Podcasts>('podcast').subscribe( res => {
       this.podcasts = res;
       console.log('hola',this.podcasts)
     });
   }
+
 }
