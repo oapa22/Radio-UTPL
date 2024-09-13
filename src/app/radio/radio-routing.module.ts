@@ -12,16 +12,16 @@ const routes: Routes = [
     path: '',
     component: LayoutPageComponent,
     children: [
-      {path: 'home', component: HomePageComponent},
-      {path: 'about-us', component: AboutUsPageComponent},
-      {path: 'contact', component: ContactPageComponent},
-      {path: 'projects', component: ProjectsPageComponent},
-      {path: 'schedule', component: SchedulePageComponent},
+      {path: 'inicio', component: HomePageComponent},
+      {path: 'quienes-somos', component: AboutUsPageComponent},
+      {path: 'contacto', component: ContactPageComponent},
+      {path: 'proyectos', component: ProjectsPageComponent},
+      {path: 'programacion', component: SchedulePageComponent},
       {
         path: 'admin',
         loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule)
       },
-      {path: '**', redirectTo: 'home'}
+      {path: '**', redirectTo: 'inicio'}
     ]
   }
 ];

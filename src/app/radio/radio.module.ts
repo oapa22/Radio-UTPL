@@ -12,6 +12,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { SharedModule } from "../shared/shared.module";
+import { SectionAboutUsComponent } from './components/section-about-us/section-about-us.component';
+import { SectionScheduleComponent } from './components/section-schedule/section-schedule.component';
+import { ElementRadioComponent } from './components/element-radio/element-radio.component';
+import { MessageBoardComponent } from './components/message-board/message-board.component';
+import { CarouselSpotifyComponent } from './components/carousel-spotify/carousel-spotify.component';
 
 @NgModule({
   declarations: [
@@ -24,9 +29,15 @@ import { SharedModule } from "../shared/shared.module";
     HeaderComponent,
     FooterComponent,
     CarouselComponent,
+    SectionAboutUsComponent,
+    SectionScheduleComponent,
+    ElementRadioComponent,
+    MessageBoardComponent,
+    CarouselSpotifyComponent,
   ],
   imports: [
     CommonModule,
+
     RadioRoutingModule,
     SharedModule
 ]

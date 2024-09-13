@@ -1,16 +1,30 @@
 
-<div class="w-full h-[500px] grid justify-center items-center bg-slate-300">
-  <p>Calendario de eventos</p>
-</div>
+<div class="w-full p-4 bg-blue-utpl">
 
-<div class="w-full p-4">
-  <h2>Card Podcast Componente</h2>
-
-</div>
-
-<section class="grid grid-cols-6 p-1">
-
-  <div *ngFor="let podcast of podcasts" class="col-span-3">
-    <shared-card-podcast [podcast]="podcast"></shared-card-podcast>
+  <div class="text-center text-white text-2xl p-6">
+    <h1>
+      <p><strong>{{'Nuestra' | uppercase}}</strong></p>
+      <p>{{'Programación' | uppercase}} </p>
+    </h1>
   </div>
-</section>
+
+  <div class="w-[90%] mx-auto">
+    <radio-section-schedule></radio-section-schedule>
+  </div>
+
+</div>
+
+
+<div class="w-full p-6">
+  <div class="text-center text-blue-utpl text-2xl">
+    <h2><strong>PODCASTS</strong></h2>
+  </div>
+
+  <section class="grid grid-cols-3 p-1">
+
+    <div *ngFor="let podcast of podcasts" class="col-span-1 w-[90%] mx-auto">
+      <shared-card-podcast [podcast]="podcast"></shared-card-podcast>
+    </div>
+  </section>
+</div>
+

@@ -1,10 +1,23 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MediaElement } from '../../interfaces/media-element.interface';
 
+import { animate, style, transition, trigger } from '@angular/animations';
+
 @Component({
   selector: 'radio-carousel',
   templateUrl: './carousel.component.html',
-  styleUrl: './carousel.component.css'
+  styleUrl: './carousel.component.css',
+  animations: [
+    trigger('carouselAnimation', [
+      transition('void => *', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 1 }))
+      ]),
+      transition('* => void', [
+        animate('300ms', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class CarouselComponent implements OnInit{
   // Custom Properties
@@ -12,6 +25,7 @@ export class CarouselComponent implements OnInit{
   @Input() fullScreen:boolean = false;
   @Input() mediaElement:MediaElement[] = [];
   @Input() intervalTime:number = 0;
+  @Input() currentRoute:string = '';
 
   // Final Properties
   public currentPosition:number = 0;
@@ -26,57 +40,47 @@ export class CarouselComponent implements OnInit{
     this.startAutoSlide();
   }
 
+  // Inicializar intervalo
   public startAutoSlide():void{
-    console.log(this.mediaElement.length);
-    // if (this.mediaElement.length > 0){
+    if (this.mediaElement.length > 0){
 
-    //   this.intervalAutoSlide = setInterval(() => {
+      this.intervalAutoSlide = setInterval(() => {
+        this.nextImage();
+      }, this.intervalTime);
 
-
-    //     this.nextImage();
-
-    //   }, this.intervalTime);
-
-    // }
+    }
   }
 
+  public clearAutoSlide():void{
+    if (this.intervalAutoSlide) {
+      clearInterval(this.intervalAutoSlide);
+    }
+  }
+
+  public resetAutoSlide():void {
+    this.clearAutoSlide();
+    this.startAutoSlide();
+  }
 
   public nextImage():void{
-
-      // if (this.currentPosition == this.mediaElement.length){
-      //   this.currentPosition = 0;
-      // } else {
-      //   this.currentPosition++;
-      // }
-      console.log("sadsadsad");
-      this.currentPosition = (this.currentPosition + 1) % this.mediaElement.length;
-      console.log(this.currentPosition);
-      // clearInterval(this.intervalAutoSlide);
-
+    const next:number = this.currentPosition + 1;
+    this.currentPosition = next == this.mediaElement.length ? 0 : next;
+    this.resetAutoSlide();
   }
 
   public prevImage():void{
-    if (this.mediaElement.length > 0){
-      // if (this.currentPosition == 0){
-      //   this.currentPosition = this.mediaElement.length;
-      // } else {
-      //   this.currentPosition--;
-      // }
-      this.currentPosition = (this.currentPosition - 1 + this.mediaElement.length) % this.mediaElement.length;
-      // clearInterval(this.intervalAutoSlide);
-    }
+    const prev:number = this.currentPosition - 1;
+    this.currentPosition = prev < 0 ? this.mediaElement.length - 1 : prev;
+    this.resetAutoSlide();
   }
 
   public goImage(index:number):void{
     if (this.mediaElement.length > 0){
       this.currentPosition = index;
-
-      // clearInterval(this.intervalAutoSlide);
     }
   }
 
-
-
+  // Empleada para realizar animacion de transicion
   get currentTransform():string {
     return `translateX(-${this.currentPosition * 100}%)`;
   }
