@@ -8,6 +8,7 @@ import { Project } from '../../../shared/interfaces/project.interface';
   styleUrl: './projects-page.component.css'
 })
 export class ProjectsPageComponent implements OnInit{
+
   public projects:Project[] = [];
 
   constructor(private serviceProject:FirestoreService){}
@@ -19,7 +20,6 @@ export class ProjectsPageComponent implements OnInit{
   public getProjects():void{
     this.serviceProject.getCollection<Project>('project').subscribe( res => {
       this.projects = res;
-      console.log(this.projects);
     });
   }
 }

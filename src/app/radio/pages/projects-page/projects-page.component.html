@@ -8,13 +8,20 @@
       />
     </div>
 
-    <div class="w-full grid grid-cols-3 justify-between">
+    <div class="">
 
-      <div class="col-span-1 w-[90%] mx-auto" *ngFor="let project of projects">
-        <shared-card-project [project]="project"></shared-card-project>
+      <div class="w-full mb-10 grid grid-cols-3 justify-between">
+
+        <div class="col-span-1 w-[90%] mx-auto my-4" *ngFor="let project of projects">
+          <shared-card-project [project]="project"></shared-card-project>
+        </div>
+
       </div>
 
+      <!-- paginacion -->
+      <radio-pagination></radio-pagination>
     </div>
+
   </div>
 </div>
 
