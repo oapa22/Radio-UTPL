@@ -20,6 +20,9 @@ import { CarouselSpotifyComponent } from './components/carousel-spotify/carousel
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { ProjectTemplateComponent } from './pages/project-template/project-template.component';
 
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { MaterialModule } from '../material_module/material.module';
+
 @NgModule({
   declarations: [
     LayoutPageComponent,
@@ -38,11 +41,13 @@ import { ProjectTemplateComponent } from './pages/project-template/project-templ
     CarouselSpotifyComponent,
     PaginationComponent,
     ProjectTemplateComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     CommonModule,
 
     RadioRoutingModule,
+    MaterialModule,
     SharedModule
 ]
 })

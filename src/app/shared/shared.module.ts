@@ -5,11 +5,12 @@ import { CardPodcastComponent } from './components/card-podcast/card-podcast.com
 import { CardProjectsComponent } from './components/card-project/card-projects.component';
 import { SharedRoutingModule } from './shared-routing.module';
 
+
 @NgModule({
   declarations: [
     Error404PageComponent,
     CardPodcastComponent,
-    CardProjectsComponent
+    CardProjectsComponent,
   ],
   imports: [
     CommonModule,
@@ -18,7 +19,8 @@ import { SharedRoutingModule } from './shared-routing.module';
   exports: [
     Error404PageComponent,
     CardPodcastComponent,
-    CardProjectsComponent
+    CardProjectsComponent,
+
   ]
 })
 export class SharedModule { }

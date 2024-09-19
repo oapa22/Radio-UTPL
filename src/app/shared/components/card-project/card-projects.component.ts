@@ -18,7 +18,6 @@ export class CardProjectsComponent implements OnInit{
   }
 
   public onLoad():void{
-    console.log('load');
     this.hasLoaded = true;
   }
 }
