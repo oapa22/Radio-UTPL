@@ -22,6 +22,7 @@ import { ProjectTemplateComponent } from './pages/project-template/project-templ
 
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MaterialModule } from '../material_module/material.module';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { MaterialModule } from '../material_module/material.module';
     PaginationComponent,
     ProjectTemplateComponent,
     ConfirmDialogComponent,
+    TruncatePipe,
   ],
   imports: [
     CommonModule,
