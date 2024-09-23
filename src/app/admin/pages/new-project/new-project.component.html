@@ -32,6 +32,13 @@
       </div>
     </div>
   <h3><b>Contenido</b></h3>
+      <editor [(ngModel)]="project.content" apiKey="872f9ypxuxkrilox9gkrtlhqjsbr861dppp3ocwzkipdfkz0"
+        [init]="{ 
+                base_url: '/tinymce', 
+                suffix: '.min',        
+                plugins: 'lists link image table code help wordcount' 
+                }"
+      ></editor>
   <button (click)="createMessage()">Crear Proyecto</button>
 </div>
 

@@ -1,1 +1,16 @@
-<p>register-page works!</p>
+<section class="bodylogin">
+    <section class="loginBox">
+        <input [(ngModel)]="user.email" type="text" placeholder="Correo">
+        <br><br>
+        <input [(ngModel)]="user.password" type="password" placeholder="Contraseña">
+        <br><br>
+        <input [(ngModel)]="user.names" type="text" placeholder="Nombre y apellido">
+        <br><br>
+        <button (click)="register()">Registrarse</button>
+        <br><br>
+        <a href="" [routerLink]="['/radio-utpl/auth/login']">¿Ya tienes una cuenta? Inicia Sesión</a>
+    </section>
+</section>
+
+
+

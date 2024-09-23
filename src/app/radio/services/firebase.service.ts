@@ -33,6 +33,10 @@ export class FirestoreService {
         });
     }
 
+    getDocG<tipo>(path: string, id: string) {
+        return this.firestore.collection(path).doc<tipo>(id).valueChanges();
+      }
+
     //actualizar documento
     updateDoc(path: string, id: string, data: any) {
         return this.firestore.collection(path).doc(id).update(data)

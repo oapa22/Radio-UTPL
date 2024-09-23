@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
@@ -25,7 +26,8 @@ import { ListPodcastComponent } from './pages/list-podcast/list-podcast.componen
   imports: [
     CommonModule,
     FormsModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    EditorModule
   ]
 })
 export class AdminModule { }

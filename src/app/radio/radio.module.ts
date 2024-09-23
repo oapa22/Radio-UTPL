@@ -17,6 +17,7 @@ import { SectionScheduleComponent } from './components/section-schedule/section-
 import { ElementRadioComponent } from './components/element-radio/element-radio.component';
 import { MessageBoardComponent } from './components/message-board/message-board.component';
 import { CarouselSpotifyComponent } from './components/carousel-spotify/carousel-spotify.component';
+import { ProjectTemplateComponent } from './pages/project-template/project-template.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { CarouselSpotifyComponent } from './components/carousel-spotify/carousel
     ElementRadioComponent,
     MessageBoardComponent,
     CarouselSpotifyComponent,
+    ProjectTemplateComponent,
   ],
   imports: [
     CommonModule,
