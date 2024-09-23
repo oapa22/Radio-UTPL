@@ -17,6 +17,12 @@ import { SectionScheduleComponent } from './components/section-schedule/section-
 import { ElementRadioComponent } from './components/element-radio/element-radio.component';
 import { MessageBoardComponent } from './components/message-board/message-board.component';
 import { CarouselSpotifyComponent } from './components/carousel-spotify/carousel-spotify.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { ProjectTemplateComponent } from './pages/project-template/project-template.component';
+
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { MaterialModule } from '../material_module/material.module';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -34,11 +40,16 @@ import { CarouselSpotifyComponent } from './components/carousel-spotify/carousel
     ElementRadioComponent,
     MessageBoardComponent,
     CarouselSpotifyComponent,
+    PaginationComponent,
+    ProjectTemplateComponent,
+    ConfirmDialogComponent,
+    TruncatePipe,
   ],
   imports: [
     CommonModule,
 
     RadioRoutingModule,
+    MaterialModule,
     SharedModule
 ]
 })

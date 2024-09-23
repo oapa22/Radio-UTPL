@@ -22,7 +22,7 @@ export class MessageBoardComponent {
 
   public messageMediaElement:MediaElement[] = [
     {id: '01', title: 'Tu voz, tu fuerza 1', imgSrc: 'https://st3.depositphotos.com/3433891/33504/i/450/depositphotos_335048212-stock-photo-young-caucasian-woman-isolated-who.jpg', linkContent: 'https://www.youtube.com/watch?v=Lm77VCkf_do'},
-    {id: '02', title: 'Tu voz, tu fuerza 2' , imgSrc: 'https://thumbs.dreamstime.com/b/mujer-que-sienta-al-aire-libre-la-sonrisa-5937184.jpg'}
+    {id: '02', title: 'Tu voz, tu fuerza 2' , imgSrc: 'https://tuvoz.tv/wp-content/uploads/2024/06/WhatsApp-Image-2024-06-05-at-7.26.35-PM.jpeg'}
   ];
 
   public currentPosition:number = 0;

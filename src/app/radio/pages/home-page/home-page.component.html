@@ -1,16 +1,26 @@
 
-<main class="w-full">
-  <!-- Carusel de imagenes -->
- <radio-carousel [mediaElement]="this.mediaElementCarousel" [intervalTime]="5000"></radio-carousel>
+<div class="w-full">
 
-  <!-- Informacion sobre Radio UTPL -->
-  <radio-section-about-us></radio-section-about-us>
+  <div class="relative">
+    <!-- Carusel de imagenes -->
+    <radio-carousel [mediaElement]="this.mediaElementCarousel" [intervalTime]="5000"></radio-carousel>
+
+    <!-- Seccion Mensajes -->
+    <div class="absolute w-[20%] h-[25%] top-[45%] right-[5%] transform -translate-y-1/2">
+      <radio-message-board></radio-message-board>
+    </div>
+
+    <!-- Informacion sobre Radio UTPL -->
+    <radio-section-about-us></radio-section-about-us>
+  </div>
+
 
   <!-- Seccion Nuestra programacion -->
   <div class="w-full bg-blue-utpl bg-[url('/radio_media/line_opacity.svg'),url('/radio_media/line_yellow.svg')] bg-no-repeat bg-[top,bottom]">
+      <div class="w-[90%] mx-auto py-10">
 
         <!-- Seccion Programacion -->
-        <div class="p-8">
+        <div class="">
           <div class="flex items-end ml-16 mb-10 text-white text-2xl">
             <h2>
               <p><strong>{{'Nuestra' | uppercase}}</strong></p>
@@ -28,7 +38,7 @@
         </div>
 
         <!-- Seccion proyectos -->
-        <div class="p-8">
+        <div class="my-10">
           <div class="flex items-end justify-end mr-16 mb-10 text-white text-2xl">
             <!-- Flecha apuntando a la izquierda -->
             <svg width="150px" height="50px" viewBox="0 0 150 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,46 +50,77 @@
             </h2>
           </div>
 
-          <div class="w-full h-[430px] grid grid-cols-2">
-            <div class="bg-gray-50">
-                <p>Proyecto 1</p>
+
+          <!-- Tarjetas proyectos -->
+          <div class="w-full flex justify-between">
+
+            <!-- Primer Proyecto -->
+            <div class="w-[50%] text-sm flex flex-col justify-between">
+              <div class="w-full h-[200px]">
+                <img class="w-full h-full rounded-md object-cover" src="https://www.deskidea.com/blog/wp-content/uploads/2022/07/oficina-con-luz.png" alt="">
+              </div>
+
+              <div class="my-7">
+                <p class="font-bold text-white">Title 1</p>
+
+                <p class="font-semibold text-yellow-utpl mb-3"> Sunday, 1 </p>
+
+                <p class="text-white">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
+              </div>
+
+              <div class="w-[40%] px-5 py-1 mb-3 text-center text-xs font-semibold rounded-3xl bg-white border-2 border-white hover:bg-blue-utpl hover:text-yellow-utpl shadow-lg">
+                <a href="">Leer más..</a>
+              </div>
             </div>
 
-            <div class="grid grid-rows-2">
 
-                <div class="row-span-1 bg-red-400">
-                  <p>Proyecto 2</p>
+
+            <div class="w-[45%] flex flex-col justify-between text-xs" >
+              <!-- Segundo Proyecto -->
+              <div class="h-[45%] flex justify-between">
+
+                <div class="w-[50%]">
+                  <img class="w-full h-full rounded-md object-cover" src="https://www.deskidea.com/blog/wp-content/uploads/2022/07/oficina-con-luz.png" alt="">
                 </div>
 
-                <div class="row-span-1 bg-red-400">
-                  <p>Proyecto 3</p>
+                <div class="w-[45%] m-3 flex flex-col justify-between">
+
+                  <p class="font-bold text-white">Title 1</p>
+                  <p class="font-semibold text-yellow-utpl mb-3"> Sunday, 1 </p>
+                  <p class="text-white">{{'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.' | truncate:60}}</p>
+
+                  <div class="w-[40%] px-5 py-1 text-center text-xs font-semibold rounded-3xl bg-white border-2 border-white hover:bg-blue-utpl hover:text-yellow-utpl shadow-lg">
+                    <a href="">Leer más..</a>
+                  </div>
                 </div>
 
+              </div>
+
+              <!-- Tercer Proyecto -->
+              <div class="h-[45%]  flex justify-between">
+
+                <div class="w-[50%]">
+                  <img class="w-full h-full rounded-md object-cover" src="https://www.deskidea.com/blog/wp-content/uploads/2022/07/oficina-con-luz.png" alt="">
+                </div>
+
+                <div class="w-[45%] m-3 flex flex-col justify-between">
+
+                  <p class="font-bold text-white">Title 1</p>
+                  <p class="font-semibold text-yellow-utpl mb-3"> Sunday, 1 </p>
+                  <p class="text-white">{{'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.' | truncate: 60}}</p>
+
+                  <div class="w-[40%] px-5 py-1 text-center text-xs font-semibold rounded-3xl bg-white border-2 border-white hover:bg-blue-utpl hover:text-yellow-utpl shadow-lg">
+                    <a href="">Leer más..</a>
+                  </div>
+                </div>
+              </div>
             </div>
+
           </div>
+
         </div>
 
-    <!-- <div class="">
-      <svg width="100%" height="219" viewBox="0 0 1440 219" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M-4.5 74.4996C153.667 21.1663 504.6 -53.5004 643 74.4996C816 234.5 1071.5 258.5 1186.5 146C1278.5 55.9996 1394.17 70.833 1440.5 89.4996" stroke="url(#paint0_linear_1767_9765)" stroke-opacity="0.13" stroke-width="6"/>
-        <defs>
-        <linearGradient id="paint0_linear_1767_9765" x1="-5" y1="62.9996" x2="1462" y2="62.9996" gradientUnits="userSpaceOnUse">
-        <stop stop-color="#343045"/>
-        <stop offset="0.224242" stop-color="#C0B7E8"/>
-        <stop offset="0.786458" stop-color="#8176AF"/>
-        <stop offset="0.96875" stop-color="#343045"/>
-        </linearGradient>
-        </defs>
-      </svg>
-    </div>
-
-
-    <div class="">
-      <svg width="100%" height="816" viewBox="0 0 1440 816" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-      <path d="M-3 229.214C96.569 252.827 300.21 356.641 318.223 582.988C336.235 809.336 680.641 828.311 850.592 809.505C959 789.003 1139.69 687.084 995.192 443.43C850.692 199.775 1230.86 46.9539 1439 1" stroke="#FAB300"/>
-      </svg>
-    </div> -->
-
+      </div>
   </div>
 
   <!-- Seccion Podcast -->
@@ -95,19 +136,19 @@
       </svg>
     </div>
 
-    <div class="grid grid-cols-2">
-      <div *ngFor="let podcast of podcasts">
+    <div class="grid grid-cols-3">
+      <div *ngFor="let podcast of podcasts" class="mx-5">
         <shared-card-podcast [podcast]="podcast"></shared-card-podcast>
       </div>
     </div>
 
-    <raido-carousel-spotify></raido-carousel-spotify>
+    <!-- <raido-carousel-spotify></raido-carousel-spotify> -->
 
   </div>
 
 
 
-</main>
+</div>
 
 
 

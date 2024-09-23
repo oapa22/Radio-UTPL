@@ -3,14 +3,21 @@
 <!-- Image header -->
 <div
   *ngIf="!this.router.url.includes('inicio')"
-  class="w-full relative h-[260px] overflow-hidden"
+  class="relative w-full  h-[260px] overflow-hidden"
 >
+
 
     <img
       class="absolute w-full h-full object-cover"
       src="https://wallpapers.com/images/featured/minimalist-7xpryajznty61ra3.jpg"
       alt=""
     >
+
+    <!-- Estacion de Radio -->
+    <div class="absolute w-[300px] m-5">
+      <radio-element-radio></radio-element-radio>
+    </div>
+
     <div class="absolute w-full bottom-20 text-center text-4xl text-white">
       <p><strong>{{this.getCurrentTitleRoute() | uppercase}}</strong></p>
     </div>

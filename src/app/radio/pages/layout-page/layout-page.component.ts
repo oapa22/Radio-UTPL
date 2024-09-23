@@ -15,7 +15,7 @@ export class LayoutPageComponent implements OnInit {
     {titleRoute: '¿Quines Somos?', route: './quienes-somos'},
     {titleRoute: 'Programación', route: './programacion'},
     {titleRoute: 'Proyectos', route: './proyectos'},
-    {titleRoute: 'Contacto', route: './contacto'},
+    {titleRoute: 'Contactos', route: './contacto'},
     {titleRoute: 'Administrador', route: './admin'},
   ];
 
