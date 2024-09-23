@@ -22,7 +22,7 @@ export class LayoutPageComponent {
   }
 
   public navigateToSection():void{
-    const valueLink = 'radio/admin/new-'+ this.valueLabel;
+    const valueLink = 'radio-utpl/admin/new-'+ this.valueLabel;
     if(this.valueLabel){
       console.log(valueLink);
       this.router.navigate([valueLink]);

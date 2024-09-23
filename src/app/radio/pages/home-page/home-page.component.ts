@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../services/firebase.service';
-import { Podcasts } from '../../../shared/interfaces/podcasts.interface';
+import { Podcast } from '../../../shared/interfaces/podcast.interface';
 import { MediaElement } from '../../interfaces/media-element.interface';
 
 @Component({
@@ -10,7 +10,7 @@ import { MediaElement } from '../../interfaces/media-element.interface';
 })
 export class HomePageComponent implements OnInit{
 
-  public podcasts: Podcasts[] = [];
+  public podcasts: Podcast[] = [];
 
   public mediaElementCarousel:MediaElement[] = [
     {id: '01', title: 'Una radio que es parte de la comunidad', imgSrc: 'https://wallpapers.com/images/featured/minimalist-7xpryajznty61ra3.jpg', linkContent: 'https://www.youtube.com/watch?v=Lm77VCkf_do'},
@@ -18,14 +18,6 @@ export class HomePageComponent implements OnInit{
     {id: '03', title: 'Tree Image', imgSrc: 'https://wallpaperbat.com/img/192020-minimal-forest-wallpaper-top-free-minimal-forest-background.jpg', linkContent: 'https://www.youtube.com/watch?v=Lm77VCkf_do'}
   ];
 
-  public lenguas: Podcasts = {
-    id: '',
-    title: '',
-    date: '',
-    category: '',
-    image: '',
-    content: '',
-  };
 
   constructor(private firestore: FirestoreService,){
 
@@ -36,7 +28,7 @@ export class HomePageComponent implements OnInit{
   }
 
   public getPodcasts(){
-    this.firestore.getCollection<Podcasts>('podcast').subscribe( res => {
+    this.firestore.getCollection<Podcast>('podcast').subscribe( res => {
       this.podcasts = res;
       console.log('hola',this.podcasts)
     });
