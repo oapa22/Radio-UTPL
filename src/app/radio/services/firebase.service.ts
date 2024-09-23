@@ -33,9 +33,10 @@ export class FirestoreService {
         });
     }
 
-    getDocG<tipo>(path: string, id: string) {
-        return this.firestore.collection(path).doc<tipo>(id).valueChanges();
-      }
+    //obtener documento de un proyecto que se encuentra dentro de cualquier coleccion
+    getDocProject<tipo>(path: string, id: string){
+      return this.firestore.collection(path).doc<tipo>(id).valueChanges();
+    }
 
     //actualizar documento
     updateDoc(path: string, id: string, data: any) {

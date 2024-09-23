@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../services/firebase.service';
-import { Projects } from '../../../shared/interfaces/projects.interface';
+import { Project } from '../../../shared/interfaces/project.interface';
 
 @Component({
   selector: 'radio-projects-page',
@@ -8,7 +8,8 @@ import { Projects } from '../../../shared/interfaces/projects.interface';
   styleUrl: './projects-page.component.css'
 })
 export class ProjectsPageComponent implements OnInit{
-  public projects:Projects[] = [];
+
+  public projects:Project[] = [];
 
   constructor(private serviceProject:FirestoreService){}
 
@@ -17,9 +18,8 @@ export class ProjectsPageComponent implements OnInit{
   }
 
   public getProjects():void{
-    this.serviceProject.getCollection<Projects>('project').subscribe( res => {
+    this.serviceProject.getCollection<Project>('project').subscribe( res => {
       this.projects = res;
-      console.log(this.projects);
     });
   }
 }

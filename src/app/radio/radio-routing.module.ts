@@ -6,6 +6,7 @@ import { AboutUsPageComponent } from './pages/about-us-page/about-us-page.compon
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { ProjectsPageComponent } from './pages/projects-page/projects-page.component';
 import { SchedulePageComponent } from './pages/schedule-page/schedule-page.component';
+import { ProjectTemplateComponent } from './pages/project-template/project-template.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
       {path: 'quienes-somos', component: AboutUsPageComponent},
       {path: 'contacto', component: ContactPageComponent},
       {path: 'proyectos', component: ProjectsPageComponent},
+      {path: 'proyectos/:id', component: ProjectTemplateComponent},
       {path: 'programacion', component: SchedulePageComponent},
       {
         path: 'admin',
