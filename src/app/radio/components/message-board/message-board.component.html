@@ -1,44 +1,28 @@
-<div class="flex w-full h-full items-center overflow-hidden">
+<div class="flex w-full h-full p-1 items-center overflow-hidden">
 
   <!-- boton izquierdo -->
   <button class="" (click)="this.prevImage()">
     <svg width="12" height="18" viewBox="0 0 12 18" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M9.3484 17.0232L1.06496 9.92499C0.931515 9.81057 0.824396 9.66864 0.750956 9.50894C0.677515 9.34923 0.63949 9.17553 0.63949 8.99975C0.63949 8.82397 0.677515 8.65027 0.750956 8.49056C0.824396 8.33086 0.931515 8.18893 1.06496 8.07452L9.3484 0.976313C10.1391 0.298891 11.3604 0.860531 11.3604 1.90155L11.3604 16.1C11.3604 17.141 10.1391 17.7026 9.3484 17.0232Z" fill="white"/>
     </svg>
-
-
   </button>
 
-  <div class="w-[80%] h-full mx-auto">
+  <div class="relative w-[80%] h-full mx-auto  rounded-2xl shadow-md overflow-hidden ">
 
-    <div class="relative w-full h-full overflow-hidden">
+    <div class="absolute flex  w-[80%] m-2 justify-between items-center ">
+      <p class="text-sm font-bold">{{this.messageMediaElement[currentPosition].title}}</p>
 
-      <div class="absolute flex  w-[80%] m-2 justify-between items-center">
-        <p class="text-sm font-bold">{{this.messageMediaElement[currentPosition].title}}</p>
-
-        <svg width="35" height="35" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M40.5 7.59375C22.3557 7.59375 7.59375 22.3557 7.59375 40.5C7.59375 58.6443 22.3557 73.4062 40.5 73.4062C58.6443 73.4062 73.4062 58.6443 73.4062 40.5C73.4062 22.3557 58.6443 7.59375 40.5 7.59375ZM52.3288 41.9713L34.2225 52.9095C33.963 53.0649 33.6667 53.1486 33.3642 53.1518C33.0617 53.155 32.7638 53.0777 32.501 52.9278C32.2382 52.7779 32.02 52.5608 31.8688 52.2987C31.7176 52.0367 31.6389 51.7391 31.6406 51.4366V29.5634C31.6389 29.2609 31.7176 28.9633 31.8688 28.7013C32.02 28.4392 32.2382 28.2221 32.501 28.0722C32.7638 27.9223 33.0617 27.845 33.3642 27.8482C33.6667 27.8514 33.963 27.9351 34.2225 28.0905L52.3288 39.0287C52.5812 39.1825 52.7898 39.3986 52.9346 39.6562C53.0793 39.9139 53.1553 40.2045 53.1553 40.5C53.1553 40.7955 53.0793 41.0861 52.9346 41.3438C52.7898 41.6014 52.5812 41.8175 52.3288 41.9713Z" fill="white" stroke="black"/>
-        </svg>
-      </div>
-
-
-      <img
-        [src]="this.messageMediaElement[this.currentPosition].imgSrc"
-        class="w-full h-full object-cover rounded-2xl shadow-lg"
-        alt=""
-      >
-
-      <!-- <img
-        *ngFor="let image of messageMedia; let i = index"
-        [src]="image"
-        class="w-full h-full object-cover rounded-2xl shadow-lg transition-opacity duration-500 ease-in-out"
-        [ngClass]="{
-          'opacity-100 relative': currentPosition === i,
-          'opacity-0 absolute': currentPosition !== i
-        }"
-      /> -->
-
+      <svg width="35" height="35" viewBox="0 0 81 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40.5 7.59375C22.3557 7.59375 7.59375 22.3557 7.59375 40.5C7.59375 58.6443 22.3557 73.4062 40.5 73.4062C58.6443 73.4062 73.4062 58.6443 73.4062 40.5C73.4062 22.3557 58.6443 7.59375 40.5 7.59375ZM52.3288 41.9713L34.2225 52.9095C33.963 53.0649 33.6667 53.1486 33.3642 53.1518C33.0617 53.155 32.7638 53.0777 32.501 52.9278C32.2382 52.7779 32.02 52.5608 31.8688 52.2987C31.7176 52.0367 31.6389 51.7391 31.6406 51.4366V29.5634C31.6389 29.2609 31.7176 28.9633 31.8688 28.7013C32.02 28.4392 32.2382 28.2221 32.501 28.0722C32.7638 27.9223 33.0617 27.845 33.3642 27.8482C33.6667 27.8514 33.963 27.9351 34.2225 28.0905L52.3288 39.0287C52.5812 39.1825 52.7898 39.3986 52.9346 39.6562C53.0793 39.9139 53.1553 40.2045 53.1553 40.5C53.1553 40.7955 53.0793 41.0861 52.9346 41.3438C52.7898 41.6014 52.5812 41.8175 52.3288 41.9713Z" fill="white" stroke="black"/>
+      </svg>
     </div>
+
+
+    <img
+      [src]="this.messageMediaElement[this.currentPosition].imgSrc"
+      class="w-full h-full object-cover rounded-2xl"
+      alt=""
+    >
 
   </div>
 
