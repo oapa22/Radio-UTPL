@@ -5,16 +5,22 @@ import { CardPodcastComponent } from './components/card-podcast/card-podcast.com
 import { CardProjectsComponent } from './components/card-project/card-projects.component';
 import { SharedRoutingModule } from './shared-routing.module';
 
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { MaterialModule } from '../material_module/material.module';
+
 
 @NgModule({
   declarations: [
     Error404PageComponent,
     CardPodcastComponent,
     CardProjectsComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     CommonModule,
-    SharedRoutingModule
+    SharedRoutingModule,
+
+    MaterialModule
   ],
   exports: [
     Error404PageComponent,

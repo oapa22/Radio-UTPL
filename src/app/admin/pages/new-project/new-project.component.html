@@ -1,4 +1,4 @@
-<div class="bg-slate-200">
+<!-- <div class="bg-slate-200">
   <h2><b>Fecha de publicación:</b> {{project.date}}</h2>
   <h3><b>Título</b></h3>
     <div>
@@ -33,5 +33,73 @@
     </div>
   <h3><b>Contenido</b></h3>
   <button (click)="createMessage()">Crear Proyecto</button>
-</div>
+</div> -->
 
+<div class="w-full">
+  <div class="w-[90%] mx-auto">
+
+    <!-- Form para crear o actualizar Projecto-->
+    <form class="w-full grid" [formGroup]="projectForm" (ngSubmit)="createMessage()">
+
+      <!-- Seccion Fecha Actual -->
+      <div class="flex justify-center my-4">
+        <p><strong>Fecha de publicación:</strong> {{this.currentDate}}</p>
+      </div>
+
+      <!-- Seccion del Titulo -->
+      <div>
+        <div class="pb-2 text-wrap">
+          <p class="text-base"> <strong>Titulo de referencia </strong><span class="text-xs text-[#9D9D9D]">Este título no se visualiza en el podcast, solo es para mantener una organización el el administrador</span></p>
+        </div>
+
+        <input type="text" formControlName="title"
+          class="w-full h-[33px] border-2 border-[#C4C4C4] rounded-md"
+        >
+      </div>
+
+      <!-- Seccion de palabras claves -->
+      <div class="my-6">
+        <div class="pb-2 text-wrap">
+          <p class="text-base"> <strong>Palabras claves</strong> </p>
+        </div>
+
+        <input type="text" formControlName="keywords"
+          class="w-full h-[33px] border-2 border-[#C4C4C4] rounded-md"
+        >
+      </div>
+
+      <!-- TODO: colocar imagen -->
+      <div>
+        <!-- <input type="file" class="border border-gray-300 p-2" formControlName="photo_url" (change)="selectImage($event)"> -->
+      </div>
+
+      <!-- Seccion Resumen -->
+      <div class="mb-6">
+        <div class="pb-2 text-wrap">
+          <p class="text-base"> <strong>Resumen </strong><span class="text-xs text-[#9D9D9D]">Debe contener de entre 15 y 20 palabras</span></p>
+        </div>
+
+        <textarea name="frame" id="frame" formControlName="summary"
+          class="w-full h-[90px] border-2 border-[#C4C4C4] rounded-md"
+        ></textarea>
+      </div>
+
+      <!-- TODO: colocar seccion de contenido -->
+      <div></div>
+
+      <!-- Botones para crear o actualizar un Projecto -->
+      <div class="w-full flex justify-center">
+        <button
+        *ngIf="this.currentRoute.includes('nuevo')"
+          class="p-2 text-white bg-[#00ACC1] rounded-lg hover:bg-blue-utpl"
+
+        >Crear Projecto</button>
+        <button
+        *ngIf="this.currentRoute.includes('editar')"
+          class="p-2 text-white bg-[#00ACC1] rounded-lg hover:bg-blue-utpl"
+        >Actualizar Projecto</button>
+      </div>
+    </form>
+
+  </div>
+</div>

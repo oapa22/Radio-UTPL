@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from './../../../radio/services/firebase.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Message } from './../../../shared/interfaces/message.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'admin-new-message',
@@ -24,12 +25,17 @@ export class NewMessageComponent {
     audio_url: '',
   }
 
+  public currentRoute:string = '';
+
   constructor(
     private firestore: FirestoreService,
-    private storage: AngularFireStorage) {
+    private storage: AngularFireStorage,
+    private router:Router
+  ) {
   }
 
   ngOnInit(): void {
+    this.currentRoute = this.router.url;
     this.message.date = this.formatDate(new Date());
   }
 
@@ -99,7 +105,7 @@ export class NewMessageComponent {
       month: 'long',
       year: 'numeric'
     };
-    
+
     return new Intl.DateTimeFormat('es-ES', options).format(date);
   }
 }

@@ -1,0 +1,53 @@
+
+<div class="w-full mb-5 flex flex-col items-center">
+    <button
+      (click)="this.navigateToSection()"
+      routerLink="./quienes-somos"
+      class="w-[194px] my-10 px-5 py-3 bg-blue-utpl font-semibold text-xs text-white  rounded-3xl border-white border-2 shadow-lg  hover:text-yellow-utpl">
+        {{ 'Crear ' + this.param| uppercase}}
+    </button>
+
+    <input type="text" placeholder="Buscar..."
+      class="w-1/2 px-5 py-2 bg-[#E0E0E0] placeholder-black rounded-full border-2 border-black focus:outline-none focus:ring-1 focus:ring-blue-utpl focus:border-blue-utpl"
+    />
+</div>
+
+<!-- Podcast -->
+<div *ngIf="this.param == 'podcasts'">
+  <div class="py-2" *ngFor="let podcast of this.podcasts">
+    <admin-card-template
+      imageSrc="https://www.santandersmusic.com/media/magazine/spotify-2-1.jpg"
+      [title]="podcast.title"
+      [date]="podcast.date"
+      id={{podcast.id}}
+      paramRoute="podcast">
+    </admin-card-template>
+  </div>
+</div>
+
+<!-- Projects -->
+<div *ngIf="this.param == 'proyectos'">
+  <div class="py-2" *ngFor="let project of this.projects">
+    <admin-card-template
+      [imageSrc]="project.photo_url"
+      [title]="project.title"
+      [date]="project.date"
+      [summary]="project.summary"
+      id={{project.id}}
+      paramRoute="proyecto">
+    </admin-card-template>
+  </div>
+</div>
+
+ <!-- Message -->
+ <div *ngIf="this.param == 'mensajes'">
+  <div class="py-2" *ngFor="let message of this.messages">
+    <admin-card-template
+      [imageSrc]="message.photo_url"
+      [title]="message.name"
+      [date]="message.date"
+      id={{message.id}}
+      paramRoute="mensaje">
+    </admin-card-template>
+  </div>
+ </div>

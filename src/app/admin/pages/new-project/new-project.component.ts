@@ -2,13 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from './../../../radio/services/firebase.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Project } from './../../../shared/interfaces/project.interface';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'admin-new-message',
   templateUrl: './new-project.component.html',
   styleUrls: ['./new-project.component.css']
 })
-export class NewProjectComponent {
+export class NewProjectComponent implements OnInit{
   imageSrc: string | ArrayBuffer | null = null;
   selectedFile: File | null = null;
   summaryError: boolean = false;
@@ -24,13 +27,42 @@ export class NewProjectComponent {
     content: '',
   }
 
+  // Formulario para obtener los valores
+  public projectForm = new FormGroup({
+    title: new FormControl<string>(''),
+    keywords: new FormControl<string>(''),
+    photo_url: new FormControl<string>(''),
+    summary: new FormControl<string>(''),
+    content: new FormControl<string>('')
+  });
+
+  public currentDate:string = '';
+  public currentRoute:string = '';
+
   constructor(
     private firestore: FirestoreService,
-    private storage: AngularFireStorage) {
-  }
+    private storage: AngularFireStorage,
+    private activatedRoute:ActivatedRoute,
+    private router:Router
+  ){}
 
   ngOnInit(): void {
-    this.project.date = this.formatDate(new Date());
+    this.currentRoute = this.router.url;
+    if(this.router.url.includes('editar-proyecto')){
+
+      this.activatedRoute.params.pipe(
+        switchMap(({id}) => this.firestore.getDocProject<Project>('project',id))
+      ).subscribe(project => {
+          if (!project) return this.router.navigateByUrl('/');
+
+          this.projectForm.reset(project);
+
+          return;
+      });
+
+    }else{
+      this.currentDate = this.formatDate(new Date());
+    }
   }
 
   selectImage(event: any): void {
@@ -47,9 +79,9 @@ export class NewProjectComponent {
 
     if (wordCount < 15 || wordCount > 20) {
       this.summaryError = true;
-      return;  
+      return;
     } else {
-      this.summaryError = false;  
+      this.summaryError = false;
     }
 
     if (this.selectedFile) {
@@ -83,7 +115,7 @@ export class NewProjectComponent {
       month: 'long',
       year: 'numeric'
     };
-    
+
     return new Intl.DateTimeFormat('es-ES', options).format(date);
   }
 }

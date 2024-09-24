@@ -34,7 +34,13 @@ export class FirestoreService {
     }
 
     //obtener documento de un proyecto que se encuentra dentro de cualquier coleccion
+    getDocPodcast<tipo>(path:string, id:string){
+      return this.firestore.collection(path).doc<tipo>(id).valueChanges();
+    }
     getDocProject<tipo>(path: string, id: string){
+      return this.firestore.collection(path).doc<tipo>(id).valueChanges();
+    }
+    getDocMessage<tipo>(path:string, id:string){
       return this.firestore.collection(path).doc<tipo>(id).valueChanges();
     }
 
