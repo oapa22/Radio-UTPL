@@ -46,7 +46,7 @@
         ></textarea>
       </div>
 
-      <!-- Boton para crear un podcast -->
+      <!-- Botones para crear o actualizar un podcast -->
       <div class="w-full flex justify-center">
         <button
         *ngIf="this.currentRoute.includes('nuevo')"
@@ -59,6 +59,7 @@
           (click)="createPodcast()"
         >Actualizar Podcast</button>
       </div>
+
 
     </form>
   </div>
