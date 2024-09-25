@@ -3,6 +3,7 @@ import { FirestoreService } from './../../../radio/services/firebase.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Message } from './../../../shared/interfaces/message.interface';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'admin-new-message',
@@ -26,6 +27,12 @@ export class NewMessageComponent {
   }
 
   public currentRoute:string = '';
+  public podcastForm = new FormGroup({
+    name: new FormControl<string>(''),
+    photo_url: new FormControl<string>(''),
+    audio_url: new FormControl<string>('')
+  });
+  public currentDate:string  = '';
 
   constructor(
     private firestore: FirestoreService,
@@ -36,8 +43,23 @@ export class NewMessageComponent {
 
   ngOnInit(): void {
     this.currentRoute = this.router.url;
+    this.currentDate = this.formatDate(new Date());
     this.message.date = this.formatDate(new Date());
+
+    // if(this.currentRoute.includes('editar-mensaje'))
   }
+
+  public onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      // Obtener el nombre del archivo
+      // this.selectedFileName = input.files[0].name;
+    } else {
+      // Si no hay archivo seleccionado
+      // this.selectedFileName = '';
+    }
+  }
+
 
   selectImage(event: any): void {
     this.selectedFile = event.target.files[0];

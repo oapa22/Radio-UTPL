@@ -1,4 +1,4 @@
-<div class="bg-slate-200">
+<!-- <div class="bg-slate-200">
   <h2><b>Fecha de publicación:</b> {{message.date}}</h2>
   <h3><b>Nombre de referencia</b></h3>
     <div>
@@ -23,5 +23,70 @@
       <input type="file" class="audioSelec" (change)="selectAudio($event)">
     </div>
   <button (click)="createMessage()">Crear Mensaje</button>
-</div>
+</div> -->
 
+<div class="w-full">
+  <form class="w-full grid"  [formGroup]="podcastForm" (ngSubmit)="createMessage()">
+
+    <!-- Seccion Fecha Actual -->
+    <div class="flex justify-center my-4">
+      <p><strong>Fecha de publicación:</strong> {{this.currentDate}}</p>
+    </div>
+
+
+    <!-- Seccion del Titulo -->
+    <div class="mb-6">
+      <div class="pb-2 text-wrap">
+        <p class="text-base"> <strong>Nombre de referencia </strong></p>
+      </div>
+
+      <input type="text" formControlName="name"
+        class="w-full h-[33px] pl-3 border-2 border-[#C4C4C4] rounded-md"
+      >
+    </div>
+
+    <!-- TODO: colocar imagen -->
+    <div class="mb-6">
+      <!-- <input type="file" class="border border-gray-300 p-2" formControlName="photo_url" (change)="selectImage($event)"> -->
+      <div class="pb-2 text-wrap">
+        <p class="text-base"> <strong>Imagen de portada </strong><span class="text-xs text-[#9D9D9D]">La dimensión de la imagen debe ser de width="300px" height="200px"</span></p>
+      </div>
+
+      <div >
+        <input class="w-full h-[59px] file:h-full border-2 border-[#C4C4C4] rounded-md"
+          type="file" accept="image/*"
+          (change)="onFileSelected($event)"
+        >
+      </div>
+    </div>
+
+    <!-- TODO: colocar audio -->
+    <div class="mb-6">
+      <!-- <input type="file" class="border border-gray-300 p-2" formControlName="photo_url" (change)="selectImage($event)"> -->
+      <div class="pb-2 text-wrap">
+        <p class="text-base"> <strong>Audio </strong><span class="text-xs text-[#9D9D9D]">Debe estar en formato MP3</span></p>
+      </div>
+
+      <div >
+        <input class="w-full h-[59px] file:h-full border-2 border-[#C4C4C4] rounded-md"
+          type="file" accept="audio/MP3"
+          (change)="onFileSelected($event)"
+        >
+      </div>
+    </div>
+
+    <!-- Botones para crear o actualizar un Projecto -->
+    <div class="w-full flex justify-center">
+      <button
+      *ngIf="this.currentRoute.includes('nuevo')"
+        class="p-2 text-white bg-[#00ACC1] rounded-lg hover:bg-blue-utpl"
+
+      >Crear Mensaje</button>
+      <button
+      *ngIf="this.currentRoute.includes('editar')"
+        class="p-2 text-white bg-[#00ACC1] rounded-lg hover:bg-blue-utpl"
+      >Actualizar Mensaje</button>
+    </div>
+
+  </form>
+</div>

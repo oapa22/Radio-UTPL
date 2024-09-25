@@ -38,6 +38,7 @@ export class NewProjectComponent implements OnInit{
 
   public currentDate:string = '';
   public currentRoute:string = '';
+  public selectedFileName:string = '';
 
   constructor(
     private firestore: FirestoreService,
@@ -62,6 +63,18 @@ export class NewProjectComponent implements OnInit{
 
     }else{
       this.currentDate = this.formatDate(new Date());
+    }
+  }
+
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      // Obtener el nombre del archivo
+      this.selectedFileName = input.files[0].name;
+    } else {
+      // Si no hay archivo seleccionado
+      this.selectedFileName = '';
     }
   }
 

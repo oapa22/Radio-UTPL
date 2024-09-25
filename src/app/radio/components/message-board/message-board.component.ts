@@ -1,6 +1,8 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MediaElement } from '../../interfaces/media-element.interface';
+import { FirestoreService } from '../../services/firebase.service';
+import { Message } from '../../../shared/interfaces/message.interface';
 
 @Component({
   selector: 'radio-message-board',
@@ -18,29 +20,62 @@ import { MediaElement } from '../../interfaces/media-element.interface';
     ])
   ]
 })
-export class MessageBoardComponent {
+export class MessageBoardComponent implements OnInit{
+  public messages:Message[] = [];
+  public audioPlay:boolean = false;
 
-  public messageMediaElement:MediaElement[] = [
-    {id: '01', title: 'Tu voz, tu fuerza 1', imgSrc: 'https://st3.depositphotos.com/3433891/33504/i/450/depositphotos_335048212-stock-photo-young-caucasian-woman-isolated-who.jpg', linkContent: 'https://www.youtube.com/watch?v=Lm77VCkf_do'},
-    {id: '02', title: 'Tu voz, tu fuerza 2' , imgSrc: 'https://tuvoz.tv/wp-content/uploads/2024/06/WhatsApp-Image-2024-06-05-at-7.26.35-PM.jpeg'}
-  ];
+  // public currentAudio: HTMLAudioElement = new Audio();
+
+  // public messageMediaElement:MediaElement[] = [
+  //   {id: '01', title: 'Tu voz, tu fuerza 1', imgSrc: 'https://st3.depositphotos.com/3433891/33504/i/450/depositphotos_335048212-stock-photo-young-caucasian-woman-isolated-who.jpg', linkContent: 'https://www.youtube.com/watch?v=Lm77VCkf_do'},
+  //   {id: '02', title: 'Tu voz, tu fuerza 2' , imgSrc: 'https://tuvoz.tv/wp-content/uploads/2024/06/WhatsApp-Image-2024-06-05-at-7.26.35-PM.jpeg'}
+  // ];
 
   public currentPosition:number = 0;
 
+  constructor(private firestoreService:FirestoreService){}
 
+  ngOnInit(): void {
+    this.getMessages();
+  }
+
+  public toogleAudio(){
+    this.audioPlay = !this.audioPlay;
+    console.log(this.audioPlay);
+  }
+
+  public playAudio(audioPlayer: HTMLAudioElement):void{
+
+    if(this.audioPlay == false){
+      audioPlayer.play();
+    }else{
+      audioPlayer.pause();
+    }
+
+    this.toogleAudio();
+
+  }
+
+  public onAudioEnded(){
+    this.audioPlay = false;
+  }
 
   public nextImage():void{
-
     const next:number = this.currentPosition + 1;
-    this.currentPosition = next == this.messageMediaElement.length ? 0 : next;
-
+    this.currentPosition = next == this.messages.length ? 0 : next;
   }
 
   public prevImage():void{
 
     const prev:number = this.currentPosition - 1;
-    this.currentPosition = prev < 0 ? this.messageMediaElement.length - 1 : prev;
+    this.currentPosition = prev < 0 ? this.messages.length - 1 : prev;
 
+  }
+
+  public getMessages():void{
+    this.firestoreService.getCollection<Message>('message').subscribe(messages => {
+      this.messages = messages;
+    });
   }
 
 }

@@ -33,6 +33,9 @@ export class FirestoreService {
         });
     }
 
+
+
+
     //obtener documento de un proyecto que se encuentra dentro de cualquier coleccion
     getDocPodcast<tipo>(path:string, id:string){
       return this.firestore.collection(path).doc<tipo>(id).valueChanges();
@@ -43,6 +46,23 @@ export class FirestoreService {
     getDocMessage<tipo>(path:string, id:string){
       return this.firestore.collection(path).doc<tipo>(id).valueChanges();
     }
+
+    // getLatestDocPodcast<tipo>(path: string,fieldToOrderBy: string = 'createdAt'){
+    //   const collection = this.firestore.collection(path, ref => ref
+    //     .orderBy(fieldToOrderBy, 'desc')
+    //     .limit(3))
+    //   return collection.valueChanges();
+    // }
+
+
+    getLatestDocPodcast<tipo>(path: string, fieldToOrderBy: string = 'createdAt') {
+      return this.firestore.collection<tipo>(path, ref => ref
+        .orderBy(fieldToOrderBy, 'desc')
+        .limit(3))
+        .valueChanges();
+    }
+
+
 
     //actualizar documento
     updateDoc(path: string, id: string, data: any) {
