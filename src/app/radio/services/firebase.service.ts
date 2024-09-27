@@ -1,5 +1,9 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
+import { query, orderBy, limit } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
+
+import { Observable } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -7,7 +11,8 @@ import { AngularFirestore } from "@angular/fire/compat/firestore";
 
 export class FirestoreService {
 
-    constructor(private firestore: AngularFirestore) { }
+    constructor(private firestore: AngularFirestore) {
+    }
 
     //crear el id que se usara en los documentos
     createId(){
@@ -47,19 +52,10 @@ export class FirestoreService {
       return this.firestore.collection(path).doc<tipo>(id).valueChanges();
     }
 
-    // getLatestDocPodcast<tipo>(path: string,fieldToOrderBy: string = 'createdAt'){
-    //   const collection = this.firestore.collection(path, ref => ref
-    //     .orderBy(fieldToOrderBy, 'desc')
-    //     .limit(3))
-    //   return collection.valueChanges();
-    // }
+    getLatestDocPodcast<tipo>(path: string) {
+      // const q = query(this.firestore, orderBy("name", "desc"), limit(3));
 
-
-    getLatestDocPodcast<tipo>(path: string, fieldToOrderBy: string = 'createdAt') {
-      return this.firestore.collection<tipo>(path, ref => ref
-        .orderBy(fieldToOrderBy, 'desc')
-        .limit(3))
-        .valueChanges();
+      return this.firestore.collection<tipo>(path, ref => ref.orderBy('createdAt', 'desc').limit(3)).valueChanges();
     }
 
 

@@ -68,18 +68,21 @@
         >
       </div>
 
-      <!-- TODO: colocar imagen -->
+      <!-- Seccion seleccionar imagen -->
       <div class="mb-6">
-        <!-- <input type="file" class="border border-gray-300 p-2" formControlName="photo_url" (change)="selectImage($event)"> -->
         <div class="pb-2 text-wrap">
           <p class="text-base"> <strong>Imagen de portada </strong><span class="text-xs text-[#9D9D9D]">La dimensión de la imagen debe ser de width="300px" height="200px"</span></p>
         </div>
 
-        <div >
-          <input class="w-full h-[59px] file:h-full border-2 border-[#C4C4C4] rounded-md"
-            type="file" accept="image/*"
-            (change)="onFileSelected($event)"
-          >
+        <div class="w-full h-[59px] flex items-center">
+          <input #fileInput type="file" accept="image/*" class="hidden" (change)="onFileSelected($event)">
+          <button
+            class="w-[20%] h-full  bg-[#EAEAEA] hover:bg-slate-400 transition duration-300 border-2 border-[black]"
+            (click)="fileInput.click()"
+          >Seleccionar Imagen</button>
+          <div class="w-[80%] h-full flex justify-center items-center text-center border-y-2 border-r-2 border[#C4C4C4]">
+            <p> {{this.fileName}} </p>
+          </div>
         </div>
       </div>
 
@@ -107,11 +110,11 @@
         *ngIf="this.currentRoute.includes('nuevo')"
           class="p-2 text-white bg-[#00ACC1] rounded-lg hover:bg-blue-utpl"
 
-        >Crear Projecto</button>
+        >Crear Proyecto</button>
         <button
         *ngIf="this.currentRoute.includes('editar')"
           class="p-2 text-white bg-[#00ACC1] rounded-lg hover:bg-blue-utpl"
-        >Actualizar Projecto</button>
+        >Actualizar Proyecto</button>
       </div>
     </form>
 

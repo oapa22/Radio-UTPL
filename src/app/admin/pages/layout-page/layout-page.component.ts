@@ -7,20 +7,18 @@ import { Router } from '@angular/router';
   styleUrl: './layout-page.component.css'
 })
 export class LayoutPageComponent {
-  public valueLabel:string = 'podcast';
+  public valueLabel:string = '';
 
   /**
    * Propidad router: empleado para cambiar el contenido de la seccion
    */
   constructor(private router:Router){
-
   }
 
   //Funcion para cambiar el valor del contenido del boton.
   public updateButtonLabel(valueLabel:'podcast'|'proyecto'|'mensaje'):void{
     this.valueLabel = valueLabel;
   }
-
 
 
 }

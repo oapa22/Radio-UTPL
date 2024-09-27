@@ -31,14 +31,14 @@ export class NewProjectComponent implements OnInit{
   public projectForm = new FormGroup({
     title: new FormControl<string>(''),
     keywords: new FormControl<string>(''),
-    photo_url: new FormControl<string>(''),
     summary: new FormControl<string>(''),
     content: new FormControl<string>('')
   });
 
   public currentDate:string = '';
   public currentRoute:string = '';
-  public selectedFileName:string = '';
+  public fileSelec!:File;
+  public fileName:string= 'Ninguna imagen seleccionada';
 
   constructor(
     private firestore: FirestoreService,
@@ -55,28 +55,24 @@ export class NewProjectComponent implements OnInit{
         switchMap(({id}) => this.firestore.getDocProject<Project>('project',id))
       ).subscribe(project => {
           if (!project) return this.router.navigateByUrl('/');
-
           this.projectForm.reset(project);
-
+          this.fileName = project.photo_filename;
           return;
       });
-
-    }else{
-      this.currentDate = this.formatDate(new Date());
     }
+    this.currentDate = this.formatDate(new Date());
   }
 
-
-  onFileSelected(event: Event): void {
+  public onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       // Obtener el nombre del archivo
-      this.selectedFileName = input.files[0].name;
-    } else {
-      // Si no hay archivo seleccionado
-      this.selectedFileName = '';
+      this.fileSelec = input.files[0];
+      this.fileName = input.files[0].name;
     }
   }
+
+
 
   selectImage(event: any): void {
     this.selectedFile = event.target.files[0];

@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from './../../../radio/services/firebase.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Message } from './../../../shared/interfaces/message.interface';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'admin-new-message',
   templateUrl: './new-message.component.html',
   styleUrls: ['./new-message.component.css']
 })
-export class NewMessageComponent {
+export class NewMessageComponent implements OnInit{
   imageSrc: string | ArrayBuffer | null = null;
   audioSrc: string | ArrayBuffer | null = null;
   selectedFile: File | null = null;
@@ -26,16 +27,20 @@ export class NewMessageComponent {
     audio_url: '',
   }
 
-  public currentRoute:string = '';
-  public podcastForm = new FormGroup({
-    name: new FormControl<string>(''),
-    photo_url: new FormControl<string>(''),
-    audio_url: new FormControl<string>('')
+  public messageForm = new FormGroup({
+    name: new FormControl<string>('')
   });
+
+  public fileImageSelec!:File;
+  public fileAudioSelec!:File;
+  public fileImageName:string= 'Ninguna imagen seleccionada';
+  public fileAudioName:string= 'Ningun audio seleccionado';
   public currentDate:string  = '';
+  public currentRoute:string = '';
 
   constructor(
     private firestore: FirestoreService,
+    private activatedRoute:ActivatedRoute,
     private storage: AngularFireStorage,
     private router:Router
   ) {
@@ -46,19 +51,42 @@ export class NewMessageComponent {
     this.currentDate = this.formatDate(new Date());
     this.message.date = this.formatDate(new Date());
 
+    if(this.router.url.includes('editar-mensaje')){
+      this.activatedRoute.params.pipe(
+        switchMap(({id}) => this.firestore.getDocMessage<Message>('message',id))
+      ).subscribe(message => {
+          if (!message) return this.router.navigateByUrl('/');
+          this.messageForm.reset(message);
+          this.fileImageName = message.photo_filename;
+          this.fileAudioName = message.audio_filename;
+          return;
+      });
+    }
+
     // if(this.currentRoute.includes('editar-mensaje'))
   }
 
-  public onFileSelected(event: Event): void {
+  public onFileSelected(event: Event, file:'image'|'audio'): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       // Obtener el nombre del archivo
-      // this.selectedFileName = input.files[0].name;
-    } else {
-      // Si no hay archivo seleccionado
-      // this.selectedFileName = '';
+
+      if (file == 'image'){
+        this.fileImageSelec = input.files[0];
+        this.fileImageName = input.files[0].name;
+      } else {
+        this.fileAudioSelec = input.files[0];
+        this.fileAudioName = input.files[0].name;
+      }
+
     }
   }
+
+
+
+
+
+
 
 
   selectImage(event: any): void {
