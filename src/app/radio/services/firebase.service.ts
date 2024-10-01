@@ -58,7 +58,6 @@ export class FirestoreService {
       return this.firestore.collection<tipo>(path, ref => ref.orderBy('createdAt', 'desc').limit(3)).valueChanges();
     }
 
-    // ======================================================================================================
     // Funcion para subir la imagen a firebase y obtener la url.
     public getImageURLFirebase(fileSelec:File,fileName:string):Observable<string> {
 
