@@ -74,7 +74,6 @@ export class NewProjectComponent implements OnInit{
     }
   }
 
-
   public createProject():void{
     let downloadUriSub:Subscription;
     let storageUri: string = '';
