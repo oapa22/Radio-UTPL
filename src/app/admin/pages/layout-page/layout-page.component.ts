@@ -13,20 +13,12 @@ export class LayoutPageComponent {
    * Propidad router: empleado para cambiar el contenido de la seccion
    */
   constructor(private router:Router){
-
   }
 
   //Funcion para cambiar el valor del contenido del boton.
-  public updateButtonLabel(valueLabel:'podcast'|'project'|'message'):void{
+  public updateButtonLabel(valueLabel:'podcast'|'proyecto'|'mensaje'):void{
     this.valueLabel = valueLabel;
   }
 
-  public navigateToSection():void{
-    const valueLink = 'radio-utpl/admin/new-'+ this.valueLabel;
-    if(this.valueLabel){
-      console.log(valueLink);
-      this.router.navigate([valueLink]);
-    }
-  }
 
 }

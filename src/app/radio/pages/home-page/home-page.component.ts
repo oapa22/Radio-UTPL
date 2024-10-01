@@ -37,8 +37,8 @@ export class HomePageComponent implements OnInit{
   }
 
   public getProjects():void{
-    this.firestore.getCollection<Project>('project').subscribe( res => {
-      this.projects = res;
+    this.firestore.getLatestDocPodcast<Project>('project').subscribe(projects => {
+      this.projects = projects;
     });
   }
 
