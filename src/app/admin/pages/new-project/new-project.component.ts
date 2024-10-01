@@ -4,10 +4,10 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Project } from './../../../shared/interfaces/project.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
-import { switchMap } from 'rxjs';
+import { finalize, Subscription, switchMap } from 'rxjs';
 
 @Component({
-  selector: 'admin-new-message',
+  selector: 'admin-new-project',
   templateUrl: './new-project.component.html',
   styleUrls: ['./new-project.component.css']
 })
@@ -50,7 +50,6 @@ export class NewProjectComponent implements OnInit{
   ngOnInit(): void {
     this.currentRoute = this.router.url;
     if(this.router.url.includes('editar-proyecto')){
-
       this.activatedRoute.params.pipe(
         switchMap(({id}) => this.firestore.getDocProject<Project>('project',id))
       ).subscribe(project => {
@@ -63,6 +62,9 @@ export class NewProjectComponent implements OnInit{
     this.currentDate = this.formatDate(new Date());
   }
 
+
+  // ==========================================================================
+  // Fucion para obtener imagen local del computador.
   public onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
@@ -71,6 +73,48 @@ export class NewProjectComponent implements OnInit{
       this.fileName = input.files[0].name;
     }
   }
+
+
+  public createProject():void{
+    let downloadUriSub:Subscription;
+    let storageUri: string = '';
+
+    downloadUriSub = this.firestore.downloadUrl$.subscribe((res) => {
+      console.log('SUBSCRIBED to download url');
+      storageUri = res;
+    },
+    (err)=>{
+      console.log('Error in subscription: ' + err);
+    });
+
+    console.log("sadasdsad: "+storageUri);
+
+    // this.firestore.getImageURLFirebase(this.fileSelec, this.fileName).subscribe(urlImage => {
+    //   this.project.photo_url = urlImage;
+    //   console.log("Esta es la url dentro del metodo: " + urlImage);
+    // });
+
+    // console.log("Esta es la url fuera del metodo: "+this.project.photo_url);
+
+
+
+
+    // const path = 'project';
+    // const id = this.firestore.createId();
+
+    // this.project = this.projectForm.value as Project;
+    // this.project.id = id;
+    // this.firestore.getImageURLFirebase(this.fileSelec, this.fileName).subscribe(urlImage => this.project.photo_url = urlImage);
+    // this.project.photo_filename = this.fileName
+    // this.project.date = this.currentDate;
+    // this.project.content = '<div> asdasdasdsa </div>';
+
+    // this.firestore.createDoc(this.project, path, id).then(res => {
+    //   console.log('respuesta ->', res);
+    // }).catch(error => console.log('Error creating document', error));
+  }
+  // ==========================================================================
+
 
 
 

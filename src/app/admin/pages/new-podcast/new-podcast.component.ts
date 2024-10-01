@@ -66,7 +66,7 @@ export class NewPodcastComponent implements OnInit{
     });
   }
 
-  formatDate(date: Date): string {
+  public formatDate(date: Date): string {
     const options: Intl.DateTimeFormatOptions = {
       day: 'numeric',
       month: 'long',
@@ -78,7 +78,6 @@ export class NewPodcastComponent implements OnInit{
 
   public get currentPodcastFormValue():Podcast{
     const podcast = this.podcastForm.value as Podcast;
-
     return podcast;
   }
 

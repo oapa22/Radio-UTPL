@@ -39,7 +39,7 @@
   <div class="w-[90%] mx-auto">
 
     <!-- Form para crear o actualizar Projecto-->
-    <form class="w-full grid" [formGroup]="projectForm" (ngSubmit)="createMessage()">
+    <form class="w-full grid" [formGroup]="projectForm">
 
       <!-- Seccion Fecha Actual -->
       <div class="flex justify-center my-4">
@@ -107,9 +107,9 @@
       <!-- Botones para crear o actualizar un Projecto -->
       <div class="w-full flex justify-center">
         <button
-        *ngIf="this.currentRoute.includes('nuevo')"
+          (click) = "this.createProject()"
+          *ngIf="this.currentRoute.includes('nuevo')"
           class="p-2 text-white bg-[#00ACC1] rounded-lg hover:bg-blue-utpl"
-
         >Crear Proyecto</button>
         <button
         *ngIf="this.currentRoute.includes('editar')"

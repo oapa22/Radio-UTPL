@@ -1,17 +1,17 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnInit } from '@angular/core';
 import { AngularFirestore } from "@angular/fire/compat/firestore";
-import { query, orderBy, limit } from "firebase/firestore";
-import { getFirestore } from "firebase/firestore";
+import { AngularFireStorage } from "@angular/fire/compat/storage";
 
-import { Observable } from "rxjs";
+import { BehaviorSubject, finalize, map, Observable, switchMap } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class FirestoreService {
+   public downloadUrl$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-    constructor(private firestore: AngularFirestore) {
+    constructor(private firestore: AngularFirestore, private storage: AngularFireStorage,) {
     }
 
     //crear el id que se usara en los documentos
@@ -40,24 +40,64 @@ export class FirestoreService {
 
 
 
-
+    // ======================================================================================================
     //obtener documento de un proyecto que se encuentra dentro de cualquier coleccion
-    getDocPodcast<tipo>(path:string, id:string){
+    public getDocPodcast<tipo>(path:string, id:string){
       return this.firestore.collection(path).doc<tipo>(id).valueChanges();
     }
-    getDocProject<tipo>(path: string, id: string){
+    public getDocProject<tipo>(path: string, id: string){
       return this.firestore.collection(path).doc<tipo>(id).valueChanges();
     }
-    getDocMessage<tipo>(path:string, id:string){
+    public getDocMessage<tipo>(path:string, id:string){
       return this.firestore.collection(path).doc<tipo>(id).valueChanges();
     }
 
-    getLatestDocPodcast<tipo>(path: string) {
+    public getLatestDocPodcast<tipo>(path: string) {
       // const q = query(this.firestore, orderBy("name", "desc"), limit(3));
 
       return this.firestore.collection<tipo>(path, ref => ref.orderBy('createdAt', 'desc').limit(3)).valueChanges();
     }
 
+    // ======================================================================================================
+    // Funcion para subir la imagen a firebase y obtener la url.
+    public getImageURLFirebase(fileSelec:File,fileName:string):Observable<string> {
+
+      // Obtener el archivo seleccionado
+      const filePath = `images_project/${fileName}`;  // Definir la ruta donde se almacenará la imagen
+      const fileRef = this.storage.ref(filePath);  // Crear una referencia al archivo
+      const uploadTask = this.storage.upload(filePath,fileSelec);  // Subir el archivo a Firebase Storage
+
+      // Escuchar el proceso de carga
+      return uploadTask.snapshotChanges().pipe(
+        finalize(() =>  {}),
+        switchMap(() => fileRef.getDownloadURL())
+      );
+
+      // let stringsg:string = '';
+      // const filePath = `images_project/${fileName}`;
+
+      // const ref = this.storage.ref('images_project/patio-alquile - frame at 0m7s.jpg');
+
+      // return  ref.getDownloadURL().subscribe(url =>);
+    }
+
+    public uploadFile(fileSelec:File,fileName:string):Observable<number | undefined> {
+
+      const filePath = `images_project/${fileName}`;
+      const fileRef = this.storage.ref(filePath);
+      const uploadTask = this.storage.upload(filePath, fileSelec);
+
+      uploadTask.snapshotChanges().pipe(
+          finalize(() => {
+            fileRef.getDownloadURL().pipe(map(res =>{
+              this.downloadUrl$.next(res);
+            })).subscribe();
+          })
+       )
+      .subscribe();
+      return uploadTask.percentageChanges();
+    }
+    // ======================================================================================================
 
 
     //actualizar documento
