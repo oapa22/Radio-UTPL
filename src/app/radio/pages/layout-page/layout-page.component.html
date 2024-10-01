@@ -27,7 +27,7 @@
 <router-outlet></router-outlet>
 
 <!-- Logos redes sociales -->
-<div class="w-full  my-4 text-center text-sm text-[#D5D5D5]">
+<div *ngIf="!this.router.url.includes('admin')" class="w-full  my-4 text-center text-sm text-[#D5D5D5]">
 
   <p><strong>Siguenos en</strong></p>
 
