@@ -4,6 +4,7 @@ import { Podcast } from '../../../shared/interfaces/podcast.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ResquestLoaderRenderService } from '../../../shared/renders/resquest-loader.service';
 
 @Component({
   selector: 'admin-new-podcast',
@@ -29,6 +30,7 @@ export class NewPodcastComponent implements OnInit{
 
   constructor(
     private firestore: FirestoreService,
+    private requestLoader:ResquestLoaderRenderService,
 
     private activatedRouter:ActivatedRoute,
     private router:Router
@@ -79,6 +81,13 @@ export class NewPodcastComponent implements OnInit{
   public get currentPodcastFormValue():Podcast{
     const podcast = this.podcastForm.value as Podcast;
     return podcast;
+  }
+
+  public updatePodcast():void{
+    let title:string = 'CREANDO PODCAST';
+    let description:string = 'Espere un momento mientras los datos se suben a la nube.';
+
+    this.requestLoader.initRequestLoader(title,description);
   }
 
 }

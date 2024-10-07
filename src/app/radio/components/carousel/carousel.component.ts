@@ -21,7 +21,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 })
 export class CarouselComponent implements OnInit{
   // Custom Properties
-  @Input() height:number = 500;
+  @Input() public height:number = 500;
   @Input() fullScreen:boolean = false;
   @Input() mediaElement:MediaElement[] = [];
   @Input() intervalTime:number = 0;

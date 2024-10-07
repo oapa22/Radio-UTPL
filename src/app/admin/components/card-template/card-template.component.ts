@@ -5,6 +5,7 @@ import { filter, switchMap  } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { FirestoreService } from '../../../radio/services/firebase.service';
+import { ResquestLoaderRenderService } from '../../../shared/renders/resquest-loader.service';
 
 @Component({
   selector: 'admin-card-template',
@@ -27,7 +28,7 @@ export class CardTemplateComponent implements OnInit{
     private router:Router,
 
     private firestoreService:FirestoreService,
-    private dialog:MatDialog
+    private dialog:MatDialog,
   ){}
 
   ngOnInit(): void {
@@ -43,21 +44,24 @@ export class CardTemplateComponent implements OnInit{
   }
 
   public onDeleteElement():void{
-    if(!this.id) throw Error('El elemento es requerido');
+    let title:string = 'CREANDO '+ this.paramRoute.toUpperCase();
+    let description:string = 'Espere un momento mientras los datos se suben a la nube.';
 
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: this.title
-    });
+    // if(!this.id) throw Error('El elemento es requerido');
 
-    dialogRef.afterClosed()
-      .pipe(
-        // filter((result:boolean) => result),
-        // switchMap(() => this.firestoreService.deleteDoc(paramRoute,id)),
-        // filter((wasDeleted:boolean) => wasDeleted)
-      )
-      .subscribe(() => {
-        console.log('se eejcuto el confirmdialog');
-        // this.router.navigate(['/heroes']);
-      });
+    // const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+    //   data: this.title
+    // });
+
+    // dialogRef.afterClosed()
+    //   .pipe(
+    //     // filter((result:boolean) => result),
+    //     // switchMap(() => this.firestoreService.deleteDoc(paramRoute,id)),
+    //     // filter((wasDeleted:boolean) => wasDeleted)
+    //   )
+    //   .subscribe(() => {
+    //     console.log('se eejcuto el confirmdialog');
+    //     // this.router.navigate(['/heroes']);
+    //   });
   }
 }

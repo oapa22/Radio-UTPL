@@ -11,14 +11,16 @@ import { switchMap } from 'rxjs';
 })
 export class ProjectTemplateComponent implements OnInit{
   public project?:Project;
+  public likeValue:boolean = false;
 
   constructor(
     private firestoreService:FirestoreService,
     private activatedRouter:ActivatedRoute,
-    private router:Router
+    private router:Router,
+
   ){}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.activatedRouter.params.pipe(
       switchMap( ({id}) => this.firestoreService.getDocProject<Project>('project',id))
     ).subscribe(project => {
@@ -31,5 +33,7 @@ export class ProjectTemplateComponent implements OnInit{
     })
   }
 
-
+  public toogleLikeValue(){
+    this.likeValue = !this.likeValue;
+  }
 }

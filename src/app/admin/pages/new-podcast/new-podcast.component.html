@@ -51,12 +51,12 @@
         <button
         *ngIf="this.currentRoute.includes('nuevo')"
           class="p-2 text-white bg-[#00ACC1] rounded-lg hover:bg-blue-utpl"
-          (click)="createPodcast()"
+          (click)="this.updatePodcast()"
         >Crear Podcast</button>
         <button
         *ngIf="this.currentRoute.includes('editar')"
           class="p-2 text-white bg-[#00ACC1] rounded-lg hover:bg-blue-utpl"
-          (click)="createPodcast()"
+          (click)="this.updatePodcast()"
         >Actualizar Podcast</button>
       </div>
 

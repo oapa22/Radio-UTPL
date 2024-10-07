@@ -2,23 +2,27 @@
 
 <!-- Image header -->
 <div
-  *ngIf="!this.router.url.includes('inicio')"
+  *ngIf="!this.router.url.includes('inicio') && !this.router.url.includes('autenticacion') && !this.router.url.includes('contenido')"
   class="relative w-full  h-[260px] overflow-hidden"
+  [ngClass]="{'h-[87px]':this.router.url.includes('admin')}"
 >
-
 
     <img
       class="absolute w-full h-full object-cover"
-      src="https://wallpapers.com/images/featured/minimalist-7xpryajznty61ra3.jpg"
+      src="https://firebasestorage.googleapis.com/v0/b/radioutpl.appspot.com/o/media%2Fimage_carrousel.png?alt=media&token=2e17e727-a307-48e1-82fa-ea578c449a69"
       alt=""
     >
 
     <!-- Estacion de Radio -->
-    <div class="absolute w-[300px] m-5">
+    <div class="absolute w-[300px] m-5" *ngIf="!this.router.url.includes('admin')">
       <radio-element-radio></radio-element-radio>
     </div>
 
-    <div class="absolute w-full bottom-20 text-center text-4xl text-white">
+    <div
+      class="absolute w-full text-4xl text-white"
+      [ngClass]="{'text-center bottom-20 h-auto':!this.router.url.includes('admin'),
+                  'flex items-center justify-center h-full':this.router.url.includes('admin')}"
+    >
       <p><strong>{{this.getCurrentTitleRoute() | uppercase}}</strong></p>
     </div>
 
@@ -27,7 +31,7 @@
 <router-outlet></router-outlet>
 
 <!-- Logos redes sociales -->
-<div *ngIf="!this.router.url.includes('admin')" class="w-full  my-4 text-center text-sm text-[#D5D5D5]">
+<div *ngIf="!this.router.url.includes('admin') && !this.router.url.includes('autenticacion')" class="w-full  my-4 text-center text-sm text-[#D5D5D5]">
 
   <p><strong>Siguenos en</strong></p>
 

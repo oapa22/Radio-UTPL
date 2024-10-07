@@ -5,6 +5,7 @@ import { Project } from './../../../shared/interfaces/project.interface';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { finalize, Subscription, switchMap } from 'rxjs';
+import { ResquestLoaderRenderService } from '../../../shared/renders/resquest-loader.service';
 
 @Component({
   selector: 'admin-new-project',
@@ -44,7 +45,9 @@ export class NewProjectComponent implements OnInit{
     private firestore: FirestoreService,
     private storage: AngularFireStorage,
     private activatedRoute:ActivatedRoute,
-    private router:Router
+    private router:Router,
+
+    private requestLoader:ResquestLoaderRenderService
   ){}
 
   ngOnInit(): void {
@@ -111,6 +114,14 @@ export class NewProjectComponent implements OnInit{
     // this.firestore.createDoc(this.project, path, id).then(res => {
     //   console.log('respuesta ->', res);
     // }).catch(error => console.log('Error creating document', error));
+  }
+
+
+  public updateProyect():void{
+    let title:string = 'CREANDO PROYECTO';
+    let description:string = 'Espere un momento mientras los datos se suben a la nube.';
+
+    this.requestLoader.initRequestLoader(title,description);
   }
   // ==========================================================================
 
