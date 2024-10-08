@@ -48,9 +48,9 @@ export class ResquestLoaderRenderService {
     const borderSpinner = this.renderer.createElement('div');
     this.renderer.addClass(borderSpinner, 'w-full');
     this.renderer.addClass(borderSpinner, 'h-full');
-    this.renderer.addClass(borderSpinner, 'border-[3px]');
+    this.renderer.addClass(borderSpinner, 'border-[4px]');
     this.renderer.addClass(borderSpinner, 'border-[#19d71c]');
-    this.renderer.addClass(borderSpinner, 'border-opacity-50');
+    this.renderer.addClass(borderSpinner, 'border-opacity-40');
     this.renderer.addClass(borderSpinner, 'rounded-full');
 
     const tailSpinner = this.renderer.createElement('img');
@@ -102,7 +102,7 @@ export class ResquestLoaderRenderService {
     setTimeout(() => {
       this.renderer.removeChild(containerSpinner, tailSpinner);
       this.renderer.appendChild(containerSpinner,checkSVG);
-      this.renderer.addClass(buttonSucces, 'bg-opacity-100');
+      this.renderer.removeClass(buttonSucces,'bg-opacity-50');
       this.renderer.addClass(buttonSucces, 'hover:text-black');
       this.renderer.removeClass(buttonSucces,'cursor-default');
       this.renderer.addClass(buttonSucces, 'cursor-pointer');
@@ -111,9 +111,6 @@ export class ResquestLoaderRenderService {
         this.closeRequestLoader(overlay);
       });
 
-      this.renderer.listen(overlay, 'click', () => {
-        this.closeRequestLoader(overlay);
-      });
     }, 3000);
 
 

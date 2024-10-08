@@ -28,7 +28,6 @@ export class ProjectTemplateComponent implements OnInit{
       if (!project) return this.router.navigate(['/radio-utpl/proyectos/']);
 
       this.project = project;
-      console.log(this.project.id);
       return;
     })
   }
