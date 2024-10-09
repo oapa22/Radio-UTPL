@@ -15,7 +15,7 @@ import { Timestamp } from 'firebase/firestore';
 export class CardTemplateComponent implements OnInit{
   @Input() public imageSrc:string = '';
   @Input() public title:string = '';
-  @Input() public date:Timestamp = Timestamp.now();;
+  @Input() public date:string = '';
   @Input() public summary:string = '';
   @Input() public id:string = '';
   @Input() public paramRoute:'podcast' | 'proyecto' | 'mensaje' | '' = '';
