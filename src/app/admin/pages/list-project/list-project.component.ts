@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from './../../../radio/services/firebase.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Project } from './../../../shared/interfaces/project.interface';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser'; // Importar DomSanitizer
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-list-project',

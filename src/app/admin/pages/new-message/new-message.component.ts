@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from './../../../radio/services/firebase.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Message } from './../../../shared/interfaces/message.interface';
+import { Timestamp } from '@angular/fire/firestore';
 
 @Component({
   selector: 'admin-new-message',
@@ -14,10 +15,11 @@ export class NewMessageComponent {
   selectedFile: File | null = null;
   selectedAudio: File | null = null;
 
+  date = '';
   message: Message = {
     id: '',
     name: '',
-    date: '',
+    date: Timestamp.now(),
     photo_url: '',
     photo_filename: '',
     audio_filename: '',
@@ -30,7 +32,7 @@ export class NewMessageComponent {
   }
 
   ngOnInit(): void {
-    this.message.date = this.formatDate(new Date());
+    this.formatDate();
   }
 
   selectImage(event: any): void {
@@ -93,13 +95,18 @@ export class NewMessageComponent {
     }).catch(error => console.log('Error creating document', error));
   }
 
-  formatDate(date: Date): string {
-    const options: Intl.DateTimeFormatOptions = {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
-    };
-    
-    return new Intl.DateTimeFormat('es-ES', options).format(date);
+  formatDate() {
+    const date = this.message.date.toDate();
+  
+    const meses = [
+      'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+      'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+    ];
+  
+    const dia = date.getDate();
+    const mes = meses[date.getMonth()]; 
+    const anio = date.getFullYear(); 
+
+    this.date = `${dia} de ${mes} de ${anio}`;
   }
 }

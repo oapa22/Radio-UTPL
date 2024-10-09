@@ -23,6 +23,7 @@ import { ProjectTemplateComponent } from './pages/project-template/project-templ
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MaterialModule } from '../material_module/material.module';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 
     RadioRoutingModule,
     MaterialModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
 ]
 })
 export class RadioModule { }

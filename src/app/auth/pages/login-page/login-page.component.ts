@@ -19,6 +19,7 @@ export class LoginPageComponent {
     password: '',
     isAdmin: false,
   }
+  rememberMe: boolean = false; 
 
   constructor(
     private firestore: FirestoreService,
@@ -35,6 +36,12 @@ export class LoginPageComponent {
       email: this.user.email,
       password: this.user.password,
     }
+    if (this.rememberMe) {
+      await this.auth.rememberMe();
+    } else {
+      await this.auth.noRememberMe();
+    }
+
     const res = await this.auth.login(datos)
     if (res){
       console.log('res ->', res)
@@ -42,48 +49,89 @@ export class LoginPageComponent {
     }
   }
 
-  loginGoogle() {
-    this.auth.loginGoogle().then(async (res: any) => {
+  async loginGoogle() {
+    try {
+      if (this.rememberMe) {
+        await this.auth.rememberMe(); 
+      } else {
+        await this.auth.noRememberMe(); 
+      }
+  
+      const res = await this.auth.loginGoogle();
+  
       if (res?.user) {
         const uid = res.user.uid;
         const email = res.user.email;
   
-        try {
-          console.log(this.users)
-          const userDoc = this.users.find(user => user.uid === uid);
-          console.log('uid some',userDoc)
-          console.log('uid impreso',uid)
-
-          if (!userDoc) {  
-            const newUser: User = {
-              uid: uid,
-              id: uid,
-              names: res.user.displayName || '',
-              email: email,
-              password: '', 
-              isAdmin: false,
-            };
-  
-            await this.firestore.createDoc(newUser, 'user', uid);
-            console.log('Usuario creado', newUser);
-          } else {
-            console.log('Usuario ya registrado', userDoc);
+        const userDoc = this.users.find(user => user.uid === uid);
+        if (!userDoc) {
+          const newUser: User = {
+            uid: uid,
+            id: uid,
+            names: res.user.displayName || '',
+            email: email!,
+            password: '', 
+            isAdmin: false,
           }
-  
-          this.router.navigate(['radio-utpl/inicio']);
-        } catch (error) {
-          console.error('Error al verificar o crear el usuario', error);
+          await this.firestore.createDoc(newUser, 'user', uid);
+          console.log('Usuario creado:', newUser);
+        } else {
+          console.log('Usuario ya registrado:', userDoc);
         }
+  
+        this.router.navigate(['radio-utpl/inicio']);
       }
-    }).catch(error => {
+    } catch (error) {
       console.error('Error al iniciar sesión con Google:', error);
-    });
+    }
   }
+
+  async loginMicrosoft() {
+    try {
+      if (this.rememberMe) {
+        await this.auth.rememberMe();
+      } else {
+        await this.auth.noRememberMe(); 
+      }
+  
+      const res = await this.auth.loginMicrosoft();
+  
+      if (res?.user) {
+        const uid = res.user.uid;
+        const email = res.user.email;
+
+        const userDoc = this.users.find(user => user.uid === uid);
+        if (!userDoc) {
+          const newUser: User = {
+            uid: uid,
+            id: uid,
+            names: res.user.displayName || '',
+            email: email!,
+            password: '',
+            isAdmin: false,
+          };
+          await this.firestore.createDoc(newUser, 'user', uid);
+          console.log('Usuario creado:', newUser);
+        } else {
+          console.log('Usuario ya registrado:', userDoc);
+        }
+  
+        this.router.navigate(['radio-utpl/inicio']);
+      }
+    } catch (error) {
+      console.error('Error al iniciar sesión con Microsoft:', error);
+    }
+  }
+  
   
   getUsers(){
     this.firestore.getCollection<User>('user').subscribe( res => {
       this.users = res;
     });
+  }
+
+  recoverPassword(){
+    this.auth.recoverPassword(this.user.email);
   }
   
   

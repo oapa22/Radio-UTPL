@@ -1,26 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from './../../../radio/services/firebase.service';
 import { Podcast } from '../../../shared/interfaces/podcast.interface';
+import { Timestamp } from '@angular/fire/firestore';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'admin-new-podcast',
   templateUrl: './new-podcast.component.html',
-  styleUrl: './new-podcast.component.css'
+  styleUrls: ['./new-podcast.component.css'],
+  providers: [DatePipe]
 })
-export class NewPodcastComponent {
+export class NewPodcastComponent implements OnInit {
+  date = '';
   podcast: Podcast = {
     id: '',
     title: '',
-    date: '',
+    date: Timestamp.now(),
     frame: '',
-  }
+  };
 
   constructor(
-    private firestore: FirestoreService,){
-  }
-  
+    private firestore: FirestoreService,
+    private datePipe: DatePipe
+  ) { }
+
   ngOnInit(): void {
-    this.podcast.date = this.formatDate(new Date());
+    this.formatDate();
   }
 
   createPodcast() {
@@ -33,14 +38,19 @@ export class NewPodcastComponent {
     });
   }
 
-  formatDate(date: Date): string {
-    const options: Intl.DateTimeFormatOptions = {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
-    };
-    
-    return new Intl.DateTimeFormat('es-ES', options).format(date);
-  }
+  formatDate() {
+    const date = this.podcast.date.toDate();
+  
+    const meses = [
+      'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+      'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+    ];
+  
+    const dia = date.getDate();
+    const mes = meses[date.getMonth()]; 
+    const anio = date.getFullYear(); 
 
+    this.date = `${dia} de ${mes} de ${anio}`;
+  }
+  
 }

@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
+import { Observable } from "rxjs/internal/Observable";
 
 @Injectable({
     providedIn: 'root'
@@ -36,6 +37,12 @@ export class FirestoreService {
     //obtener documento de un proyecto que se encuentra dentro de cualquier coleccion
     getDocProject<tipo>(path: string, id: string){
       return this.firestore.collection(path).doc<tipo>(id).valueChanges();
+    }
+
+    //obtener array de documentos con X campo y X limite
+    //desc: mayor[0] a menor[0+1}]
+    getOrderedArray<tipo>(path: string, field: string, limit: number): Observable<tipo[]> {
+        return this.firestore.collection<tipo>(path, ref => ref.orderBy(field, 'desc').limit(limit)).valueChanges();
     }
 
     //actualizar documento

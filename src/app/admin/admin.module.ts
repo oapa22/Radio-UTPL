@@ -12,7 +12,6 @@ import { ListMessageComponent } from './pages/list-message/list-message.componen
 import { ListProjectComponent } from './pages/list-project/list-project.component';
 import { ListPodcastComponent } from './pages/list-podcast/list-podcast.component';
 
-
 @NgModule({
   declarations: [
     LayoutPageComponent,

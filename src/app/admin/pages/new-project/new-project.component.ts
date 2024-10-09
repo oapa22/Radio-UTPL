@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from './../../../radio/services/firebase.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Project } from './../../../shared/interfaces/project.interface';
+import { Timestamp } from '@angular/fire/firestore';
 
 @Component({
   selector: 'admin-new-message',
@@ -13,15 +14,17 @@ export class NewProjectComponent {
   selectedFile: File | null = null;
   summaryError: boolean = false;
 
+  date = '';
   project: Project = {
     id: '',
     title: '',
-    date: '',
+    date: Timestamp.now(),
     keywords: '',
     summary: '',
     photo_url: '',
     photo_filename: '',
     content: '',
+    likes: 0,
   }
 
   constructor(
@@ -30,7 +33,7 @@ export class NewProjectComponent {
   }
 
   ngOnInit(): void {
-    this.project.date = this.formatDate(new Date());
+    this.formatDate();
   }
 
   selectImage(event: any): void {
@@ -77,13 +80,18 @@ export class NewProjectComponent {
     }).catch(error => console.log('Error creating document', error));
   }
 
-  formatDate(date: Date): string {
-    const options: Intl.DateTimeFormatOptions = {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
-    };
-    
-    return new Intl.DateTimeFormat('es-ES', options).format(date);
+  formatDate() {
+    const date = this.project.date.toDate();
+  
+    const meses = [
+      'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+      'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+    ];
+  
+    const dia = date.getDate();
+    const mes = meses[date.getMonth()]; 
+    const anio = date.getFullYear(); 
+
+    this.date = `${dia} de ${mes} de ${anio}`;
   }
 }

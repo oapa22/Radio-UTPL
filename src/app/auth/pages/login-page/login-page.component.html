@@ -4,9 +4,15 @@
         <br><br>
         <input [(ngModel)]="user.password" type="password" placeholder="Contraseña">
         <br><br>
+        <input type="checkbox" [(ngModel)]="rememberMe">Recordarme
+        <br><br>
         <button (click)="login()">Iniciar Sesión</button>
         <br><br>
         <button (click)="loginGoogle()">Iniciar Sesión con Google</button>
+        <br><br>
+        <button (click)="loginMicrosoft()">Iniciar Sesión con UTPL</button>
+        <br><br>
+        <button (click)="recoverPassword()">¿Olvidaste tu contraseña?</button>
         <br><br>
         <a href="" [routerLink]="['/radio-utpl/auth/register']">¿No tienes una cuenta? Regístrate</a>
     </section>
