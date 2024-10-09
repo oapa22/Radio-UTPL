@@ -24,11 +24,7 @@ const routes: Routes = [
         loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule)
       },
       {
-<<<<<<< HEAD
-        path: 'auth',
-=======
         path: 'autenticacion',
->>>>>>> ab310dcbb31030ecffc0565889dbc03c11e5518c
         loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule)
       },
       {path: '**', redirectTo: 'inicio'}

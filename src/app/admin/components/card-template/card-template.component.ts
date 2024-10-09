@@ -5,6 +5,7 @@ import { filter, switchMap  } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { FirestoreService } from '../../../radio/services/firebase.service';
+import { Timestamp } from 'firebase/firestore';
 
 @Component({
   selector: 'admin-card-template',
@@ -14,7 +15,7 @@ import { FirestoreService } from '../../../radio/services/firebase.service';
 export class CardTemplateComponent implements OnInit{
   @Input() public imageSrc:string = '';
   @Input() public title:string = '';
-  @Input() public date:string = '';
+  @Input() public date:Timestamp = Timestamp.now();;
   @Input() public summary:string = '';
   @Input() public id:string = '';
   @Input() public paramRoute:'podcast' | 'proyecto' | 'mensaje' | '' = '';
