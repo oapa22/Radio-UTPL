@@ -31,11 +31,8 @@
 
     <div class="">
       <div class="grid grid-cols-3">
-        <div class="col-span-1">Iframe quemado</div>
-        <div class="col-span-1">Iframe con url</div>
-        <div class="col-span-1">Iframe obtenido del objeto</div>
 
-        <div class="col-span-1">
+        <!-- <div class="col-span-1">
           <iframe
             style="border-radius:12px"
             src="https://open.spotify.com/embed/album/2cWBwpqMsDJC1ZUwz813lo?utm_source=generator"
@@ -62,14 +59,14 @@
 
         <div class="col-span-1">
           <div [innerHTML]="this.podcastFrame"></div>
-        </div>
+        </div> -->
 
-        <!-- <div
+        <div
           *ngFor="let podcast of podcasts; let i = index"
           class="col-span-1 w-[90%] mx-auto"
         >
           <shared-card-podcast [podcast]="podcast"></shared-card-podcast>
-        </div> -->
+        </div>
       </div>
 
       <!-- paginacion -->

@@ -27,11 +27,16 @@ export class SchedulePageComponent implements OnInit{
   }
 
   public getPodcasts(){
-    this.firestore.getCollection<Podcast>('podcast').subscribe( res => {
-      this.podcasts = res;
-
-      this.podcastFrame = this.sanitizer.bypassSecurityTrustHtml(this.podcasts[2].frame);
-      this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.podcasts[1].frame);
+    this.firestore.getLatestDocuments<Podcast>('podcast',9).subscribe( podcast => {
+      this.podcasts = podcast;
+      console.log('hola',this.podcasts)
     });
+
+    // this.firestore.getCollection<Podcast>('podcast').subscribe( res => {
+    //   this.podcasts = res;
+
+    //   this.podcastFrame = this.sanitizer.bypassSecurityTrustHtml(this.podcasts[0].frame);
+    //   this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.podcasts[1].frame);
+    // });
   }
 }

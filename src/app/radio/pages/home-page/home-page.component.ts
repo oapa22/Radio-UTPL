@@ -30,15 +30,16 @@ export class HomePageComponent implements OnInit{
   }
 
   public getPodcasts():void{
-    this.firestore.getCollection<Podcast>('podcast').subscribe( res => {
-      this.podcasts = res;
+    this.firestore.getLatestDocuments<Podcast>('podcast',3).subscribe( podcast => {
+      this.podcasts = podcast;
       console.log('hola',this.podcasts)
     });
   }
 
   public getProjects():void{
-    this.firestore.getLatestDocPodcast<Project>('project').subscribe(projects => {
+    this.firestore.getLatestDocuments<Project>('project',3).subscribe(projects => {
       this.projects = projects;
+      console.log('Proyectos',this.projects);
     });
   }
 
