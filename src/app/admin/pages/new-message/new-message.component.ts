@@ -6,6 +6,7 @@ import { Timestamp } from '@angular/fire/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { switchMap } from 'rxjs';
+import { ResquestLoaderRenderService } from '../../../shared/renders/resquest-loader.service';
 
 @Component({
   selector: 'admin-new-message',
@@ -44,9 +45,10 @@ export class NewMessageComponent implements OnInit{
     private firestore: FirestoreService,
     private activatedRoute:ActivatedRoute,
     private storage: AngularFireStorage,
-    private router:Router
-  ) {
-  }
+    private router:Router,
+
+    private requestLoader:ResquestLoaderRenderService
+  ) {}
 
   ngOnInit(): void {
     this.formatDate();
@@ -82,7 +84,13 @@ export class NewMessageComponent implements OnInit{
     }
   }
 
+  public updateMessage():void{
+    let title:string = 'CREANDO MENSAJE';
+    let description:string = 'Espere un momento mientras los datos se suben a la nube.';
 
+    this.requestLoader.initRequestLoader(title,description);
+  }
+// ======================================================================================================
 
 
 

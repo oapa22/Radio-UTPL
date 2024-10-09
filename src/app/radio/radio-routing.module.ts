@@ -17,7 +17,7 @@ const routes: Routes = [
       {path: 'quienes-somos', component: AboutUsPageComponent},
       {path: 'contacto', component: ContactPageComponent},
       {path: 'proyectos', component: ProjectsPageComponent},
-      {path: 'proyectos/:id', component: ProjectTemplateComponent},
+      {path: 'proyectos/contenido/:id', component: ProjectTemplateComponent},
       {path: 'programacion', component: SchedulePageComponent},
       {
         path: 'admin',

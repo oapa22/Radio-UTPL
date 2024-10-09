@@ -7,6 +7,7 @@ import { SharedRoutingModule } from './shared-routing.module';
 
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MaterialModule } from '../material_module/material.module';
+import { ResquestLoaderComponent } from './renders/resquest-loader/resquest-loader.component';
 
 
 @NgModule({
@@ -14,7 +15,9 @@ import { MaterialModule } from '../material_module/material.module';
     Error404PageComponent,
     CardPodcastComponent,
     CardProjectsComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    ResquestLoaderComponent,
+
   ],
   imports: [
     CommonModule,

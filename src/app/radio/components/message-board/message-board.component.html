@@ -10,9 +10,9 @@
   <!-- Tarjeta de mesaje -->
   <div class="relative w-[80%] h-full mx-auto  rounded-2xl shadow-md overflow-hidden ">
 
-    <!-- Seccion de acciones -->
+    <!-- Seccion de reproducir -->
     <div class="absolute flex  w-[80%] m-2 justify-between items-center ">
-      <p class="text-sm font-bold">{{this.messages[currentPosition].name}}</p>
+      <p class="text-sm font-bold text-white text-outline-black">{{this.messages[currentPosition].name}}</p>
 
       <button
         (click)="this.playAudio(audioPlayer)"

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../../services/firebase.service';
 import { Podcast } from '../../../shared/interfaces/podcast.interface';
+import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-browser';
 
 
 @Component({
@@ -9,18 +10,33 @@ import { Podcast } from '../../../shared/interfaces/podcast.interface';
   styleUrl: './schedule-page.component.css'
 })
 export class SchedulePageComponent implements OnInit{
-  podcasts: Podcast[] = [];
+  public podcasts: Podcast[] = [];
 
-  constructor(private firestore:FirestoreService){
+  public urlSpotify:string = 'https://open.spotify.com/embed/playlist/37i9dQZF1E4yPOuEyv4Vyw?utm_source=generator';
+  public safeUrl: SafeResourceUrl = '';
+  public podcastFrame: SafeHtml = '';
 
+  // DomSanitizer es empleado para verificar si la url es validad y no tenga vulneravilidades
+  constructor(private firestore:FirestoreService, private sanitizer: DomSanitizer){
   }
+
   ngOnInit(): void {
     this.getPodcasts();
+
+
   }
 
   public getPodcasts(){
-    this.firestore.getCollection<Podcast>('podcast').subscribe( res => {
-      this.podcasts = res;
+    this.firestore.getLatestDocuments<Podcast>('podcast',9).subscribe( podcast => {
+      this.podcasts = podcast;
+      console.log('hola',this.podcasts)
     });
+
+    // this.firestore.getCollection<Podcast>('podcast').subscribe( res => {
+    //   this.podcasts = res;
+
+    //   this.podcastFrame = this.sanitizer.bypassSecurityTrustHtml(this.podcasts[0].frame);
+    //   this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.podcasts[1].frame);
+    // });
   }
 }

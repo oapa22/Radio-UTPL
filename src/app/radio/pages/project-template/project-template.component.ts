@@ -1,5 +1,5 @@
+import { Project } from './../../../shared/interfaces/project.interface';
 import { Component, OnInit } from '@angular/core';
-import { Project } from '../../../shared/interfaces/project.interface';
 import { FirestoreService } from '../../services/firebase.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
@@ -18,6 +18,7 @@ export class ProjectTemplateComponent implements OnInit{
   safeContent: SafeHtml | null = null;
   liked: boolean = false;
   docId!: string;
+  date = '';
   projectLikes: Project = {
     id: '',
     title: '',
@@ -47,7 +48,8 @@ export class ProjectTemplateComponent implements OnInit{
     private auth: AuthServiceService,
   ){}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    this.formatDate();
     this.activatedRouter.params.pipe(
       switchMap( ({id}) => this.firestoreService.getDocProject<Project>('project',id))
     ).subscribe(project => {
@@ -123,5 +125,23 @@ export class ProjectTemplateComponent implements OnInit{
     });
   }
 
+  // public toogleLikeValue(){
+  //   this.likeValue = !this.likeValue;
+  // }
+
+  formatDate() {
+    const date = this.projectLikes.date.toDate();
+  
+    const meses = [
+      'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+      'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+    ];
+  
+    const dia = date.getDate();
+    const mes = meses[date.getMonth()]; 
+    const anio = date.getFullYear(); 
+
+    this.date = `${dia} de ${mes} de ${anio}`;
+  }
 
 }

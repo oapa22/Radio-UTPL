@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { FirestoreService } from '../../../radio/services/firebase.service';
 import { Timestamp } from 'firebase/firestore';
+import { ResquestLoaderRenderService } from '../../../shared/renders/resquest-loader.service';
+import { ConfirmDialogService } from '../../../shared/renders/confirm-dialog.service';
 
 @Component({
   selector: 'admin-card-template',
@@ -28,7 +30,9 @@ export class CardTemplateComponent implements OnInit{
     private router:Router,
 
     private firestoreService:FirestoreService,
-    private dialog:MatDialog
+    private dialog:MatDialog,
+    private confirmDialog:ConfirmDialogService,
+    private requestLoader:ResquestLoaderRenderService
   ){}
 
   ngOnInit(): void {
@@ -44,21 +48,28 @@ export class CardTemplateComponent implements OnInit{
   }
 
   public onDeleteElement():void{
-    if(!this.id) throw Error('El elemento es requerido');
+    let request:boolean = false;
+    let title:string = '¿Desea eliminar este '+ this.paramRoute + '?' ;
+    let description:string = 'Si acepta el proceso será irreversible y se eliminará el '+ this.paramRoute+' de la base de datos.';
 
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: this.title
+    this.confirmDialog.openConfirmDialog(title, description).then((confirmed) => {
+      if(confirmed){
+        let title:string = this.paramRoute.toUpperCase() + ' ELIMINADO';
+        let description:string = 'Espere un momento mientras los datos son removidos de la nube.';
+
+        this.requestLoader.initRequestLoader(title,description);
+      }
     });
 
-    dialogRef.afterClosed()
-      .pipe(
-        // filter((result:boolean) => result),
-        // switchMap(() => this.firestoreService.deleteDoc(paramRoute,id)),
-        // filter((wasDeleted:boolean) => wasDeleted)
-      )
-      .subscribe(() => {
-        console.log('se eejcuto el confirmdialog');
-        // this.router.navigate(['/heroes']);
-      });
+    // dialogRef.afterClosed()
+    //   .pipe(
+    //     // filter((result:boolean) => result),
+    //     // switchMap(() => this.firestoreService.deleteDoc(paramRoute,id)),
+    //     // filter((wasDeleted:boolean) => wasDeleted)
+    //   )
+    //   .subscribe(() => {
+    //     console.log('se eejcuto el confirmdialog');
+    //     // this.router.navigate(['/heroes']);
+    //   });
   }
 }

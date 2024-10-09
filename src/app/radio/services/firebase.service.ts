@@ -52,10 +52,10 @@ export class FirestoreService {
       return this.firestore.collection(path).doc<tipo>(id).valueChanges();
     }
 
-    public getLatestDocPodcast<tipo>(path: string) {
-      // const q = query(this.firestore, orderBy("name", "desc"), limit(3));
+    public getLatestDocuments<tipo>(path: string, limit:number) {
+      // return this.firestore.collection<tipo>(path, ref => ref.orderBy('createdAt', 'desc').limit(3)).valueChanges();
+      return this.firestore.collection<tipo>(path, ref => ref.orderBy('date').limitToLast(limit)).valueChanges();
 
-      return this.firestore.collection<tipo>(path, ref => ref.orderBy('createdAt', 'desc').limit(3)).valueChanges();
     }
 
     // Funcion para subir la imagen a firebase y obtener la url.
