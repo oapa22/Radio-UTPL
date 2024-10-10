@@ -49,7 +49,6 @@ export class ProjectTemplateComponent implements OnInit{
   ){}
 
   public ngOnInit(): void {
-    this.formatDate();
     this.activatedRouter.params.pipe(
       switchMap( ({id}) => this.firestoreService.getDocProject<Project>('project',id))
     ).subscribe(project => {
@@ -58,6 +57,7 @@ export class ProjectTemplateComponent implements OnInit{
 
       this.project = project;
       this.projectLikes = this.project;
+      this.formatDate();
       if (this.project) {
         this.safeContent = this.sanitizer.bypassSecurityTrustHtml(this.project.content || '');
       }
@@ -76,7 +76,7 @@ export class ProjectTemplateComponent implements OnInit{
   toggleLike() {
     // Verifica si el usuario está autenticado
     if (!this.docId) {
-      this.router.navigate(['/radio-utpl/auth/login']);
+      this.router.navigate(['/radio-utpl/autenticacion']);
       return;
     }
 

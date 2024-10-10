@@ -58,12 +58,11 @@ export class ListTemplateComponent implements OnInit{
     }
   }
 
-  // Función para formatear el timestamp
   public formatDate(timestamp: any): string {
     if (timestamp?.seconds) {
-      const date = new Date(timestamp.seconds * 1000); // Convertir a milisegundos
+      const date = new Date(timestamp.seconds * 1000);
       const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-      return date.toLocaleDateString('es-ES', options); // Formato "dd de mm de yyyy"
+      return date.toLocaleDateString('es-ES', options);
     }
     return '';
   }
