@@ -1,5 +1,5 @@
 <!-- <div class="bg-slate-200">
-  <h2><b>Fecha de publicación:</b> {{podcast.date}}</h2>
+  <h2><b>Fecha de publicación:</b> {{date}}</h2>
   <h3><b>Título de referencia</b></h3><p>Este título no se visualiza en el podcas, solo es para mantener una organización en el administrador.</p>
     <div>
       <div class="boxInfo">
@@ -21,7 +21,7 @@
     <form class="w-full grid" [formGroup]="podcastForm" (ngSubmit)="createPodcast()">
       <!-- Seccion Fecha Actual -->
       <div class="flex justify-center mt-10 mb-4">
-        <p><strong>Fecha de publicación:</strong> {{this.currentDate}}</p>
+        <p><strong>Fecha de publicación:</strong> {{date}}</p>
       </div>
 
       <!-- Seccion del Titulo -->

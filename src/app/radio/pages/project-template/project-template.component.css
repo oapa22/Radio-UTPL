@@ -1,0 +1,11 @@
+.btnLike {
+    color: #fffaf2;
+    background-color: #adedeb;
+    margin-left: auto;
+  
+  }
+  
+.btnLike.clicked {
+    color: #ffffff;
+    background-color: gray;
+}

@@ -1,3 +1,23 @@
+<!-- <section class="bodylogin">
+    <section class="loginBox">
+        <input [(ngModel)]="user.email" type="text" placeholder="Correo">
+        <br><br>
+        <input [(ngModel)]="user.password" type="password" placeholder="Contraseña">
+        <br><br>
+        <input type="checkbox" [(ngModel)]="rememberMe">Recordarme
+        <br><br>
+        <button (click)="login()">Iniciar Sesión</button>
+        <br><br>
+        <button (click)="loginGoogle()">Iniciar Sesión con Google</button>
+        <br><br>
+        <button (click)="loginMicrosoft()">Iniciar Sesión con UTPL</button>
+        <br><br>
+        <button (click)="recoverPassword()">¿Olvidaste tu contraseña?</button>
+        <br><br>
+        <a href="" [routerLink]="['/radio-utpl/auth/register']">¿No tienes una cuenta? Regístrate</a>
+    </section>
+</section> -->
+
 <div class="w-full h-screen flex items-center justify-center bg-blue-utpl bg-cover bg-center bg-no-repeat bg-[url('https://firebasestorage.googleapis.com/v0/b/radioutpl.appspot.com/o/media%2Fimage_sesion.png?alt=media&token=06f73b1d-38d4-4cce-9264-1345d597e710')] bg-animate-fadeIn">
   <!-- Seccion credenciales -->
   <div class="w-[35%] h-[75%] relative flex flex-col items-center">
@@ -24,7 +44,7 @@
               <path d="M5.3965 0.783203C6.03202 0.783203 6.64126 1.03531 7.09064 1.48526C7.54059 1.93464 7.79268 2.54388 7.79268 3.17941C7.79268 3.81521 7.54059 4.42448 7.09064 4.87357C6.64126 5.32352 6.03202 5.57561 5.3965 5.57561C4.76069 5.57561 4.15143 5.32352 3.70233 4.87357C3.25239 4.42419 3.00029 3.81493 3.00029 3.17941C3.00029 2.54388 3.25239 1.93464 3.70233 1.48526C4.15171 1.0356 4.76097 0.783203 5.3965 0.783203ZM5.3965 6.77443C8.04451 6.77443 10.1892 7.84677 10.1892 9.17092V10.3692H0.603516V9.17092C0.603801 7.84677 2.74848 6.77443 5.3965 6.77443Z" fill="#010101"/>
           </svg>
 
-          <input class="w-full h-[38px] px-7 rounded-md placeholder:text-black" type="text" placeholder="Usuario">
+          <input class="w-full h-[38px] px-7 rounded-md placeholder:text-black" type="text" [(ngModel)]="user.email" placeholder="Correo">
         </div>
 
         <!-- Input Contrasenia -->
@@ -36,20 +56,21 @@
             <path d="M5.39622 9.89231C5.71369 9.89231 6.0186 9.76584 6.24329 9.54115C6.46798 9.31646 6.59445 9.01155 6.59445 8.69407C6.59445 8.3766 6.46798 8.07167 6.24329 7.84698C6.0186 7.6223 5.71369 7.49583 5.39622 7.49583C5.07874 7.49583 4.77382 7.6223 4.54913 7.84698C4.32444 8.07167 4.19797 8.3766 4.19797 8.69407C4.19797 9.01155 4.32444 9.31646 4.54913 9.54115C4.77382 9.76584 5.07874 9.89231 5.39622 9.89231ZM8.99095 4.50036C9.30842 4.50036 9.61333 4.62683 9.83802 4.85152C10.0627 5.07621 10.1892 5.38113 10.1892 5.69861V11.6895C10.1892 12.007 10.0627 12.3119 9.83802 12.5366C9.61333 12.7613 9.30842 12.8878 8.99095 12.8878H1.80177C1.48429 12.8878 1.17938 12.7613 0.954692 12.5366C0.730004 12.3119 0.603516 12.007 0.603516 11.6895V5.69861C0.603516 5.38113 0.730004 5.07621 0.954692 4.85152C1.17938 4.62683 1.48429 4.50036 1.80177 4.50036H2.40103V3.30211C2.40103 2.50785 2.7168 1.74557 3.27809 1.1837C3.83996 0.62241 4.60224 0.306641 5.3965 0.306641C5.7902 0.306641 6.17962 0.384014 6.54249 0.534758C6.90621 0.685217 7.23625 0.905626 7.5149 1.1837C7.79298 1.46235 8.01339 1.79239 8.16385 2.15612C8.31488 2.51927 8.39196 2.90869 8.39196 3.30211V4.50036H8.99095ZM5.39622 1.50489C4.91943 1.50489 4.46233 1.69418 4.12544 2.03135C3.78827 2.36796 3.59898 2.82532 3.59898 3.30211V4.50036H7.19371V3.30211C7.19371 2.82532 7.00444 2.36824 6.66698 2.03135C6.33037 1.69418 5.87329 1.50489 5.39622 1.50489Z" fill="#010101"/>
           </svg>
 
-          <input class="w-full h-[38px] px-7 rounded-md placeholder:text-black" type="password" placeholder="Contraseña">
+          <input class="w-full h-[38px] px-7 rounded-md placeholder:text-black" type="password" [(ngModel)]="user.password" placeholder="Contraseña">
         </div>
 
         <!-- Seccion check box y recordatorio -->
         <div class="w-full flex justify-between text-[12px] text-white mb-3">
           <div class="flex items-center">
-            <input class="mx-2 w-[11px] h-[11px] bg-transparent border-2 border-white rounded-none appearance-none checked:bg-yellow-utpl cursor-pointer" type="checkbox">
+            <input class="mx-2 w-[11px] h-[11px] bg-transparent border-2 border-white rounded-none appearance-none checked:bg-yellow-utpl cursor-pointer" type="checkbox" [(ngModel)]="rememberMe">
             <p>Recordarme</p>
           </div>
 
-          <a class="hover:underline" routerLink="">¿Olvidaste tu contraseña?</a>
+          <!-- <button (click)="recoverPassword()">¿Olvidaste tu contraseña?</button> -->
+          <button class="hover:underline" (click)="recoverPassword()">¿Olvidaste tu contraseña?</button>
         </div>
 
-        <button class="w-full h-[38px] mb-5 bg-[#FCB347] text-sm font-bold hover:bg-slate-100 rounded-xl">Iniciar Sesión</button>
+        <button (click)="login()" class="w-full h-[38px] mb-5 bg-[#FCB347] text-sm font-bold hover:bg-slate-100 rounded-xl">Iniciar Sesión</button>
       </div>
 
       <!-- Seccion Inicio alternativo -->
@@ -66,7 +87,7 @@
           </button>
 
           <!-- Gmail -->
-           <button>
+           <button (click)="loginGoogle()">
             <svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M40.1211 23.8823C41.9367 12.9475 34.5442 2.6113 23.6095 0.795676C12.6747 -1.01995 2.33845 6.37256 0.522829 17.3073C-1.2928 28.2421 6.09975 38.5783 17.0345 40.3939C27.9693 42.2096 38.3055 34.817 40.1211 23.8823Z" fill="white"/>
               <mask id="mask0_47_3931" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="3" y="4" width="34" height="34">
@@ -94,7 +115,7 @@
 
       <!-- Seccion registrar -->
       <div class="w-full flex justify-center space-x-3 text-[12px]">
-        <p class="text-white">¿No tienes una cuenta?</p>
+        <p class="text-white" [routerLink]="['/radio-utpl/auth/register']">¿No tienes una cuenta?</p>
         <a routerLink="" class="text-[#FCBD31] hover:underline">Regístrate aquí</a>
       </div>
 

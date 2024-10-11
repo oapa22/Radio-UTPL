@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from './../../../radio/services/firebase.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Message } from './../../../shared/interfaces/message.interface';
+import { Timestamp } from '@angular/fire/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { switchMap } from 'rxjs';
@@ -18,10 +19,11 @@ export class NewMessageComponent implements OnInit{
   selectedFile: File | null = null;
   selectedAudio: File | null = null;
 
+  date = '';
   message: Message = {
     id: '',
     name: '',
-    date: '',
+    date: Timestamp.now(),
     photo_url: '',
     photo_filename: '',
     audio_filename: '',
@@ -49,10 +51,8 @@ export class NewMessageComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
+    this.formatDate();
     this.currentRoute = this.router.url;
-    this.currentDate = this.formatDate(new Date());
-    this.message.date = this.formatDate(new Date());
-
     if(this.router.url.includes('editar-mensaje')){
       this.activatedRoute.params.pipe(
         switchMap(({id}) => this.firestore.getDocMessage<Message>('message',id))
@@ -151,19 +151,25 @@ export class NewMessageComponent implements OnInit{
     const path = 'message';
     const id = this.firestore.createId();
     this.message.id = id;
+    this.message.date = Timestamp.now();
 
     this.firestore.createDoc(this.message, path, id).then(res => {
       console.log('respuesta ->', res);
     }).catch(error => console.log('Error creating document', error));
   }
 
-  formatDate(date: Date): string {
-    const options: Intl.DateTimeFormatOptions = {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
-    };
+  formatDate() {
+    const date = this.message.date.toDate();
+  
+    const meses = [
+      'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+      'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+    ];
+  
+    const dia = date.getDate();
+    const mes = meses[date.getMonth()]; 
+    const anio = date.getFullYear(); 
 
-    return new Intl.DateTimeFormat('es-ES', options).format(date);
+    this.date = `${dia} de ${mes} de ${anio}`;
   }
 }

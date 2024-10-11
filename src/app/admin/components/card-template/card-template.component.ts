@@ -5,6 +5,7 @@ import { filter, switchMap  } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { FirestoreService } from '../../../radio/services/firebase.service';
+import { Timestamp } from 'firebase/firestore';
 import { ResquestLoaderRenderService } from '../../../shared/renders/resquest-loader.service';
 import { ConfirmDialogService } from '../../../shared/renders/confirm-dialog.service';
 
@@ -20,6 +21,7 @@ export class CardTemplateComponent implements OnInit{
   @Input() public summary:string = '';
   @Input() public id:string = '';
   @Input() public paramRoute:'podcast' | 'proyecto' | 'mensaje' | '' = '';
+  @Input() public path:'podcast' | 'project' | 'message' | '' = '';
 
   public route:string = '';
 
@@ -28,7 +30,7 @@ export class CardTemplateComponent implements OnInit{
   constructor(
     private router:Router,
 
-    private firestoreService:FirestoreService,
+    private firestore: FirestoreService,
     private dialog:MatDialog,
     private confirmDialog:ConfirmDialogService,
     private requestLoader:ResquestLoaderRenderService
@@ -53,9 +55,10 @@ export class CardTemplateComponent implements OnInit{
 
     this.confirmDialog.openConfirmDialog(title, description).then((confirmed) => {
       if(confirmed){
+        console.log('path',this.path,'id',this.id)
+        this.firestore.deleteDoc(this.path,this.id)
         let title:string = this.paramRoute.toUpperCase() + ' ELIMINADO';
         let description:string = 'Espere un momento mientras los datos son removidos de la nube.';
-
         this.requestLoader.initRequestLoader(title,description);
       }
     });

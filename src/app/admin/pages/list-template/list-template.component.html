@@ -17,9 +17,10 @@
     <admin-card-template
       imageSrc="https://www.santandersmusic.com/media/magazine/spotify-2-1.jpg"
       [title]="podcast.title"
-      [date]="podcast.date"
+      [date]="formatDate(podcast.date)"
       id={{podcast.id}}
-      paramRoute="podcast">
+      paramRoute="podcast"
+      path="podcast">
     </admin-card-template>
   </div>
 </div>
@@ -30,10 +31,11 @@
     <admin-card-template
       [imageSrc]="project.photo_url"
       [title]="project.title"
-      [date]="project.date"
+      [date]="formatDate(project.date)"
       [summary]="project.summary"
       id={{project.id}}
-      paramRoute="proyecto">
+      paramRoute="proyecto"
+      path="project">
     </admin-card-template>
   </div>
 </div>
@@ -44,9 +46,10 @@
     <admin-card-template
       [imageSrc]="message.photo_url"
       [title]="message.name"
-      [date]="message.date"
+      [date]="formatDate(message.date)"
       id={{message.id}}
-      paramRoute="mensaje">
+      paramRoute="mensaje"
+      path="message">
     </admin-card-template>
   </div>
  </div>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs';
 import { Podcast } from '../../../shared/interfaces/podcast.interface';
 import { Project } from '../../../shared/interfaces/project.interface';
 import { Message } from '../../../shared/interfaces/message.interface';
@@ -12,33 +11,33 @@ import { FirestoreService } from '../../../radio/services/firebase.service';
   styleUrl: './list-template.component.css'
 })
 export class ListTemplateComponent implements OnInit{
-  public podcasts:Podcast[] = [];
-  public projects:Project[] = [];
-  public messages:Message[] = [];
-  public param:string = '';
-  public valueLabel:string = '';
+  public podcasts: Podcast[] = [];
+  public projects: Project[] = [];
+  public messages: Message[] = [];
+  public param: string = '';
+  public valueLabel: string = '';
 
   constructor(
-    private router:Router,
-    private activatedRouter:ActivatedRoute,
+    private router: Router,
+    private activatedRouter: ActivatedRoute,
     private fireStoreService: FirestoreService
   ){}
 
   ngOnInit(): void {
-    this.activatedRouter.params.subscribe( params => {
+    this.activatedRouter.params.subscribe(params => {
       this.param = params['collection'];
 
-      if(this.param == 'podcasts'){
-        this.fireStoreService.getCollection<Podcast>('podcast').subscribe( res => {
+      if (this.param == 'podcasts') {
+        this.fireStoreService.getCollection<Podcast>('podcast').subscribe(res => {
           this.podcasts = res;
         });
         this.valueLabel = 'podcast';
-      } else if(this.param == 'proyectos'){
+      } else if (this.param == 'proyectos') {
         this.fireStoreService.getCollection<Project>('project').subscribe(res => {
           this.projects = res;
         });
         this.valueLabel = 'proyecto';
-      } else if (this.param == 'mensajes'){
+      } else if (this.param == 'mensajes') {
         this.fireStoreService.getCollection<Message>('message').subscribe(res => {
           this.messages = res;
         });
@@ -47,16 +46,24 @@ export class ListTemplateComponent implements OnInit{
         this.router.navigate(['/radio-utpl/admin/']);
       }
 
-      return ;
-    })
+      return;
+    });
   }
 
-  public navigateToSection():void{
-    const valueLink = 'radio-utpl/admin/nuevo-'+ this.valueLabel;
-    if(this.valueLabel){
+  public navigateToSection(): void {
+    const valueLink = 'radio-utpl/admin/nuevo-' + this.valueLabel;
+    if (this.valueLabel) {
       console.log(valueLink);
       this.router.navigate([valueLink]);
     }
   }
 
+  public formatDate(timestamp: any): string {
+    if (timestamp?.seconds) {
+      const date = new Date(timestamp.seconds * 1000);
+      const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+      return date.toLocaleDateString('es-ES', options);
+    }
+    return '';
+  }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from './../../../radio/services/firebase.service';
 import { Podcast } from '../../../shared/interfaces/podcast.interface';
+import { Timestamp } from '@angular/fire/firestore';
+import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -9,15 +11,17 @@ import { ResquestLoaderRenderService } from '../../../shared/renders/resquest-lo
 @Component({
   selector: 'admin-new-podcast',
   templateUrl: './new-podcast.component.html',
-  styleUrl: './new-podcast.component.css'
+  styleUrls: ['./new-podcast.component.css'],
+  providers: [DatePipe]
 })
 export class NewPodcastComponent implements OnInit{
+  date = '';
   public podcast: Podcast = {
     id: '',
     title: '',
-    date: '',
+    date: Timestamp.now(),
     frame: '',
-  }
+  };
 
   // Form para agrupar los elementos del Podcast
   public podcastForm = new FormGroup({
@@ -30,13 +34,14 @@ export class NewPodcastComponent implements OnInit{
 
   constructor(
     private firestore: FirestoreService,
+    private datePipe: DatePipe,
     private requestLoader:ResquestLoaderRenderService,
-
     private activatedRouter:ActivatedRoute,
     private router:Router
-  ){}
+  ) { }
 
   ngOnInit(): void {
+    this.formatDate();
     this.currentRoute = this.router.url;
     if(this.router.url.includes('editar-podcast')) {
       this.activatedRouter.params.pipe(
@@ -50,7 +55,7 @@ export class NewPodcastComponent implements OnInit{
         return;
       });
     } else {
-      this.currentDate = this.formatDate(new Date());
+      this.formatDate();
     }
   }
 
@@ -61,21 +66,26 @@ export class NewPodcastComponent implements OnInit{
     this.podcast = this.currentPodcastFormValue;
 
     this.podcast.id = id;
-    this.podcast.date = this.currentDate;
+    this.podcast.date = Timestamp.now();
 
     this.firestore.createDoc(this.podcast, path, id).then(res => {
       console.log('respuesta ->', res);
     });
   }
 
-  public formatDate(date: Date): string {
-    const options: Intl.DateTimeFormatOptions = {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
-    };
+  formatDate() {
+    const date = this.podcast.date.toDate();
+  
+    const meses = [
+      'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+      'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+    ];
+  
+    const dia = date.getDate();
+    const mes = meses[date.getMonth()]; 
+    const anio = date.getFullYear(); 
 
-    return new Intl.DateTimeFormat('es-ES', options).format(date);
+    this.date = `${dia} de ${mes} de ${anio}`;
   }
 
   public get currentPodcastFormValue():Podcast{

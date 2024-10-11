@@ -61,11 +61,12 @@
               </div>
 
               <div class="my-7">
-                <p class="font-bold text-white">{{this.projects.length}}</p>
+                <p class="font-bold text-white">{{recentProject1?.title}}</p>
+                <!-- <p class="font-bold text-white">{{this.projects.length}}</p> -->
 
-                <p class="font-semibold text-yellow-utpl mb-3"> Sunday, 1 </p>
+                <p class="font-semibold text-yellow-utpl mb-3"> {{date[0]}} </p>
 
-                <p class="text-white">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
+                <p class="text-white">{{recentProject1?.summary}}</p>
               </div>
 
               <div class="w-[40%] px-5 py-1 mb-3 text-center text-xs font-semibold rounded-3xl bg-white border-2 border-white hover:bg-blue-utpl hover:text-yellow-utpl shadow-lg">
@@ -85,9 +86,9 @@
 
                 <div class="w-[45%] m-3 flex flex-col justify-between">
 
-                  <p class="font-bold text-white">Title 1</p>
-                  <p class="font-semibold text-yellow-utpl mb-3"> Sunday, 1 </p>
-                  <p class="text-white">{{'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.' | truncate:60}}</p>
+                  <p class="font-bold text-white">{{recentProject2?.title}}</p>
+                  <p class="font-semibold text-yellow-utpl mb-3"> {{date[1]}} </p>
+                  <p class="text-white">{{recentProject2?.summary }}</p>
 
                   <div class="w-[40%] px-5 py-1 text-center text-xs font-semibold rounded-3xl bg-white border-2 border-white hover:bg-blue-utpl hover:text-yellow-utpl shadow-lg">
                     <a href="">Leer más..</a>
@@ -105,9 +106,9 @@
 
                 <div class="w-[45%] m-3 flex flex-col justify-between">
 
-                  <p class="font-bold text-white">Title 1</p>
-                  <p class="font-semibold text-yellow-utpl mb-3"> Sunday, 1 </p>
-                  <p class="text-white">{{'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.' | truncate: 60}}</p>
+                  <p class="font-bold text-white">{{recentProject3?.title}}</p>
+                  <p class="font-semibold text-yellow-utpl mb-3">{{date[2]}} </p>
+                  <p class="text-white">{{recentProject3?.summary}}</p>
 
                   <div class="w-[40%] px-5 py-1 text-center text-xs font-semibold rounded-3xl bg-white border-2 border-white hover:bg-blue-utpl hover:text-yellow-utpl shadow-lg">
                     <a href="">Leer más..</a>

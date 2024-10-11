@@ -99,6 +99,12 @@ export class FirestoreService {
     // ======================================================================================================
 
 
+    //obtener array de documentos con X campo y X limite
+    //desc: mayor[0] a menor[0+1}]
+    getOrderedArray<tipo>(path: string, field: string, limit: number): Observable<tipo[]> {
+        return this.firestore.collection<tipo>(path, ref => ref.orderBy(field, 'desc').limit(limit)).valueChanges();
+    }
+
     //actualizar documento
     updateDoc(path: string, id: string, data: any) {
         return this.firestore.collection(path).doc(id).update(data)
