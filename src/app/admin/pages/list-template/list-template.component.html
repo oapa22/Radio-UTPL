@@ -1,9 +1,10 @@
 
+
 <div class="w-full mb-5 flex flex-col items-center">
     <button
       (click)="this.navigateToSection()"
       class="w-[194px] my-10 px-5 py-3 bg-blue-utpl font-semibold text-xs text-white  rounded-3xl border-white border-2 shadow-lg  hover:text-yellow-utpl transition duration-300">
-        {{ 'Crear ' + this.param| uppercase}}
+        {{ 'Crear ' + this.valueLabel| uppercase}}
     </button>
 
     <input type="text" placeholder="Buscar..."
@@ -12,7 +13,7 @@
 </div>
 
 <!-- Podcast -->
-<div *ngIf="this.param == 'podcasts'">
+<div *ngIf="this.valueLabel == 'podcast'">
   <div class="py-2" *ngFor="let podcast of this.podcasts">
     <admin-card-template
       imageSrc="https://www.santandersmusic.com/media/magazine/spotify-2-1.jpg"
@@ -26,7 +27,7 @@
 </div>
 
 <!-- Projects -->
-<div *ngIf="this.param == 'proyectos'">
+<div *ngIf="this.valueLabel == 'proyecto'">
   <div class="py-2" *ngFor="let project of this.projects">
     <admin-card-template
       [imageSrc]="project.photo_url"
@@ -41,7 +42,7 @@
 </div>
 
  <!-- Message -->
- <div *ngIf="this.param == 'mensajes'">
+ <div *ngIf="this.valueLabel == 'mensaje'">
   <div class="py-2" *ngFor="let message of this.messages">
     <admin-card-template
       [imageSrc]="message.photo_url"

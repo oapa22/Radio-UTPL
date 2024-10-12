@@ -179,15 +179,15 @@ export class NewProjectComponent implements OnInit{
 
   formatDate() {
     const date = this.project.date.toDate();
-  
+
     const meses = [
       'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
       'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
     ];
-  
+
     const dia = date.getDate();
-    const mes = meses[date.getMonth()]; 
-    const anio = date.getFullYear(); 
+    const mes = meses[date.getMonth()];
+    const anio = date.getFullYear();
 
     this.date = `${dia} de ${mes} de ${anio}`;
   }

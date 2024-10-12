@@ -12,13 +12,16 @@ const routes: Routes = [
     path: '',
     component: LayoutPageComponent,
     children: [
-      {path: 'lista/:collection', component: ListTemplateComponent},
+      {path: 'lista-podcasts', component: ListTemplateComponent},
+      {path: 'lista-proyectos', component: ListTemplateComponent},
+      {path: 'lista-mensajes', component: ListTemplateComponent},
       {path: 'nuevo-proyecto', component: NewProjectComponent},
       {path: 'editar-proyecto/:id', component: NewProjectComponent},
       {path: 'nuevo-podcast', component: NewPodcastComponent},
       {path: 'editar-podcast/:id', component: NewPodcastComponent},
       {path: 'nuevo-mensaje', component: NewMessageComponent},
       {path: 'editar-mensaje/:id', component: NewMessageComponent},
+      {path: '**', redirectTo: 'lista-podcasts'}
     ]
   }
 ];

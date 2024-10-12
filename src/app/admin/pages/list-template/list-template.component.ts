@@ -24,20 +24,17 @@ export class ListTemplateComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-    this.activatedRouter.params.subscribe(params => {
-      this.param = params['collection'];
-
-      if (this.param == 'podcasts') {
+      if (this.router.url.includes('lista-podcasts')) {
         this.fireStoreService.getCollection<Podcast>('podcast').subscribe(res => {
           this.podcasts = res;
         });
         this.valueLabel = 'podcast';
-      } else if (this.param == 'proyectos') {
+      } else if (this.router.url.includes('lista-proyectos')) {
         this.fireStoreService.getCollection<Project>('project').subscribe(res => {
           this.projects = res;
         });
         this.valueLabel = 'proyecto';
-      } else if (this.param == 'mensajes') {
+      } else if (this.router.url.includes('lista-mensajes')) {
         this.fireStoreService.getCollection<Message>('message').subscribe(res => {
           this.messages = res;
         });
@@ -46,8 +43,6 @@ export class ListTemplateComponent implements OnInit{
         this.router.navigate(['/radio-utpl/admin/']);
       }
 
-      return;
-    });
   }
 
   public navigateToSection(): void {
@@ -66,4 +61,5 @@ export class ListTemplateComponent implements OnInit{
     }
     return '';
   }
+
 }

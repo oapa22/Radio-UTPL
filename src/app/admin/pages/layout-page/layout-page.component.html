@@ -5,8 +5,7 @@
 
     <!-- Opciones de enlace -->
     <div class="w-[80%] h-[70px] mx-auto px-[10%] flex justify-between items-center font-bold text-xl text-white rounded-full bg-gradient-to-r from-[#F29F05] to-[#FAB300]">
-
-        <a href="" routerLink="./lista/podcasts"
+        <a href="" routerLink="./lista-podcasts"
           (click)="updateButtonLabel('podcast')"
           class="hover:text-blue-utpl"
           [ngClass]="{'text-blue-utpl':valueLabel == 'podcast'}"
@@ -14,7 +13,7 @@
 
         <span class="block w-[1px] h-[80%] bg-[#104D73]"></span>
 
-        <a href="" routerLink="./lista/proyectos"
+        <a href="" routerLink="./lista-proyectos"
           (click)="updateButtonLabel('proyecto')"
           class="hover:text-blue-utpl"
           [ngClass]="{'text-blue-utpl':valueLabel == 'proyecto'}"
@@ -22,12 +21,11 @@
 
         <span class="block w-[1px] h-[80%] bg-[#104D73]"></span>
 
-        <a href="" routerLink="./lista/mensajes"
+        <a href="" routerLink="./lista-mensajes"
           (click)="updateButtonLabel('mensaje')"
           class="hover:text-blue-utpl"
           [ngClass]="{'text-blue-utpl':valueLabel == 'mensaje'}"
         >MENSAJES</a>
-
     </div>
 
     <!-- Boton para crear -->
