@@ -27,7 +27,7 @@ export class SchedulePageComponent implements OnInit{
   }
 
   public getPodcasts(){
-    this.firestore.getLatestDocuments<Podcast>('podcast',9).subscribe( podcast => {
+    this.firestore.getLatestDocuments<Podcast>('podcast','date',9).subscribe( podcast => {
       this.podcasts = podcast;
       console.log('hola',this.podcasts)
     });

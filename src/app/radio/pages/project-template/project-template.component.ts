@@ -7,6 +7,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { AuthServiceService } from '../../../auth/services/auth.service';
 import { User } from '../../../shared/interfaces/user.interface';
 import { Timestamp } from '@angular/fire/firestore';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'radio-project-template',
@@ -46,7 +47,10 @@ export class ProjectTemplateComponent implements OnInit{
     private router:Router,
     private sanitizer: DomSanitizer,
     private auth: AuthServiceService,
-  ){}
+    private viewportScroller: ViewportScroller
+  ){
+    this.viewportScroller.scrollToPosition([0, 0]);
+  }
 
   public ngOnInit(): void {
     this.activatedRouter.params.pipe(
@@ -83,7 +87,7 @@ export class ProjectTemplateComponent implements OnInit{
     if (this.liked) {
       // Quitar like
       this.projectLikes.likes = (this.projectLikes.likes ?? 0) - 1;
-  
+
       this.user.likedProjects = this.user.likedProjects?.filter(
         (projectId) => projectId !== this.projectLikes.id
       );
@@ -99,7 +103,7 @@ export class ProjectTemplateComponent implements OnInit{
     this.liked = !this.liked;
     this.firestoreService.updateDoc('project',this.projectLikes.id!,this.projectLikes);
     this.firestoreService.updateDoc('user',this.user.uid,this.user);
-  } 
+  }
 
   updateLikedStatus() {
     this.liked = this.isLiked() || false;
@@ -117,7 +121,7 @@ export class ProjectTemplateComponent implements OnInit{
         id: res!.id,
         names: res!.names,
         email: res!.email,
-        password: '', 
+        password: '',
         isAdmin: res!.isAdmin,
         likedProjects: res!.likedProjects
       };
@@ -131,15 +135,15 @@ export class ProjectTemplateComponent implements OnInit{
 
   formatDate() {
     const date = this.projectLikes.date.toDate();
-  
+
     const meses = [
       'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
       'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
     ];
-  
+
     const dia = date.getDate();
-    const mes = meses[date.getMonth()]; 
-    const anio = date.getFullYear(); 
+    const mes = meses[date.getMonth()];
+    const anio = date.getFullYear();
 
     this.date = `${dia} de ${mes} de ${anio}`;
   }

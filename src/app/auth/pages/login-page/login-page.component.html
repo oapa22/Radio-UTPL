@@ -66,8 +66,8 @@
             <p>Recordarme</p>
           </div>
 
-          <!-- <button (click)="recoverPassword()">¿Olvidaste tu contraseña?</button> -->
-          <button class="hover:underline" (click)="recoverPassword()">¿Olvidaste tu contraseña?</button>
+          <!-- <button class="hover:underline" (click)="recoverPassword()">¿Olvidaste tu contraseña?</button> -->
+           <a class="hover:underline" routerLink="../recuperacion">¿Olvidaste tu contraseña?</a>
         </div>
 
         <button (click)="login()" class="w-full h-[38px] mb-5 bg-[#FCB347] text-sm font-bold hover:bg-slate-100 rounded-xl">Iniciar Sesión</button>
@@ -79,12 +79,12 @@
 
         <div class="w-full flex justify-center space-x-2">
           <!-- Facebook -->
-          <button>
+          <!-- <button>
             <svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M40.6499 20.576C40.6499 9.492 31.6638 0.505859 20.5799 0.505859C9.49589 0.505859 0.509766 9.492 0.509766 20.576C0.509766 30.5936 7.84941 38.8965 17.4439 40.4022V26.3779H12.348V20.5762H17.4439V16.155C17.4439 11.1247 20.44 8.34627 25.0245 8.34627C27.2203 8.34627 29.5172 8.73796 29.5172 8.73796V13.6771H26.9865C24.4929 13.6771 23.7155 15.2245 23.7155 16.8116V20.5765H29.2819L28.3923 26.3782H23.7158V40.4025C33.3103 38.8968 40.6499 30.5936 40.6499 20.576Z" fill="#4373B9"/>
               <path d="M28.3919 26.3776L29.2815 20.576H23.7151V16.8111C23.7151 15.2234 24.4928 13.6766 26.9861 13.6766H29.5168V8.73739C29.5168 8.73739 27.2196 8.3457 25.0241 8.3457C20.4399 8.3457 17.4435 11.1245 17.4435 16.1544V20.5757H12.3477V26.3773H17.4435V40.4016C18.4805 40.5641 19.5291 40.6455 20.5792 40.6455C21.6295 40.6455 22.6779 40.5641 23.7148 40.4016V26.3773L28.3919 26.3776Z" fill="white"/>
             </svg>
-          </button>
+          </button> -->
 
           <!-- Gmail -->
            <button (click)="loginGoogle()">
@@ -115,8 +115,8 @@
 
       <!-- Seccion registrar -->
       <div class="w-full flex justify-center space-x-3 text-[12px]">
-        <p class="text-white" [routerLink]="['/radio-utpl/auth/register']">¿No tienes una cuenta?</p>
-        <a routerLink="" class="text-[#FCBD31] hover:underline">Regístrate aquí</a>
+        <p class="text-white">¿No tienes una cuenta?</p>
+        <a routerLink="../registro" class="text-[#FCBD31] hover:underline">Regístrate aquí</a>
       </div>
 
     </div>

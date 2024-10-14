@@ -3,14 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { AccountRecoveryPageComponent } from './pages/account-recovery-page/account-recovery-page.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginPageComponent,
+    component: LayoutPageComponent,
     children: [
-      {path: 'login', component: LoginPageComponent},
-      {path: 'register', component: RegisterPageComponent},
+      {path: 'inicio-sesion', component: LoginPageComponent},
+      {path: 'registro', component: RegisterPageComponent},
+      {path: 'recuperacion', component: AccountRecoveryPageComponent},
+      {path: '**', redirectTo: 'inicio-sesion'}
     ]
   }
 ];
