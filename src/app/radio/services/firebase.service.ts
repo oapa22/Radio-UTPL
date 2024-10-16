@@ -94,6 +94,11 @@ export class FirestoreService {
       .subscribe();
       return uploadTask.percentageChanges();
     }
+
+    // getDocumentCount(collectionName: string): Promise<number> {
+    //   return this.firestore.collection(collectionName).get().toPromise().then(snapshot => {
+    //     return snapshot.size;  // Aquí obtienes el total de documentos
+    //   });
     // ======================================================================================================
 
 

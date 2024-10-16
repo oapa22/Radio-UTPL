@@ -21,6 +21,8 @@ export class LayoutPageComponent implements OnInit{
       this.valueLabel = 'proyecto';
     } else if (this.router.url.includes('lista-mensajes')) {
       this.valueLabel = 'mensaje';
+    } else if(this.router.url.includes('lista-usuarios')){
+      this.valueLabel = 'usuario';
     } else {
       this.router.navigate(['/radio-utpl/admin/']);
     }
@@ -29,7 +31,7 @@ export class LayoutPageComponent implements OnInit{
 
 
   //Funcion para cambiar el valor del contenido del boton.
-  public updateButtonLabel(valueLabel:'podcast'|'proyecto'|'mensaje'):void{
+  public updateButtonLabel(valueLabel:'podcast'|'proyecto'|'mensaje'|'usuario'):void{
     this.valueLabel = valueLabel;
   }
 

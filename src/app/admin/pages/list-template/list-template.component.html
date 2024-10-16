@@ -41,7 +41,7 @@
   </div>
 </div>
 
- <!-- Message -->
+ <!-- Messages -->
  <div *ngIf="this.valueLabel == 'mensaje'">
   <div class="py-2" *ngFor="let message of this.messages">
     <admin-card-template
@@ -54,3 +54,18 @@
     </admin-card-template>
   </div>
  </div>
+
+<!-- Users -->
+<div *ngIf="this.valueLabel == 'usuario'">
+  <div class="py-2" *ngFor="let user of this.users">
+    <admin-card-template
+      [userTemplate]="true"
+      imageSrc="https://static.thenounproject.com/png/65476-200.png"
+      [title]="user.names"
+      [summary]="user.email"
+      id={{user.id}}
+      paramRoute="usuario"
+      path="user">
+    </admin-card-template>
+  </div>
+</div>

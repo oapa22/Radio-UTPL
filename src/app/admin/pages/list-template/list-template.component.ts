@@ -4,6 +4,7 @@ import { Podcast } from '../../../shared/interfaces/podcast.interface';
 import { Project } from '../../../shared/interfaces/project.interface';
 import { Message } from '../../../shared/interfaces/message.interface';
 import { FirestoreService } from '../../../radio/services/firebase.service';
+import { User } from '../../../shared/interfaces/user.interface';
 
 @Component({
   selector: 'admin-list-template',
@@ -14,6 +15,7 @@ export class ListTemplateComponent implements OnInit{
   public podcasts: Podcast[] = [];
   public projects: Project[] = [];
   public messages: Message[] = [];
+  public users: User[] = [];
   public param: string = '';
   public valueLabel: string = '';
 
@@ -39,8 +41,14 @@ export class ListTemplateComponent implements OnInit{
           this.messages = res;
         });
         this.valueLabel = 'mensaje';
+      } else if(this.router.url.includes('lista-usuarios')){
+        this.fireStoreService.getCollection<User>('user').subscribe(res => {
+          this.users = res;
+        });
+        this.valueLabel = 'usuario';
       } else {
         this.router.navigate(['/radio-utpl/admin/']);
+
       }
 
   }

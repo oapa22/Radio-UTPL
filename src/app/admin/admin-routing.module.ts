@@ -15,6 +15,7 @@ const routes: Routes = [
       {path: 'lista-podcasts', component: ListTemplateComponent},
       {path: 'lista-proyectos', component: ListTemplateComponent},
       {path: 'lista-mensajes', component: ListTemplateComponent},
+      {path: 'lista-usuarios', component: ListTemplateComponent},
       {path: 'nuevo-proyecto', component: NewProjectComponent},
       {path: 'editar-proyecto/:id', component: NewProjectComponent},
       {path: 'nuevo-podcast', component: NewPodcastComponent},

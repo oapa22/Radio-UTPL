@@ -26,6 +26,14 @@
           class="hover:text-blue-utpl"
           [ngClass]="{'text-blue-utpl':valueLabel == 'mensaje'}"
         >MENSAJES</a>
+
+        <span class="block w-[1px] h-[80%] bg-[#104D73]"></span>
+
+        <a href="" routerLink="./lista-usuarios"
+          (click)="updateButtonLabel('usuario')"
+          class="hover:text-blue-utpl"
+          [ngClass]="{'text-blue-utpl':valueLabel == 'usuario'}"
+        >USUARIOS</a>
     </div>
 
     <!-- Boton para crear -->
