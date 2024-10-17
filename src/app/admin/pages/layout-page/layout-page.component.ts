@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrl: './layout-page.component.css'
 })
 export class LayoutPageComponent implements OnInit{
-  public valueLabel:string = '';
+  public valueLabel:string = 'podcast';
 
   /**
    * Propidad router: empleado para cambiar el contenido de la seccion
