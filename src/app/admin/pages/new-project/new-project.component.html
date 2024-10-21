@@ -33,10 +33,10 @@
     </div>
   <h3><b>Contenido</b></h3>
       <editor [(ngModel)]="project.content" apiKey="872f9ypxuxkrilox9gkrtlhqjsbr861dppp3ocwzkipdfkz0"
-        [init]="{ 
-                base_url: '/tinymce', 
-                suffix: '.min',        
-                plugins: 'lists link image table code help wordcount' 
+        [init]="{
+                base_url: '/tinymce',
+                suffix: '.min',
+                plugins: 'lists link image table code help wordcount'
                 }"
       ></editor>
   <button (click)="createMessage()">Crear Proyecto</button>
@@ -50,7 +50,8 @@
 
       <!-- Seccion Fecha Actual -->
       <div class="flex justify-center mt-10 mb-4">
-        <p><strong>Fecha de publicación:</strong> {{date}}</p>
+        <p *ngIf="this.currentRoute.includes('nuevo')"><strong>Fecha de publicación:</strong> {{date}}</p>
+        <p *ngIf="this.currentRoute.includes('editar')"><strong>Fecha de publicación:</strong> {{dateN}}</p>
       </div>
 
       <!-- Seccion del Titulo -->
@@ -81,7 +82,7 @@
           <p class="text-base"> <strong>Imagen de portada </strong><span class="text-xs text-[#9D9D9D]">La dimensión de la imagen debe ser de width="300px" height="200px"</span></p>
         </div>
 
-        <div class="w-full h-[59px] flex items-center">
+        <!-- <div class="w-full h-[59px] flex items-center">
           <input #fileInput type="file" accept="image/*" class="hidden" (change)="onFileSelected($event)">
           <button
             class="w-[20%] h-full  bg-[#EAEAEA] hover:bg-slate-400 transition duration-300 border-2 border-[black]"
@@ -90,7 +91,22 @@
           <div class="w-[80%] h-full flex justify-center items-center text-center border-y-2 border-r-2 border[#C4C4C4]">
             <p> {{this.fileName}} </p>
           </div>
+        </div> -->
+
+        <div class="w-full h-[59px] flex items-center">
+          <input #fileImageInput type="file" class="hidden imagenSelec" (change)="selectImage($event)">
+          <button
+            class="w-[20%] h-full bg-[#EAEAEA] hover:bg-slate-400 transition duration-300 border-2 border-[black]"
+            (click)="fileImageInput.click()"
+          >Seleccionar Imagen</button>
+          <div class="w-[80%] h-full flex justify-center items-center text-center border-y-2 border-r-2 border-[#C4C4C4]">
+            <img *ngIf="imageSrc; else noImage" [src]="imageSrc" class="w-full h-full object-contain">
+            <ng-template #noImage>
+              <div class="placeholder">Ninguna imagen seleccionada</div>
+            </ng-template>
+          </div>
         </div>
+
       </div>
 
       <!-- Seccion Resumen -->
@@ -108,11 +124,11 @@
       <div>
         <div class="pb-2 text-wrap">
           <p class="text-base"> <strong>Contenido </strong><span class="text-xs text-[#9D9D9D]">Contenido de la publicación</span></p>
-          <editor [(ngModel)]="project.content" apiKey="872f9ypxuxkrilox9gkrtlhqjsbr861dppp3ocwzkipdfkz0"
-          [init]="{ 
-                  base_url: '/tinymce', 
-                  suffix: '.min',        
-                  plugins: 'lists link image table code help wordcount' 
+          <editor formControlName="content" apiKey="872f9ypxuxkrilox9gkrtlhqjsbr861dppp3ocwzkipdfkz0"
+          [init]="{
+                  base_url: '/tinymce',
+                  suffix: '.min',
+                  plugins: 'lists link image table code help wordcount'
                   }"
         ></editor>
         </div>
@@ -121,14 +137,14 @@
       <!-- Botones para crear o actualizar un Projecto -->
       <div class="w-full flex justify-center">
         <button
-          (click) = "this.updateProyect()"
           *ngIf="this.currentRoute.includes('nuevo')"
           class="p-2 text-white bg-[#00ACC1] rounded-lg hover:bg-blue-utpl"
+          (click)="this.createProject()"
         >Crear Proyecto</button>
         <button
-          (click) = "this.updateProyect()"
           *ngIf="this.currentRoute.includes('editar')"
           class="p-2 text-white bg-[#00ACC1] rounded-lg hover:bg-blue-utpl"
+          (click)="this.createProject()"
         >Actualizar Proyecto</button>
       </div>
     </form>

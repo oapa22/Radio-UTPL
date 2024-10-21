@@ -55,7 +55,6 @@ export class CardTemplateComponent implements OnInit{
 
     this.confirmDialog.openConfirmDialog(title, description).then((confirmed) => {
       if(confirmed){
-        console.log('path',this.path,'id',this.id)
         this.firestore.deleteDoc(this.path,this.id)
         let title:string = this.paramRoute.toUpperCase() + ' ELIMINADO';
         let description:string = 'Espere un momento mientras los datos son removidos de la nube.';

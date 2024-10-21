@@ -114,4 +114,8 @@ export class FirestoreService {
     deleteDoc(path: string, id: string) {
         return this.firestore.collection(path).doc(id).delete();
     }
+
+    deleteStorage(path: string, name: string) {
+      this.storage.ref(path).child(name).delete();
+    }
 }
