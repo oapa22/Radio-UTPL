@@ -52,10 +52,8 @@ export class FirestoreService {
       return this.firestore.collection(path).doc<tipo>(id).valueChanges();
     }
 
-    public getLatestDocuments<tipo>(path: string, limit:number) {
-      // return this.firestore.collection<tipo>(path, ref => ref.orderBy('createdAt', 'desc').limit(3)).valueChanges();
-      return this.firestore.collection<tipo>(path, ref => ref.orderBy('date').limitToLast(limit)).valueChanges();
-
+    public getLatestDocuments<tipo>(path: string, orderByField:string ,limit:number) {
+      return this.firestore.collection<tipo>(path, ref => ref.orderBy(orderByField,'desc').limit(limit)).valueChanges();
     }
 
     // Funcion para subir la imagen a firebase y obtener la url.
@@ -96,6 +94,11 @@ export class FirestoreService {
       .subscribe();
       return uploadTask.percentageChanges();
     }
+
+    // getDocumentCount(collectionName: string): Promise<number> {
+    //   return this.firestore.collection(collectionName).get().toPromise().then(snapshot => {
+    //     return snapshot.size;  // Aquí obtienes el total de documentos
+    //   });
     // ======================================================================================================
 
 

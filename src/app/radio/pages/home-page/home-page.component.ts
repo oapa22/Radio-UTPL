@@ -16,12 +16,12 @@ export class HomePageComponent implements OnInit{
   public recentProjects: Project[] = [];
   public projects: Project[] = [];
   public projectPrueba: Project = {content:'',date:Timestamp.now(),keywords:'',photo_filename:'',photo_url:'',summary:'',title:'Prueba',likes:0,};
-  
+
   date: string[] = [];
 
-  public recentProject1: Project | null = null; 
-  public recentProject2: Project | null = null; 
-  public recentProject3: Project | null = null; 
+  public recentProject1: Project | null = null;
+  public recentProject2: Project | null = null;
+  public recentProject3: Project | null = null;
 
   public mediaElementCarousel:MediaElement[] = [
     {id: '01', title: 'Una radio que es parte de la comunidad', imgSrc: 'https://firebasestorage.googleapis.com/v0/b/radioutpl.appspot.com/o/media%2Fimage_carrousel.png?alt=media&token=2e17e727-a307-48e1-82fa-ea578c449a69', linkContent: 'https://www.youtube.com/watch?v=Lm77VCkf_do'},
@@ -32,24 +32,39 @@ export class HomePageComponent implements OnInit{
 
   constructor(private firestore: FirestoreService){}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.getRecentProjects();
     this.getPodcasts();
     this.getProjects();
   }
 
   public getPodcasts():void{
-    this.firestore.getLatestDocuments<Podcast>('podcast',3).subscribe( podcast => {
+    this.firestore.getLatestDocuments<Podcast>('podcast','date',3).subscribe( podcast => {
       this.podcasts = podcast;
-      console.log('hola',this.podcasts)
     });
   }
 
   public getProjects():void{
-    this.firestore.getLatestDocuments<Project>('project',3).subscribe(projects => {
+    this.firestore.getLatestDocuments<Project>('project','date',3).subscribe(projects => {
       this.projects = projects;
-      console.log('Proyectos',this.projects);
+      this.formatDateProjects(this.projects);
+      console.log(this.projects);
     });
+  }
+
+  public formatDateProjects(projects:Project[]) {
+    const meses = [
+      'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+      'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+    ];
+
+    for (let i = 0; i < projects.length; i++) {
+        const date = projects[i].date.toDate();
+        const dia = date.getDate();
+        const mes = meses[date.getMonth()];
+        const anio = date.getFullYear();
+        this.date[i] = `${dia} de ${mes} de ${anio}`;
+    }
   }
 
   public getRecentProjects(): void {
@@ -62,13 +77,13 @@ export class HomePageComponent implements OnInit{
       this.formatDates();
     });
   }
-  
-  formatDates() {
+
+  public formatDates() {
     const meses = [
       'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
       'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
     ];
-  
+
     for (let i = 0; i < 3; i++) {
       if (this.recentProjects[i]) {
         const date = this.recentProjects[i].date.toDate();
@@ -79,4 +94,6 @@ export class HomePageComponent implements OnInit{
       }
     }
   }
+
+
 }

@@ -50,68 +50,66 @@
             </h2>
           </div>
 
-
-          <!-- Tarjetas proyectos -->
-          <div class="w-full flex justify-between">
-
-            <!-- Primer Proyecto -->
-            <div class="w-[50%] text-sm flex flex-col justify-between">
-              <div class="w-full h-[200px]">
-                <img class="w-full h-full rounded-md object-cover" [src]="recentProject1?.photo_url" alt="">
+          <!-- Los 3 Proyectos mas recientes -->
+          <div class="w-full grid gap-10 text-xs md:text-base" *ngIf="this.projects.length > 0" [ngClass]="{'lg:grid-cols-2 ':this.projects.length > 2}">
+            <!-- Primera Columna: Proyecto 1 -->
+            <div class="w-full h-[250px] md:h-[400px] flex flex-col">
+              <div class="h-[54%]">
+                <img class="w-full h-full rounded-md object-cover" [src]="this.projects[0].photo_url" alt="">
               </div>
 
-              <div class="my-7">
-                <p class="font-bold text-white">{{recentProject1?.title}}</p>
-                <!-- <p class="font-bold text-white">{{this.projects.length}}</p> -->
+              <div class="h-full p-2 flex flex-col justify-between">
+                <p class="font-semibold text-yellow-utpl"> {{this.date[0]}} </p>
+                <p class="font-bold text-white">{{this.projects[0].title | truncate:65}}</p>
+                <p class="text-white">{{this.projects[0].summary | truncate:120}}</p>
 
-                <p class="font-semibold text-yellow-utpl mb-3"> {{date[0]}} </p>
-
-                <p class="text-white">{{recentProject1?.summary}}</p>
-              </div>
-
-              <div class="w-[40%] px-5 py-1 mb-3 text-center text-xs font-semibold rounded-3xl bg-white border-2 border-white hover:bg-blue-utpl hover:text-yellow-utpl shadow-lg">
-                <a href="">Leer más..</a>
+                <div>
+                  <a
+                    class="w-[40%] px-5 py-1 mb-3 text-center text-xs font-semibold rounded-3xl bg-white border-2 border-white hover:bg-blue-utpl hover:text-yellow-utpl shadow-lg"
+                    routerLink='../proyectos/contenido/{{this.projects[0].id}}'
+                  >Leer más..</a>
+                </div>
               </div>
             </div>
 
-
-
-            <div class="w-[45%] flex flex-col justify-between text-xs" >
+            <!-- Segunda Columna: Proyecto 1 y 2 -->
+            <div class="w-full flex flex-col space-y-5 justify-between">
               <!-- Segundo Proyecto -->
-              <div class="h-[45%] flex justify-between">
-
+              <div class="h-[150px] lg:h-[180px] flex">
                 <div class="w-[50%]">
-                  <img class="w-full h-full rounded-md object-cover" [src]="recentProject2?.photo_url" alt="">
+                  <img class="w-full h-full rounded-md object-cover" [src]="this.projects[1].photo_url" alt="">
                 </div>
 
-                <div class="w-[45%] m-3 flex flex-col justify-between">
+                <div class="w-[50%] pl-2 py-2 flex flex-col justify-between">
+                  <p class="font-semibold text-yellow-utpl"> {{this.date[1]}} </p>
+                  <p class="font-bold text-white">{{this.projects[1].title | truncate:65}}</p>
+                  <p class="text-white">{{this.projects[1].summary | truncate:80}}</p>
 
-                  <p class="font-bold text-white">{{recentProject2?.title}}</p>
-                  <p class="font-semibold text-yellow-utpl mb-3"> {{date[1]}} </p>
-                  <p class="text-white">{{recentProject2?.summary }}</p>
-
-                  <div class="w-[40%] px-5 py-1 text-center text-xs font-semibold rounded-3xl bg-white border-2 border-white hover:bg-blue-utpl hover:text-yellow-utpl shadow-lg">
-                    <a href="">Leer más..</a>
+                  <div>
+                    <a
+                      class="w-[40%] px-5 py-1 text-center text-xs font-semibold rounded-3xl bg-white border-2 border-white hover:bg-blue-utpl hover:text-yellow-utpl shadow-lg"
+                      routerLink='../proyectos/contenido/{{this.projects[1].id}}'
+                    >Leer más..</a>
                   </div>
                 </div>
-
               </div>
 
               <!-- Tercer Proyecto -->
-              <div class="h-[45%]  flex justify-between">
-
+              <div class="h-[150px] lg:h-[180px] flex">
                 <div class="w-[50%]">
-                  <img class="w-full h-full rounded-md object-cover" [src]="recentProject3?.photo_url" alt="">
+                  <img class="w-full h-full rounded-md object-cover" [src]="this.projects[2].photo_url" alt="">
                 </div>
 
-                <div class="w-[45%] m-3 flex flex-col justify-between">
+                <div class="w-[50%] pl-2 py-2 flex flex-col justify-between">
+                  <p class="font-semibold text-yellow-utpl"> {{this.date[2]}} </p>
+                  <p class="font-bold text-white">{{this.projects[2].title | truncate:65}}</p>
+                  <p class="text-white">{{this.projects[2].summary | truncate:65}}</p>
 
-                  <p class="font-bold text-white">{{recentProject3?.title}}</p>
-                  <p class="font-semibold text-yellow-utpl mb-3">{{date[2]}} </p>
-                  <p class="text-white">{{recentProject3?.summary}}</p>
-
-                  <div class="w-[40%] px-5 py-1 text-center text-xs font-semibold rounded-3xl bg-white border-2 border-white hover:bg-blue-utpl hover:text-yellow-utpl shadow-lg">
-                    <a href="">Leer más..</a>
+                  <div>
+                    <a
+                      class="w-[40%] px-5 py-1 text-center text-xs font-semibold rounded-3xl bg-white border-2 border-white hover:bg-blue-utpl hover:text-yellow-utpl shadow-lg"
+                      routerLink='../proyectos/contenido/{{this.projects[2].id}}'
+                    >Leer más..</a>
                   </div>
                 </div>
               </div>

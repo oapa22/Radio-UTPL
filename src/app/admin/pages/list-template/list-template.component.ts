@@ -4,6 +4,7 @@ import { Podcast } from '../../../shared/interfaces/podcast.interface';
 import { Project } from '../../../shared/interfaces/project.interface';
 import { Message } from '../../../shared/interfaces/message.interface';
 import { FirestoreService } from '../../../radio/services/firebase.service';
+import { User } from '../../../shared/interfaces/user.interface';
 
 @Component({
   selector: 'admin-list-template',
@@ -14,6 +15,7 @@ export class ListTemplateComponent implements OnInit{
   public podcasts: Podcast[] = [];
   public projects: Project[] = [];
   public messages: Message[] = [];
+  public users: User[] = [];
   public param: string = '';
   public valueLabel: string = '';
 
@@ -24,30 +26,31 @@ export class ListTemplateComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-    this.activatedRouter.params.subscribe(params => {
-      this.param = params['collection'];
-
-      if (this.param == 'podcasts') {
+      if (this.router.url.includes('lista-podcasts')) {
         this.fireStoreService.getCollection<Podcast>('podcast').subscribe(res => {
           this.podcasts = res;
         });
         this.valueLabel = 'podcast';
-      } else if (this.param == 'proyectos') {
+      } else if (this.router.url.includes('lista-proyectos')) {
         this.fireStoreService.getCollection<Project>('project').subscribe(res => {
           this.projects = res;
         });
         this.valueLabel = 'proyecto';
-      } else if (this.param == 'mensajes') {
+      } else if (this.router.url.includes('lista-mensajes')) {
         this.fireStoreService.getCollection<Message>('message').subscribe(res => {
           this.messages = res;
         });
         this.valueLabel = 'mensaje';
+      } else if(this.router.url.includes('lista-usuarios')){
+        this.fireStoreService.getCollection<User>('user').subscribe(res => {
+          this.users = res;
+        });
+        this.valueLabel = 'usuario';
       } else {
         this.router.navigate(['/radio-utpl/admin/']);
+
       }
 
-      return;
-    });
   }
 
   public navigateToSection(): void {
@@ -66,4 +69,5 @@ export class ListTemplateComponent implements OnInit{
     }
     return '';
   }
+
 }

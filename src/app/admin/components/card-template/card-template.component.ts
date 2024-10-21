@@ -15,13 +15,14 @@ import { ConfirmDialogService } from '../../../shared/renders/confirm-dialog.ser
   styleUrl: './card-template.component.css'
 })
 export class CardTemplateComponent implements OnInit{
+  @Input() public userTemplate:boolean = false;
   @Input() public imageSrc:string = '';
   @Input() public title:string = '';
   @Input() public date:string = '';
   @Input() public summary:string = '';
   @Input() public id:string = '';
-  @Input() public paramRoute:'podcast' | 'proyecto' | 'mensaje' | '' = '';
-  @Input() public path:'podcast' | 'project' | 'message' | '' = '';
+  @Input() public paramRoute:'podcast' | 'proyecto' | 'mensaje' | 'usuario' |'' = '';
+  @Input() public path:'podcast' | 'project' | 'message' | 'user' | '' = '';
 
   public route:string = '';
 

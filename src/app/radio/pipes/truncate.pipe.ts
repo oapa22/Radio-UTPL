@@ -6,13 +6,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class TruncatePipe implements PipeTransform {
 
   transform(text:string, limit:number = 15): string {
-    let textTruncate = '';
 
     if(text.length > limit){
-      textTruncate = text.substring(0, limit) + ' ...';
+      text = text.substring(0, limit) + ' ...';
     }
 
-    return textTruncate;
+    return text;
   }
 
 }

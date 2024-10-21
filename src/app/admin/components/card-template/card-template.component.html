@@ -13,10 +13,16 @@
   <!-- Secction Botones -->
   <div class="w-[10%] grid grid-rows-2 bg-[#D9D9D980] border-2  border-[#C4C4C4]">
 
-    <div class="flex justify-center items-center border-b-2 border-[#C4C4C4]">
+    <div class="flex flex-col justify-center items-center border-b-2 border-[#C4C4C4]">
+      <ng-container *ngIf="this.userTemplate">
+        <p class="text-sm p-1">Administrador</p>
+        <input type="checkbox" class="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded-f focus:ring-blue-500">
+      </ng-container>
+
       <button
         (click)="this.naviagetToNewElement()"
         class="p-2 flex justify-center items-center rounded-2xl hover:bg-slate-400"
+        *ngIf="!this.userTemplate"
       >
           <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M13.5714 4.35645H5.21429C4.2292 4.35645 3.28445 4.74777 2.58789 5.44433C1.89133 6.1409 1.5 7.08564 1.5 8.07073V24.785C1.5 25.7701 1.89133 26.7148 2.58789 27.4114C3.28445 28.108 4.2292 28.4993 5.21429 28.4993H23.7857C24.7708 28.4993 25.7155 28.108 26.4121 27.4114C27.1087 26.7148 27.5 25.7701 27.5 24.785V16.4279" fill="#D9D9D9" fill-opacity="0.05"/>
