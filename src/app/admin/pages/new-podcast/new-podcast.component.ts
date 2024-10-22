@@ -1,6 +1,6 @@
+import { Podcast } from './../../../shared/interfaces/podcast.interface';
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from './../../../radio/services/firebase.service';
-import { Podcast } from '../../../shared/interfaces/podcast.interface';
 import { Timestamp } from '@angular/fire/firestore';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,8 +14,9 @@ import { ResquestLoaderRenderService } from '../../../shared/renders/resquest-lo
   styleUrls: ['./new-podcast.component.css'],
   providers: [DatePipe]
 })
-export class NewPodcastComponent implements OnInit{
+export class NewPodcastComponent implements OnInit {
   date = '';
+  dateN = '';
   public podcast: Podcast = {
     id: '',
     title: '',
@@ -29,37 +30,45 @@ export class NewPodcastComponent implements OnInit{
     frame: new FormControl<string>(''),
   });
 
-  public currentDate:string = '';
-  public currentRoute:string = '';
+  public currentDate: string = '';
+  public currentRoute: string = '';
 
   constructor(
     private firestore: FirestoreService,
     private datePipe: DatePipe,
-    private requestLoader:ResquestLoaderRenderService,
-    private activatedRouter:ActivatedRoute,
-    private router:Router
-  ) { }
+    private requestLoader: ResquestLoaderRenderService,
+    private activatedRouter: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.formatDate();
     this.currentRoute = this.router.url;
-    if(this.router.url.includes('editar-podcast')) {
+  
+    if (this.router.url.includes('editar-podcast')) {
       this.activatedRouter.params.pipe(
-        switchMap( ({id}) => this.firestore.getDocPodcast<Podcast>('podcast',id) )
+        switchMap(({ id }) => this.firestore.getDocPodcast<Podcast>('podcast', id))
       ).subscribe(podcast => {
-
-        if (!podcast) return this.router.navigateByUrl('/');
-
+        if (!podcast) {
+          this.router.navigateByUrl('/');
+          return;  
+        }
+  
+        this.podcast = podcast;
         this.podcastForm.reset(podcast);
-
-        return;
+        this.formatDate();
       });
     } else {
       this.formatDate();
     }
   }
+  
 
   createPodcast() {
+    let title: string = 'CREANDO PODCAST';
+    let description: string = 'Espere un momento mientras los datos se suben en la nube.';
+    this.requestLoader.initRequestLoader(title, description);
+
     const path = 'podcast';
     const id = this.firestore.createId();
 
@@ -73,31 +82,44 @@ export class NewPodcastComponent implements OnInit{
     });
   }
 
+  updatePodcast(): void {
+    let title: string = 'ACTUALIZANDO PODCAST';
+    let description: string = 'Espere un momento mientras los datos se actualizan en la nube.';
+    this.requestLoader.initRequestLoader(title, description);
+  
+    const updatedPodcast = this.podcastForm.value as Podcast;
+    
+    if (this.podcast.id) {
+      const path = 'podcast';
+      const id = this.podcast.id;
+  
+      this.firestore.updateDoc(path, id, updatedPodcast).then(() => {
+      }).catch((error) => {
+        console.error('Error al actualizar el podcast:', error);
+      });
+    }
+  }
+  
+
   formatDate() {
     const date = this.podcast.date.toDate();
-  
+
     const meses = [
       'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
       'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
     ];
-  
+
     const dia = date.getDate();
-    const mes = meses[date.getMonth()]; 
-    const anio = date.getFullYear(); 
+    const mes = meses[date.getMonth()];
+    const anio = date.getFullYear();
 
     this.date = `${dia} de ${mes} de ${anio}`;
+    this.dateN = `${dia} de ${mes} de ${anio}`;
   }
 
-  public get currentPodcastFormValue():Podcast{
+  public get currentPodcastFormValue(): Podcast {
     const podcast = this.podcastForm.value as Podcast;
+    podcast.date = this.podcast.date;  // Mantener la fecha original
     return podcast;
   }
-
-  public updatePodcast():void{
-    let title:string = 'CREANDO PODCAST';
-    let description:string = 'Espere un momento mientras los datos se suben a la nube.';
-
-    this.requestLoader.initRequestLoader(title,description);
-  }
-
 }

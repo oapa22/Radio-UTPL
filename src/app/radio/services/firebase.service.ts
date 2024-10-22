@@ -38,6 +38,10 @@ export class FirestoreService {
         });
     }
 
+    getDocUS<T>(collection: string, docId: string): Observable<T | undefined> {
+      return this.firestore.collection(collection).doc<T>(docId).valueChanges();
+    }
+
 
 
     // ======================================================================================================
@@ -116,5 +120,9 @@ export class FirestoreService {
     //eliminar documento
     deleteDoc(path: string, id: string) {
         return this.firestore.collection(path).doc(id).delete();
+    }
+
+    deleteStorage(path: string, name: string) {
+      this.storage.ref(path).child(name).delete();
     }
 }

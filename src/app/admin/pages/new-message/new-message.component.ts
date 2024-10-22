@@ -20,6 +20,7 @@ export class NewMessageComponent implements OnInit{
   selectedAudio: File | null = null;
 
   date = '';
+  dateN = '';
   message: Message = {
     id: '',
     name: '',
@@ -31,7 +32,7 @@ export class NewMessageComponent implements OnInit{
   }
 
   public messageForm = new FormGroup({
-    name: new FormControl<string>('')
+    name: new FormControl<string>(''),
   });
 
   public fileImageSelec!:File;
@@ -58,9 +59,17 @@ export class NewMessageComponent implements OnInit{
         switchMap(({id}) => this.firestore.getDocMessage<Message>('message',id))
       ).subscribe(message => {
           if (!message) return this.router.navigateByUrl('/');
+          this.message = message;
           this.messageForm.reset(message);
           this.fileImageName = message.photo_filename;
           this.fileAudioName = message.audio_filename;
+          if (message.photo_url) {
+            this.imageSrc = message.photo_url;
+          }
+          if (message.audio_url) {
+            this.audioSrc = message.audio_url;
+          }
+          this.formatDate();
           return;
       });
     }
@@ -84,17 +93,24 @@ export class NewMessageComponent implements OnInit{
     }
   }
 
-  public updateMessage():void{
-    let title:string = 'CREANDO MENSAJE';
-    let description:string = 'Espere un momento mientras los datos se suben a la nube.';
+  // updateMessage():void{
+  //   let title:string = 'ACTUALIZANDO MENSAJE';
+  //   let description:string = 'Espere un momento mientras los datos se suben a la nube.';
 
-    this.requestLoader.initRequestLoader(title,description);
-  }
-// ======================================================================================================
+  //   this.requestLoader.initRequestLoader(title,description);
 
-
-
-
+  //   this.message.name = this.currentMessageFormValue.name;
+    
+  //   if (this.message.id) {
+  //     const path = 'message';
+  //     const id = this.message.id;
+  //     this.firestore.updateDoc(path, id, this.message).then((res) => {
+  //       console.log('res->',res)
+  //     }).catch((error) => {
+  //       console.error('Error al actualizar el mensaje:', error);
+  //     });
+  //   }
+  // }
 
 
   selectImage(event: any): void {
@@ -106,28 +122,75 @@ export class NewMessageComponent implements OnInit{
     }
   }
 
+  // selectImage(event: any): void {
+  //   const input = event.target as HTMLInputElement;
+  //   if (input.files && input.files.length > 0) {
+  //     this.selectedFile = input.files[0];
+  //     this.message.photo_filename = input.files[0].name;  
+  //     const reader = new FileReader();
+  //     reader.onload = e => this.imageSrc = reader.result;
+  //     reader.readAsDataURL(this.selectedFile);
+  //   }
+  // }
+
   selectAudio(event: any): void {
-    this.selectedAudio = event.target.files[0];
-    if (this.selectedAudio) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedAudio = input.files[0];
+      this.message.audio_filename = input.files[0].name;  
       const reader = new FileReader();
       reader.onload = e => this.audioSrc = reader.result;
       reader.readAsDataURL(this.selectedAudio);
     }
   }
-
+  
   createMessage() {
-    if (this.selectedFile && this.selectedAudio) {
-      const filePath = `images_message/${this.selectedFile.name}`;
-      const fileRef = this.storage.ref(filePath);
-      const task = this.storage.upload(filePath, this.selectedFile);
+    if(this.currentRoute.includes('nuevo')){
+      let title: string = 'CREANDO MENSAJE';
+      let description: string = 'Espere un momento mientras los datos se suben en la nube.';
+      this.requestLoader.initRequestLoader(title, description);
 
-      task.snapshotChanges().toPromise().then(() => {
-        fileRef.getDownloadURL().toPromise().then(url => {
-          this.message.photo_url = url;
-          this.message.photo_filename = this.selectedFile?.name || '';
+      if (this.selectedFile && this.selectedAudio) {
+        const filePath = `images_message/${this.selectedFile.name}`;
+        const fileRef = this.storage.ref(filePath);
+        const task = this.storage.upload(filePath, this.selectedFile);
+  
+        task.snapshotChanges().toPromise().then(() => {
+          fileRef.getDownloadURL().toPromise().then(url => {
+            this.message.photo_url = url;
+            this.message.photo_filename = this.selectedFile?.name || '';
+            this.createAudio();
+          }).catch(error => console.log('Error getting download URL', error));
+        }).catch(error => console.log('Error uploading file', error));
+      }
+    } else {
+      let title:string = 'ACTUALIZANDO MENSAJE';
+      let description:string = 'Espere un momento mientras los datos se actualizan a la nube.';
+      this.requestLoader.initRequestLoader(title,description);
+
+      if (this.selectedFile || this.selectedAudio) {
+        if (this.selectedFile) {
+          const filePath = `images_message/${this.selectedFile.name}`;
+          const fileRef = this.storage.ref(filePath);
+          const task = this.storage.upload(filePath, this.selectedFile);
+    
+          task.snapshotChanges().toPromise().then(() => {
+            fileRef.getDownloadURL().toPromise().then(url => {
+              this.message.photo_url = url;
+              this.message.photo_filename = this.selectedFile?.name || '';
+              if (this.selectedAudio) {
+                this.createAudio();
+              } else {
+                this.createMessageF();
+              }
+            }).catch(error => console.log('Error getting download URL', error));
+          }).catch(error => console.log('Error uploading file', error));
+        } else if (this.selectedAudio) {
           this.createAudio();
-        }).catch(error => console.log('Error getting download URL', error));
-      }).catch(error => console.log('Error uploading file', error));
+        }
+      } else {
+        this.createMessageF();
+      }
     }
   }
 
@@ -148,14 +211,30 @@ export class NewMessageComponent implements OnInit{
   }
 
   createMessageF() {
-    const path = 'message';
-    const id = this.firestore.createId();
-    this.message.id = id;
-    this.message.date = Timestamp.now();
+    const path = 'message'
+    if(this.currentRoute.includes('nuevo')){
+      const id = this.firestore.createId();
+  
+      this.message.name = this.currentMessageFormValue.name;
+  
+      this.message.id = id;
+      this.message.date = Timestamp.now();
+  
+      this.firestore.createDoc(this.message, path, id).then(res => {
+        console.log('respuesta ->', res);
+      }).catch(error => console.log('Error creating document', error));
+    } else {
+      this.message.name = this.currentMessageFormValue.name;
 
-    this.firestore.createDoc(this.message, path, id).then(res => {
-      console.log('respuesta ->', res);
-    }).catch(error => console.log('Error creating document', error));
+      if (this.message.id) {
+        const id = this.message.id;
+        this.firestore.updateDoc(path, id, this.message).then((res) => {
+          console.log('res->',res)
+        }).catch((error) => {
+          console.error('Error al actualizar el mensaje:', error);
+        });
+      }
+    }
   }
 
   formatDate() {
@@ -171,5 +250,12 @@ export class NewMessageComponent implements OnInit{
     const anio = date.getFullYear(); 
 
     this.date = `${dia} de ${mes} de ${anio}`;
+    this.dateN = `${dia} de ${mes} de ${anio}`;
+  }
+
+  public get currentMessageFormValue(): Message {
+    const message = this.messageForm.value as Message;
+    message.date = this.message.date;  // Mantener la fecha original
+    return message;
   }
 }

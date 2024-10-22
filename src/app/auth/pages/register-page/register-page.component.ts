@@ -18,6 +18,7 @@ export class RegisterPageComponent {
     password: '',
     isAdmin: false,
   }
+  confirmPassword: string = '';
 
   constructor(
     private firestore: FirestoreService,
@@ -30,6 +31,10 @@ export class RegisterPageComponent {
   }
 
   async register(){
+    if (this.user.password !== this.confirmPassword) {
+      alert('Las contraseñas no coinciden. Por favor, inténtalo de nuevo.');
+      return;
+    }
      const datos = {
       email: this.user.email,
       password: this.user.password,

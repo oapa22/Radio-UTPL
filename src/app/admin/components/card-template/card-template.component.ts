@@ -8,6 +8,7 @@ import { FirestoreService } from '../../../radio/services/firebase.service';
 import { Timestamp } from 'firebase/firestore';
 import { ResquestLoaderRenderService } from '../../../shared/renders/resquest-loader.service';
 import { ConfirmDialogService } from '../../../shared/renders/confirm-dialog.service';
+import { User } from '../../../shared/interfaces/user.interface';
 
 @Component({
   selector: 'admin-card-template',
@@ -25,8 +26,8 @@ export class CardTemplateComponent implements OnInit{
   @Input() public path:'podcast' | 'project' | 'message' | 'user' | '' = '';
 
   public route:string = '';
-
   public hasLoaded:boolean = false;
+  public isAdmin: boolean = false;
 
   constructor(
     private router:Router,
@@ -39,6 +40,14 @@ export class CardTemplateComponent implements OnInit{
 
   ngOnInit(): void {
     this.route =  this.paramRoute + '/'+this.id;
+    this.firestore.getDocUS<User>('user', this.id).subscribe((user) => {
+      console.log('user1',this.id)
+      console.log(user)
+      if (user) {
+        this.isAdmin = user.isAdmin ?? false;
+        console.log('user2',this.isAdmin)
+      }
+    });
   }
 
   public naviagetToNewElement():void{
@@ -56,7 +65,6 @@ export class CardTemplateComponent implements OnInit{
 
     this.confirmDialog.openConfirmDialog(title, description).then((confirmed) => {
       if(confirmed){
-        console.log('path',this.path,'id',this.id)
         this.firestore.deleteDoc(this.path,this.id)
         let title:string = this.paramRoute.toUpperCase() + ' ELIMINADO';
         let description:string = 'Espere un momento mientras los datos son removidos de la nube.';
@@ -74,5 +82,18 @@ export class CardTemplateComponent implements OnInit{
     //     console.log('se eejcuto el confirmdialog');
     //     // this.router.navigate(['/heroes']);
     //   });
+  }
+
+  public toggleAdmin(event: any): void {
+    const isAdmin = event.target.checked; // Capturamos el estado del checkbox.
+  
+    // Actualizar en la base de datos
+    this.firestore.updateDoc('user', this.id, { isAdmin })
+      .then(() => {
+        console.log('El usuario ha sido actualizado');
+      })
+      .catch((error) => {
+        console.error('Error al actualizar el usuario:', error);
+      });
   }
 }

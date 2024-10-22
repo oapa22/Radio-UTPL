@@ -16,7 +16,12 @@
     <div class="flex flex-col justify-center items-center border-b-2 border-[#C4C4C4]">
       <ng-container *ngIf="this.userTemplate">
         <p class="text-sm p-1">Administrador</p>
-        <input type="checkbox" class="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded-f focus:ring-blue-500">
+        <input
+          type="checkbox"
+          class="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 rounded-f focus:ring-blue-500"
+          [checked]="isAdmin" 
+          (change)="toggleAdmin($event)"
+        >
       </ng-container>
 
       <button
