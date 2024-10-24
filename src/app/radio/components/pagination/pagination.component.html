@@ -32,7 +32,9 @@
     <ng-container *ngFor="let page of indexPagination">
       <button (click)="goToPage(page)"
               class="boxMeasurePagination hover:bg-gray-400"
+
               [ngClass]="{'bg-blue-utpl text-white':currentPage==page}"
+
       >
         {{ page }}
       </button>
