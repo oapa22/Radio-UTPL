@@ -40,6 +40,12 @@ export class FirestoreService {
 
     }
 
+    getDocUS<T>(collection: string, docId: string): Observable<T | undefined> {
+      return this.firestore.collection(collection).doc<T>(docId).valueChanges();
+    }
+
+
+
     // ======================================================================================================
     //obtener documento de un proyecto que se encuentra dentro de cualquier coleccion
     public getDocPodcast<tipo>(path:string, id:string){
