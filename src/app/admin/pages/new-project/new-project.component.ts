@@ -19,6 +19,7 @@ export class NewProjectComponent implements OnInit{
   summaryError: boolean = false;
 
   date = '';
+  dateN = '';
   project: Project = {
     id: '',
     title: '',
@@ -61,8 +62,13 @@ export class NewProjectComponent implements OnInit{
         switchMap(({id}) => this.firestore.getDocProject<Project>('project',id))
       ).subscribe(project => {
           if (!project) return this.router.navigateByUrl('/');
+          this.project = project;
           this.projectForm.reset(project);
           this.fileName = project.photo_filename;
+          if (project.photo_url) {
+            this.imageSrc = project.photo_url;
+          }
+          this.formatDate();
           return;
       });
     }
@@ -70,7 +76,6 @@ export class NewProjectComponent implements OnInit{
   }
 
 
-  // ==========================================================================
   // Fucion para obtener imagen local del computador.
   public onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -81,7 +86,7 @@ export class NewProjectComponent implements OnInit{
     }
   }
 
-  public createProject():void{
+  public createProjectTest():void{
     let downloadUriSub:Subscription;
     let storageUri: string = '';
 
@@ -121,13 +126,12 @@ export class NewProjectComponent implements OnInit{
   }
 
 
-  public updateProyect():void{
+  public updateProject():void{
     let title:string = 'CREANDO PROYECTO';
     let description:string = 'Espere un momento mientras los datos se suben a la nube.';
 
     this.requestLoader.initRequestLoader(title,description);
   }
-  // ==========================================================================
 
 
 
@@ -141,7 +145,8 @@ export class NewProjectComponent implements OnInit{
     }
   }
 
-  createMessage() {
+  createProject() {
+    this.project.summary = this.currentProjectFormValue.summary;
     const wordCount = this.project.summary.trim().split(/\s+/).length;
 
     if (wordCount < 15 || wordCount > 20) {
@@ -149,6 +154,16 @@ export class NewProjectComponent implements OnInit{
       return;
     } else {
       this.summaryError = false;
+    }
+
+    if (this.currentRoute.includes('nuevo')) {
+      let title:string = 'CREANDO PROYECTO';
+      let description:string = 'Espere un momento mientras los datos se suben a la nube.';
+      this.requestLoader.initRequestLoader(title,description);
+    } else {
+      let title:string = 'ACTUALIZANDO PROYECTO';
+      let description:string = 'Espere un momento mientras los datos se actualizan a la nube.';
+      this.requestLoader.initRequestLoader(title,description);
     }
 
     if (this.selectedFile) {
@@ -160,21 +175,41 @@ export class NewProjectComponent implements OnInit{
         fileRef.getDownloadURL().toPromise().then(url => {
           this.project.photo_url = url;
           this.project.photo_filename = this.selectedFile?.name || '';
-          this.createMessageF();
+          this.createProjectF();
         }).catch(error => console.log('Error getting download URL', error));
       }).catch(error => console.log('Error uploading file', error));
+    } else {
+      this.createProjectF();
     }
   }
 
-  createMessageF() {
+  createProjectF() {
     const path = 'project';
-    const id = this.firestore.createId();
-    this.project.id = id;
-    this.project.date = Timestamp.now();
+    this.project.title = this.currentProjectFormValue.title;
+    this.project.keywords = this.currentProjectFormValue.keywords;
+    this.project.summary = this.currentProjectFormValue.summary;
+    this.project.content = this.currentProjectFormValue.content;
 
-    this.firestore.createDoc(this.project, path, id).then(res => {
-      console.log('respuesta ->', res);
-    }).catch(error => console.log('Error creating document', error));
+    if (this.currentRoute.includes('nuevo')){
+      const id = this.firestore.createId();
+
+      this.project.id = id;
+      this.project.date = Timestamp.now();
+  
+      this.firestore.createDoc(this.project, path, id).then(res => {
+        console.log('respuesta ->', res);
+      }).catch(error => console.log('Error creating document', error));
+    } else {
+
+      if (this.project.id) {
+        const id = this.project.id;
+        this.firestore.updateDoc(path, id, this.project).then((res) => {
+          console.log('res->',res)
+        }).catch((error) => {
+          console.error('Error al actualizar el mensaje:', error);
+        });
+      }
+    }
   }
 
   formatDate() {
@@ -190,5 +225,12 @@ export class NewProjectComponent implements OnInit{
     const anio = date.getFullYear();
 
     this.date = `${dia} de ${mes} de ${anio}`;
+    this.dateN = `${dia} de ${mes} de ${anio}`;
+  }
+
+  public get currentProjectFormValue(): Project {
+    const project = this.projectForm.value as Project;
+    project.date = this.project.date;  // Mantener la fecha original
+    return project;
   }
 }

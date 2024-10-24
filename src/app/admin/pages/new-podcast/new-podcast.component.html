@@ -31,10 +31,11 @@
 
 
     <!-- Form para crear o actualizar Projecto-->
-    <form class="w-full grid" [formGroup]="podcastForm" (ngSubmit)="createPodcast()">
+    <form class="w-full grid" [formGroup]="podcastForm">
       <!-- Seccion Fecha Actual -->
       <div class="flex justify-center mt-10 mb-4">
-        <p><strong>Fecha de publicación:</strong> {{date}}</p>
+        <p *ngIf="this.currentRoute.includes('nuevo')"><strong>Fecha de publicación:</strong> {{date}}</p>
+        <p *ngIf="this.currentRoute.includes('editar')"><strong>Fecha de publicación:</strong> {{dateN}}</p>
       </div>
 
       <!-- Seccion del Titulo -->
@@ -64,7 +65,7 @@
         <button
         *ngIf="this.currentRoute.includes('nuevo')"
           class="p-2 text-white bg-[#00ACC1] rounded-lg hover:bg-blue-utpl"
-          (click)="this.updatePodcast()"
+          (click)="this.createPodcast()"
         >Crear Podcast</button>
         <button
         *ngIf="this.currentRoute.includes('editar')"

@@ -130,11 +130,5 @@ export class LoginPageComponent {
     });
   }
 
-  recoverPassword(){
-    this.auth.recoverPassword(this.user.email);
-  }
-  
-  
-
 }
 
