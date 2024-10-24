@@ -35,8 +35,11 @@ export class FirestoreService {
     //obtener documento que se encuentra dentro de cualquier coleccion
     getDoc<tipo>(path: string, id: string){
         return this.firestore.collection(path).doc<tipo>(id).valueChanges().subscribe( (res) => {
-            res
+
+          res
+
         });
+
     }
 
     // ======================================================================================================
