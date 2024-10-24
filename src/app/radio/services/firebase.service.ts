@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { AngularFireStorage } from "@angular/fire/compat/storage";
+import { getCountFromServer } from '@angular/fire/firestore';
 
 import { BehaviorSubject, finalize, map, Observable, switchMap } from "rxjs";
 
@@ -34,8 +35,13 @@ export class FirestoreService {
     //obtener documento que se encuentra dentro de cualquier coleccion
     getDoc<tipo>(path: string, id: string){
         return this.firestore.collection(path).doc<tipo>(id).valueChanges().subscribe( (res) => {
-            res
+          res
         });
+
+    }
+
+    getDocUS<T>(collection: string, docId: string): Observable<T | undefined> {
+      return this.firestore.collection(collection).doc<T>(docId).valueChanges();
     }
 
     getDocUS<T>(collection: string, docId: string): Observable<T | undefined> {
@@ -99,10 +105,21 @@ export class FirestoreService {
       return uploadTask.percentageChanges();
     }
 
-    // getDocumentCount(collectionName: string): Promise<number> {
+    // getDocumentCount(collectionName: string): number {
     //   return this.firestore.collection(collectionName).get().toPromise().then(snapshot => {
     //     return snapshot.size;  // Aquí obtienes el total de documentos
     //   });
+
+    public getDocumentCount<tipo>(path:string):number{
+      const collection = this.firestore.collection<tipo>(path);
+      return collection.valueChanges.length;
+    }
+
+    public getFirstPage<tipo>(numberShow:number, path:string) {
+      return this.firestore.collection<tipo>(path, ref =>
+        ref.orderBy('date').limit(numberShow)); //TODO:cambiar el 'createdAt' por id o algo
+    }
+
     // ======================================================================================================
 
 
