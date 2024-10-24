@@ -33,7 +33,6 @@ export class HomePageComponent implements OnInit{
   constructor(private firestore: FirestoreService){}
 
   public ngOnInit(): void {
-    this.getRecentProjects();
     this.getPodcasts();
     this.getProjects();
   }
@@ -94,6 +93,5 @@ export class HomePageComponent implements OnInit{
       }
     }
   }
-
 
 }

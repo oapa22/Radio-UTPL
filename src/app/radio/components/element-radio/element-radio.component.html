@@ -36,12 +36,15 @@
       </button>
     </div>
 
-    <div class="w-full">
+    <div class="relative w-full">
       <p> <strong> Radio UTPL </strong></p>
 
       <!-- Visualizador de espectro -->
-      <!-- <canvas #audioVisualizer class="w-full h-[40px] bg-gray-900"></canvas> -->
-      <canvas id="audioVisualizer" class="w-full h-[40px]"></canvas>
+      <canvas  #audioCanvas class="w-full h-[40px]"></canvas>
+      <input
+        type="range" class="absolute top-1/2 left-0 appearance-none h-[3px] w-full"
+        #rangeInput min="0" max="100" [value]="this.rangeValue" step="1" (input)="onRangeChange(rangeInput.value)"
+      >
 
       <p>Un cafe con Fabiola</p>
     </div>

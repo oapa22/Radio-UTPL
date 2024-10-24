@@ -11,15 +11,19 @@ export class ProjectsPageComponent implements OnInit{
 
   public projects:Project[] = [];
 
-  constructor(private serviceProject:FirestoreService){}
+  constructor(){}
 
   ngOnInit(): void {
-    this.getProjects();
   }
 
-  public getProjects():void{
-    this.serviceProject.getCollection<Project>('project').subscribe( res => {
-      this.projects = res;
-    });
+  // private serviceProject:FirestoreService
+  // public getProjects():void{
+  //   this.serviceProject.getCollection<Project>('project').subscribe( res => {
+  //     this.projects = res;
+  //   });
+  // }
+
+  public getDocs(projects: Project[]):void{
+    this.projects = projects;
   }
 }
