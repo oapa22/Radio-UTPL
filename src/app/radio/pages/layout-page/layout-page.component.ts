@@ -16,7 +16,6 @@ export class LayoutPageComponent implements OnInit {
     {titleRoute: 'Programación', route: './programacion'},
     {titleRoute: 'Proyectos', route: './proyectos'},
     {titleRoute: 'Contactos', route: './contacto'},
-    {titleRoute: 'Administrador', route: './admin'},
   ];
 
   public routeData:BrowserRoute = {titleRoute:'', route: ''};

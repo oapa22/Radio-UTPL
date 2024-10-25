@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit{
     password: '',
     isAdmin: false,
   }
-  
+
   constructor(
     private firestore:FirestoreService,
     private auth: AuthServiceService,
@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit{
         id: res!.id,
         names: res!.names,
         email: res!.email,
-        password: '', 
+        password: '',
         isAdmin: res!.isAdmin,
       };
       console.log(this.user.email)

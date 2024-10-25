@@ -44,10 +44,6 @@ export class FirestoreService {
       return this.firestore.collection(collection).doc<T>(docId).valueChanges();
     }
 
-    getDocUS<T>(collection: string, docId: string): Observable<T | undefined> {
-      return this.firestore.collection(collection).doc<T>(docId).valueChanges();
-    }
-
 
 
     // ======================================================================================================
