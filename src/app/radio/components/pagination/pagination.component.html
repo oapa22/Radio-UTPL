@@ -30,11 +30,10 @@
   <div class="flex items-center space-x-2" *ngIf="this.totalPages != 0">
     <!-- Mostramos las primeras 4 o los índices dinámicos -->
     <ng-container *ngFor="let page of indexPagination">
-      <button (click)="goToPage(page)"
-              class="boxMeasurePagination hover:bg-gray-400"
-
-              [ngClass]="{'bg-blue-utpl text-white':currentPage==page}"
-
+      <button
+        (click)="goToPage(page)"
+        class="boxMeasurePagination hover:bg-gray-400"
+        [ngClass]="{'bg-blue-utpl text-white':currentPage==page}"
       >
         {{ page }}
       </button>
