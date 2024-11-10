@@ -8,20 +8,14 @@ import { Project } from '../../../shared/interfaces/project.interface';
   styleUrl: './projects-page.component.css'
 })
 export class ProjectsPageComponent implements OnInit{
-
   public projects:Project[] = [];
 
   constructor(){}
 
   ngOnInit(): void {
+
   }
 
-  // private serviceProject:FirestoreService
-  // public getProjects():void{
-  //   this.serviceProject.getCollection<Project>('project').subscribe( res => {
-  //     this.projects = res;
-  //   });
-  // }
 
   public getDocs(projects: Project[]):void{
     this.projects = projects;
