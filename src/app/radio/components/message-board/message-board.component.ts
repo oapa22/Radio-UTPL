@@ -5,20 +5,21 @@ import { FirestoreService } from '../../services/firebase.service';
 import { Message } from '../../../shared/interfaces/message.interface';
 
 @Component({
-  selector: 'radio-message-board',
-  templateUrl: './message-board.component.html',
-  styleUrl: './message-board.component.css',
-  animations: [
-    trigger('carouselAnimation', [
-      transition('void => *', [
-        style({ opacity: 0 }),
-        animate('300ms', style({ opacity: 1 }))
-      ]),
-      transition('* => void', [
-        animate('300ms', style({ opacity: 0 }))
-      ])
-    ])
-  ]
+    selector: 'radio-message-board',
+    templateUrl: './message-board.component.html',
+    styleUrl: './message-board.component.css',
+    animations: [
+        trigger('carouselAnimation', [
+            transition('void => *', [
+                style({ opacity: 0 }),
+                animate('300ms', style({ opacity: 1 }))
+            ]),
+            transition('* => void', [
+                animate('300ms', style({ opacity: 0 }))
+            ])
+        ])
+    ],
+    standalone: false
 })
 export class MessageBoardComponent implements OnInit{
   public messages:Message[] = [];

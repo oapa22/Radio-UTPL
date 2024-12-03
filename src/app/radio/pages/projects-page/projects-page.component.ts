@@ -3,9 +3,10 @@ import { FirestoreService } from '../../services/firebase.service';
 import { Project } from '../../../shared/interfaces/project.interface';
 
 @Component({
-  selector: 'radio-projects-page',
-  templateUrl: './projects-page.component.html',
-  styleUrl: './projects-page.component.css'
+    selector: 'radio-projects-page',
+    templateUrl: './projects-page.component.html',
+    styleUrl: './projects-page.component.css',
+    standalone: false
 })
 export class ProjectsPageComponent implements OnInit{
   public projects:Project[] = [];

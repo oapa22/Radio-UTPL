@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'auth-layout-page',
-  templateUrl: './layout-page.component.html',
-  styleUrl: './layout-page.component.css'
+    selector: 'auth-layout-page',
+    templateUrl: './layout-page.component.html',
+    styleUrl: './layout-page.component.css',
+    standalone: false
 })
 export class LayoutPageComponent {
   public valueLabel:string = '';

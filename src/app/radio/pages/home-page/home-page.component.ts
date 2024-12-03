@@ -7,9 +7,10 @@ import { Timestamp } from '@angular/fire/firestore';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
-  selector: 'radio-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.css'
+    selector: 'radio-home-page',
+    templateUrl: './home-page.component.html',
+    styleUrl: './home-page.component.css',
+    standalone: false
 })
 export class HomePageComponent implements OnInit{
 

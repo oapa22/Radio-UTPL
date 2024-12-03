@@ -2,9 +2,10 @@ import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewCh
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
-  selector: 'radio-element-radio',
-  templateUrl: './element-radio.component.html',
-  styleUrl: './element-radio.component.css'
+    selector: 'radio-element-radio',
+    templateUrl: './element-radio.component.html',
+    styleUrl: './element-radio.component.css',
+    standalone: false
 })
 export class ElementRadioComponent implements AfterViewInit,OnInit{
   @ViewChild('visualizerContainer')

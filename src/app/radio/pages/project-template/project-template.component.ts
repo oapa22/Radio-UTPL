@@ -10,9 +10,10 @@ import { Timestamp } from '@angular/fire/firestore';
 import { ViewportScroller } from '@angular/common';
 
 @Component({
-  selector: 'radio-project-template',
-  templateUrl: './project-template.component.html',
-  styleUrl: './project-template.component.css'
+    selector: 'radio-project-template',
+    templateUrl: './project-template.component.html',
+    styleUrl: './project-template.component.css',
+    standalone: false
 })
 export class ProjectTemplateComponent implements OnInit{
   public project?:Project;

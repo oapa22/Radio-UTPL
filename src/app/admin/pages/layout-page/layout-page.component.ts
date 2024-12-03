@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'admin-layout-page',
-  templateUrl: './layout-page.component.html',
-  styleUrl: './layout-page.component.css'
+    selector: 'admin-layout-page',
+    templateUrl: './layout-page.component.html',
+    styleUrl: './layout-page.component.css',
+    standalone: false
 })
 export class LayoutPageComponent implements OnInit{
   public valueLabel:string = 'podcast';

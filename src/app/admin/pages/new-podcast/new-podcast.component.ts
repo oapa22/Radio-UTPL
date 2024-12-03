@@ -9,10 +9,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ResquestLoaderRenderService } from '../../../shared/renders/resquest-loader.service';
 
 @Component({
-  selector: 'admin-new-podcast',
-  templateUrl: './new-podcast.component.html',
-  styleUrls: ['./new-podcast.component.css'],
-  providers: [DatePipe]
+    selector: 'admin-new-podcast',
+    templateUrl: './new-podcast.component.html',
+    styleUrls: ['./new-podcast.component.css'],
+    providers: [DatePipe],
+    standalone: false
 })
 export class NewPodcastComponent implements OnInit {
   date = '';

@@ -8,9 +8,10 @@ import { CounterDocService } from '../../../shared/services/counter-doc.service'
 import { QueryDocumentSnapshot, QuerySnapshot } from '@angular/fire/compat/firestore';
 
 @Component({
-  selector: 'radio-pagination',
-  templateUrl: './pagination.component.html',
-  styleUrl: './pagination.component.css'
+    selector: 'radio-pagination',
+    templateUrl: './pagination.component.html',
+    styleUrl: './pagination.component.css',
+    standalone: false
 })
 export class PaginationComponent implements OnInit{
   @Output() public userEmitter:EventEmitter<User[]> = new EventEmitter();

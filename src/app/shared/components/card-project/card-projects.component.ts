@@ -2,9 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Project } from '../../interfaces/project.interface';
 
 @Component({
-  selector: 'shared-card-project',
-  templateUrl: './card-projects.component.html',
-  styleUrl: './card-projects.component.css'
+    selector: 'shared-card-project',
+    templateUrl: './card-projects.component.html',
+    styleUrl: './card-projects.component.css',
+    standalone: false
 })
 export class CardProjectsComponent implements OnInit{
 
