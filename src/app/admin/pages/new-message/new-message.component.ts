@@ -9,9 +9,10 @@ import { switchMap } from 'rxjs';
 import { ResquestLoaderRenderService } from '../../../shared/renders/resquest-loader.service';
 
 @Component({
-  selector: 'admin-new-message',
-  templateUrl: './new-message.component.html',
-  styleUrls: ['./new-message.component.css']
+    selector: 'admin-new-message',
+    templateUrl: './new-message.component.html',
+    styleUrls: ['./new-message.component.css'],
+    standalone: false
 })
 export class NewMessageComponent implements OnInit{
   imageSrc: string | ArrayBuffer | null = null;

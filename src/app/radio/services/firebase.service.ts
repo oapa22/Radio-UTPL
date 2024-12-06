@@ -1,9 +1,9 @@
 import { Injectable, OnInit } from '@angular/core';
-import { AngularFirestore } from "@angular/fire/compat/firestore";
+import { AngularFirestore, QueryDocumentSnapshot, QuerySnapshot } from "@angular/fire/compat/firestore";
 import { AngularFireStorage } from "@angular/fire/compat/storage";
 import { getCountFromServer } from '@angular/fire/firestore';
 
-import { BehaviorSubject, finalize, map, Observable, switchMap } from "rxjs";
+import { BehaviorSubject, finalize, firstValueFrom, map, Observable, switchMap, tap } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -43,6 +43,8 @@ export class FirestoreService {
     getDocUS<T>(collection: string, docId: string): Observable<T | undefined> {
       return this.firestore.collection(collection).doc<T>(docId).valueChanges();
     }
+
+
 
 
     // ======================================================================================================
@@ -100,22 +102,63 @@ export class FirestoreService {
       return uploadTask.percentageChanges();
     }
 
-    // getDocumentCount(collectionName: string): number {
-    //   return this.firestore.collection(collectionName).get().toPromise().then(snapshot => {
-    //     return snapshot.size;  // Aquí obtienes el total de documentos
-    //   });
-
-    public getDocumentCount<tipo>(path:string):number{
-      const collection = this.firestore.collection<tipo>(path);
-      return collection.valueChanges.length;
-    }
-
-    public getFirstPage<tipo>(numberShow:number, path:string) {
+    //no es necesario el []
+    public getFirstDocument<tipo>(path:string, numberShow:number):Observable<tipo[]> {
       return this.firestore.collection<tipo>(path, ref =>
-        ref.orderBy('date').limit(numberShow)); //TODO:cambiar el 'createdAt' por id o algo
+        ref.orderBy('date').limit(numberShow)).valueChanges(); //TODO:cambiar el 'createdAt' por id o algo
     }
 
+
+    // Método para obtener la siguiente página
+    public loadNextSnapshot<tipo>(path:string, lastVisible:QueryDocumentSnapshot<tipo>,numbersDocShow:number):Observable<QuerySnapshot<tipo>>{
+      return this.firestore.collection<tipo>(path, ref =>
+        ref.orderBy('date').startAfter(lastVisible).limit(numbersDocShow)).get();
+    }
+
+    public async loadNextSnapshotAsync<tipo>(
+      path: string,
+      lastVisible: QueryDocumentSnapshot<tipo>,
+      numbersDocShow: number
+    ): Promise<QuerySnapshot<tipo>> {
+      // Convertimos el Observable a una Promise para usarlo con async/await
+      const observable: Observable<QuerySnapshot<tipo>> = this.firestore.collection<tipo>(path, ref =>
+        ref.orderBy('date').startAfter(lastVisible).limit(numbersDocShow)
+      ).get();
+
+      return firstValueFrom(observable); // Devuelve una Promise
+    }
+
+    public async loadPrevSnapshotAsync<tipo>(
+      path: string,
+      lastVisible: QueryDocumentSnapshot<tipo>,
+      numbersDocShow: number
+    ): Promise<QuerySnapshot<tipo>> {
+      // Convertimos el Observable a una Promise para usarlo con async/await
+      const observable: Observable<QuerySnapshot<tipo>> = this.firestore.collection<tipo>(path, ref =>
+        ref.orderBy('date').endBefore(lastVisible).limitToLast(numbersDocShow)
+      ).get();
+
+      return firstValueFrom(observable); // Devuelve una Promise
+    }
+
+    public loadPrevSnapshot<tipo>(path:string, firstVisible:QueryDocumentSnapshot<tipo>,numbersDocShow:number):Observable<QuerySnapshot<tipo>>{
+      return this.firestore.collection<tipo>(path, ref =>
+        ref.orderBy('date').endBefore(firstVisible).limitToLast(numbersDocShow)).get();
+    }
+
+    public getFirstSnapshot<tipo>(path:string, numbersDocShow:number):Observable<QuerySnapshot<tipo>>{
+      return this.firestore.collection<tipo>(path, ref =>
+        ref.orderBy('date').limit(numbersDocShow)).get();
+    }
+
+    public getLastSnapshot<tipo>(path:string, numbersDocShow:number):Observable<QuerySnapshot<tipo>>{
+      return this.firestore.collection<tipo>(path, ref =>
+        ref.orderBy('date','desc').limit(numbersDocShow)).get();
+    }
     // ======================================================================================================
+
+
+
 
 
     //obtener array de documentos con X campo y X limite

@@ -5,9 +5,10 @@ import { User } from '../../../shared/interfaces/user.interface';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-account-recovery-page',
-  templateUrl: './account-recovery-page.component.html',
-  styleUrl: './account-recovery-page.component.css'
+    selector: 'app-account-recovery-page',
+    templateUrl: './account-recovery-page.component.html',
+    styleUrl: './account-recovery-page.component.css',
+    standalone: false
 })
 export class AccountRecoveryPageComponent {
   users: User[] = [];

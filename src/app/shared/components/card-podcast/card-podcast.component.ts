@@ -3,9 +3,10 @@ import { Podcast } from '../../interfaces/podcast.interface';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
-  selector: 'shared-card-podcast',
-  templateUrl: './card-podcast.component.html',
-  styleUrl: './card-podcast.component.css'
+    selector: 'shared-card-podcast',
+    templateUrl: './card-podcast.component.html',
+    styleUrl: './card-podcast.component.css',
+    standalone: false
 })
 export class CardPodcastComponent implements OnInit{
   @Input()

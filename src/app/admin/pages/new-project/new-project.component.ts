@@ -9,9 +9,10 @@ import { finalize, Subscription, switchMap } from 'rxjs';
 import { ResquestLoaderRenderService } from '../../../shared/renders/resquest-loader.service';
 
 @Component({
-  selector: 'admin-new-project',
-  templateUrl: './new-project.component.html',
-  styleUrls: ['./new-project.component.css']
+    selector: 'admin-new-project',
+    templateUrl: './new-project.component.html',
+    styleUrls: ['./new-project.component.css'],
+    standalone: false
 })
 export class NewProjectComponent implements OnInit{
   imageSrc: string | ArrayBuffer | null = null;

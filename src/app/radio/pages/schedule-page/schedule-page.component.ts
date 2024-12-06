@@ -5,9 +5,10 @@ import { DomSanitizer, SafeHtml, SafeResourceUrl } from '@angular/platform-brows
 
 
 @Component({
-  selector: 'radio-schedule-page',
-  templateUrl: './schedule-page.component.html',
-  styleUrl: './schedule-page.component.css'
+    selector: 'radio-schedule-page',
+    templateUrl: './schedule-page.component.html',
+    styleUrl: './schedule-page.component.css',
+    standalone: false
 })
 export class SchedulePageComponent implements OnInit{
   public podcasts: Podcast[] = [];

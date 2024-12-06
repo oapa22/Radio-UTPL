@@ -4,11 +4,13 @@ import { Podcast } from '../../../shared/interfaces/podcast.interface';
 import { MediaElement } from '../../interfaces/media-element.interface';
 import { Project } from '../../../shared/interfaces/project.interface';
 import { Timestamp } from '@angular/fire/firestore';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
-  selector: 'radio-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.css'
+    selector: 'radio-home-page',
+    templateUrl: './home-page.component.html',
+    styleUrl: './home-page.component.css',
+    standalone: false
 })
 export class HomePageComponent implements OnInit{
 
@@ -29,6 +31,7 @@ export class HomePageComponent implements OnInit{
     {id: '03', title: 'Tree Image', imgSrc: 'https://firebasestorage.googleapis.com/v0/b/radioutpl.appspot.com/o/media%2Fimage_carrousel.png?alt=media&token=2e17e727-a307-48e1-82fa-ea578c449a69'}
   ];
 
+  private unsubscribe$ = new Subject<void>();
 
   constructor(private firestore: FirestoreService){}
 
@@ -44,7 +47,9 @@ export class HomePageComponent implements OnInit{
   }
 
   public getProjects():void{
-    this.firestore.getLatestDocuments<Project>('project','date',3).subscribe(projects => {
+    this.firestore.getLatestDocuments<Project>('project','date',3)
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe(projects => {
       this.projects = projects;
       this.formatDateProjects(this.projects);
       console.log(this.projects);
@@ -92,6 +97,11 @@ export class HomePageComponent implements OnInit{
         this.date[i] = `${dia} de ${mes} de ${anio}`;
       }
     }
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 
 }

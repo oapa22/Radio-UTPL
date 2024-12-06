@@ -21,58 +21,26 @@
       >
     </div>
     <!--  class="  sm:space-x-7 text-xs lg:text-sm  text-white" -->
-    <nav class="col-span-3 sm:space-x-10 text-xs lg:text-sm font-semibold text-white">
-      <a
-        [ngClass]="{'text-yellow-utpl': currentRoute.includes('/radio-utpl/inicio')}"
-        class="p-1 hover:text-yellow-utpl transition duration-300 ease-in-out"
-        [routerLink]="'./inicio'"
-      >
-        INICIO
-      </a>
-    
-      <a
-        [ngClass]="{'text-yellow-utpl': currentRoute.includes('/radio-utpl/quienes-somos')}"
-        class="p-1 hover:text-yellow-utpl transition duration-300 ease-in-out"
-        [routerLink]="'./quienes-somos'"
-      >
-        ¿QUIENES SOMOS?
-      </a>
-    
-      <a
-        [ngClass]="{'text-yellow-utpl': currentRoute.includes('/radio-utpl/programacion')}"
-        class="p-1 hover:text-yellow-utpl transition duration-300 ease-in-out"
-        [routerLink]="'./programacion'"
-      >
-        PROGRAMACIÓN
-      </a>
-    
-      <a
-        [ngClass]="{'text-yellow-utpl': currentRoute.includes('/radio-utpl/proyectos')}"
-        class="p-1 hover:text-yellow-utpl transition duration-300 ease-in-out"
-        [routerLink]="'./proyectos'"
-      >
-        PROYECTOS
-      </a>
-    
-      <a
-        [ngClass]="{'text-yellow-utpl': currentRoute.includes('/radio-utpl/contacto')}"
-        class="p-1 hover:text-yellow-utpl transition duration-300 ease-in-out"
-        [routerLink]="'./contacto'"
-      >
-        CONTACTOS
-      </a>
-    
-      <a
-        *ngIf="user?.isAdmin && logged"
-        [ngClass]="{'text-yellow-utpl': currentRoute.includes('/radio-utpl/admin')}"
-        class="p-1 hover:text-yellow-utpl transition duration-300 ease-in-out"
-        [routerLink]="'./admin'"
-      >
-        ADMINISTRADOR
-      </a>
+    <nav class="col-span-3  sm:space-x-10 text-xs lg:text-sm font-semibold text-white">
+        <a
+          *ngFor="let item of browserRoutes"
+          [ngClass]="{'text-yellow-utpl': currentRoute.includes( '/radio-utpl' + item.route.replace('.', ''))}"
+          href=""
+          class="p-1 hover:text-yellow-utpl  transition duration-300 ease-in-out"
+          [routerLink]=item.route
+        >
+          {{item.titleRoute | uppercase}}
+        </a>
+
+        <a *ngIf="logged == true"
+          [ngClass]="{'text-yellow-utpl': currentRoute.includes( '/radio-utpl/admin')}"
+          href=""
+          class="p-1 hover:text-yellow-utpl  transition duration-300 ease-in-out"
+          routerLink="./admin"
+        >
+         {{'ADMINISTRADOR'}}
+        </a>
     </nav>
-    
-    
 
     <!-- <div class="col-span-1 grid justify-center">
       <a [routerLink]="['/radio-utpl/auth/login']" title="Iniciar sesión">
