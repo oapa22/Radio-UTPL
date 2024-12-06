@@ -5,9 +5,10 @@ import { User } from '../../../shared/interfaces/user.interface';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'auth-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrl: './login-page.component.css'
+    selector: 'auth-login-page',
+    templateUrl: './login-page.component.html',
+    styleUrl: './login-page.component.css',
+    standalone: false
 })
 export class LoginPageComponent {
   users: User[] = [];

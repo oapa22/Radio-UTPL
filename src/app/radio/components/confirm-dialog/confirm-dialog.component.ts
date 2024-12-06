@@ -3,9 +3,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Project } from '../../../shared/interfaces/project.interface';
 
 @Component({
-  selector: 'radio-confirm-dialog',
-  templateUrl: './confirm-dialog.component.html',
-  styleUrl: './confirm-dialog.component.css'
+    selector: 'radio-confirm-dialog',
+    templateUrl: './confirm-dialog.component.html',
+    styleUrl: './confirm-dialog.component.css',
+    standalone: false
 })
 export class ConfirmDialogComponent {
   constructor(

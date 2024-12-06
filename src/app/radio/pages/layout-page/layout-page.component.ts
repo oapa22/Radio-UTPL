@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { BrowserRoute } from '../../interfaces/browser-route';
 
 @Component({
-  selector: 'radio-layout-page',
-  templateUrl: './layout-page.component.html',
-  styleUrl: './layout-page.component.css'
+    selector: 'radio-layout-page',
+    templateUrl: './layout-page.component.html',
+    styleUrl: './layout-page.component.css',
+    standalone: false
 })
 export class LayoutPageComponent implements OnInit {
 

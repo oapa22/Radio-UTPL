@@ -5,9 +5,10 @@ import { AuthServiceService } from '../../../auth/services/auth.service';
 import { User } from '../../../shared/interfaces/user.interface';
 
 @Component({
-  selector: 'radio-header',
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+    selector: 'radio-header',
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.css',
+    standalone: false
 })
 export class HeaderComponent implements OnInit{
   docId!: string;

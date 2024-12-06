@@ -11,9 +11,10 @@ import { ConfirmDialogService } from '../../../shared/renders/confirm-dialog.ser
 import { User } from '../../../shared/interfaces/user.interface';
 
 @Component({
-  selector: 'admin-card-template',
-  templateUrl: './card-template.component.html',
-  styleUrl: './card-template.component.css'
+    selector: 'admin-card-template',
+    templateUrl: './card-template.component.html',
+    styleUrl: './card-template.component.css',
+    standalone: false
 })
 export class CardTemplateComponent implements OnInit{
   @Input() public userTemplate:boolean = false;

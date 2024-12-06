@@ -4,9 +4,10 @@ import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
 
 
 @Component({
-  selector: 'radio-contact-page',
-  templateUrl: './contact-page.component.html',
-  styleUrls: ['./contact-page.component.css'],
+    selector: 'radio-contact-page',
+    templateUrl: './contact-page.component.html',
+    styleUrls: ['./contact-page.component.css'],
+    standalone: false
 })
 export class ContactPageComponent {
 

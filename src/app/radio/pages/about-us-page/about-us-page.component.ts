@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { MediaElement } from '../../interfaces/media-element.interface';
 
 @Component({
-  selector: 'radio-about-us-page',
-  templateUrl: './about-us-page.component.html',
-  styleUrl: './about-us-page.component.css'
+    selector: 'radio-about-us-page',
+    templateUrl: './about-us-page.component.html',
+    styleUrl: './about-us-page.component.css',
+    standalone: false
 })
 export class AboutUsPageComponent {
   public mediaTeamMediaLab:MediaElement[] = [

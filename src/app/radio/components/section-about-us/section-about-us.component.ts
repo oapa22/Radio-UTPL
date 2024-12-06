@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'radio-section-about-us',
-  templateUrl: './section-about-us.component.html',
-  styleUrl: './section-about-us.component.css'
+    selector: 'radio-section-about-us',
+    templateUrl: './section-about-us.component.html',
+    styleUrl: './section-about-us.component.css',
+    standalone: false
 })
 export class SectionAboutUsComponent {
   public isPlay:boolean = false;

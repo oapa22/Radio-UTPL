@@ -4,20 +4,21 @@ import { MediaElement } from '../../interfaces/media-element.interface';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
-  selector: 'radio-carousel',
-  templateUrl: './carousel.component.html',
-  styleUrl: './carousel.component.css',
-  animations: [
-    trigger('carouselAnimation', [
-      transition('void => *', [
-        style({ opacity: 0 }),
-        animate('300ms', style({ opacity: 1 }))
-      ]),
-      transition('* => void', [
-        animate('300ms', style({ opacity: 0 }))
-      ])
-    ])
-  ]
+    selector: 'radio-carousel',
+    templateUrl: './carousel.component.html',
+    styleUrl: './carousel.component.css',
+    animations: [
+        trigger('carouselAnimation', [
+            transition('void => *', [
+                style({ opacity: 0 }),
+                animate('300ms', style({ opacity: 1 }))
+            ]),
+            transition('* => void', [
+                animate('300ms', style({ opacity: 0 }))
+            ])
+        ])
+    ],
+    standalone: false
 })
 export class CarouselComponent implements OnInit{
   // Custom Properties

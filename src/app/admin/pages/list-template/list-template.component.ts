@@ -7,9 +7,10 @@ import { FirestoreService } from '../../../radio/services/firebase.service';
 import { User } from '../../../shared/interfaces/user.interface';
 
 @Component({
-  selector: 'admin-list-template',
-  templateUrl: './list-template.component.html',
-  styleUrl: './list-template.component.css'
+    selector: 'admin-list-template',
+    templateUrl: './list-template.component.html',
+    styleUrl: './list-template.component.css',
+    standalone: false
 })
 export class ListTemplateComponent implements OnInit{
   public podcasts: Podcast[] = [];

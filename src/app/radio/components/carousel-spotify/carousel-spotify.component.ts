@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'raido-carousel-spotify',
-  templateUrl: './carousel-spotify.component.html',
-  styleUrl: './carousel-spotify.component.css'
+    selector: 'raido-carousel-spotify',
+    templateUrl: './carousel-spotify.component.html',
+    styleUrl: './carousel-spotify.component.css',
+    standalone: false
 })
 export class CarouselSpotifyComponent {
   cards = [
